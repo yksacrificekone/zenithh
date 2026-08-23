@@ -5,16 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ZENITH — Your Communities. Your People. Your Zenith.</title>
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     
     <style>
-        /* ============================================================
-           ZENITH — COMPLETE STYLESHEET
-           ============================================================ */
-        
-        /* ----- CSS Variables ----- */
         :root {
             --zenith-bg-primary: #0a0a0f;
             --zenith-bg-secondary: #12121a;
@@ -41,7 +35,6 @@
             --zenith-radius-lg: 16px;
             --zenith-radius-xl: 24px;
             --zenith-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-            --zenith-shadow-glow: 0 0 60px rgba(124, 92, 252, 0.08);
             --zenith-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             --zenith-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             --zenith-font-display: 'Lexend', 'Inter', sans-serif;
@@ -49,13 +42,9 @@
             --zenith-rail-width: 68px;
             --zenith-member-width: 260px;
             --zenith-header-height: 56px;
-            --zenith-composer-height: 72px;
         }
 
-        /* ----- Reset & Base ----- */
-        *,
-        *::before,
-        *::after {
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -77,7 +66,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ----- Scrollbar ----- */
         ::-webkit-scrollbar {
             width: 4px;
             height: 4px;
@@ -93,13 +81,7 @@
             background: var(--zenith-accent);
         }
 
-        /* ----- Typography ----- */
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
+        h1, h2, h3, h4, h5, h6 {
             font-family: var(--zenith-font-display);
             font-weight: 700;
             letter-spacing: -0.02em;
@@ -109,13 +91,7 @@
             color: var(--zenith-accent);
             text-decoration: none;
         }
-        a:hover {
-            color: var(--zenith-accent-hover);
-        }
 
-        /* ============================================================
-           APP SHELL
-           ============================================================ */
         #app {
             display: flex;
             height: 100vh;
@@ -124,7 +100,6 @@
             position: relative;
         }
 
-        /* ----- Auth Container ----- */
         #auth-container {
             display: none;
             position: fixed;
@@ -223,9 +198,6 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 20px var(--zenith-accent-glow);
         }
-        .auth-box .btn-primary:active {
-            transform: translateY(0);
-        }
         .auth-box .auth-switch {
             text-align: center;
             margin-top: 20px;
@@ -254,7 +226,6 @@
             display: block;
         }
 
-        /* ----- Main Layout ----- */
         #main-app {
             display: none;
             flex: 1;
@@ -266,7 +237,6 @@
             display: flex;
         }
 
-        /* ----- Rail (Left) ----- */
         .rail {
             width: var(--zenith-rail-width);
             min-width: var(--zenith-rail-width);
@@ -310,7 +280,9 @@
             position: relative;
             border: none;
             background: transparent;
-            font-size: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: var(--zenith-font);
         }
         .rail .rail-item:hover {
             background: var(--zenith-bg-hover);
@@ -369,7 +341,6 @@
             object-fit: cover;
         }
 
-        /* ----- Sidebar (Channel List) ----- */
         .sidebar {
             width: var(--zenith-sidebar-width);
             min-width: var(--zenith-sidebar-width);
@@ -501,7 +472,7 @@
             color: var(--zenith-text-primary);
         }
         .sidebar .channel-list .channel .channel-icon {
-            font-size: 16px;
+            font-size: 14px;
             width: 24px;
             text-align: center;
             flex-shrink: 0;
@@ -608,7 +579,6 @@
             color: var(--zenith-text-secondary);
         }
 
-        /* ----- Main Content ----- */
         .main-content {
             flex: 1;
             display: flex;
@@ -662,7 +632,6 @@
             color: var(--zenith-text-secondary);
         }
 
-        /* ----- Message Area ----- */
         .message-area {
             flex: 1;
             overflow-y: auto;
@@ -683,9 +652,10 @@
             justify-content: center;
         }
         .message-area .empty-state .icon {
-            font-size: 56px;
+            font-size: 48px;
             margin-bottom: 20px;
-            opacity: 0.6;
+            opacity: 0.5;
+            color: var(--zenith-text-muted);
         }
         .message-area .empty-state h3 {
             font-size: 20px;
@@ -696,9 +666,9 @@
             font-size: 14px;
             max-width: 400px;
             line-height: 1.6;
+            color: var(--zenith-text-muted);
         }
 
-        /* ----- Message ----- */
         .message {
             display: flex;
             gap: 12px;
@@ -805,9 +775,6 @@
             color: var(--zenith-text-secondary);
             font-size: 13px;
         }
-        .message .msg-content .attachment .file-icon {
-            font-size: 20px;
-        }
         .message .msg-actions {
             display: none;
             position: absolute;
@@ -871,7 +838,6 @@
             color: var(--zenith-accent);
         }
 
-        /* Consecutive messages from same author */
         .message.compact .msg-avatar {
             visibility: hidden;
             width: 36px;
@@ -883,7 +849,6 @@
             font-size: 10px;
         }
 
-        /* ----- Composer ----- */
         .composer {
             padding: 12px 20px 16px 20px;
             border-top: 1px solid var(--zenith-border);
@@ -1021,7 +986,6 @@
             background: var(--zenith-bg-hover);
         }
 
-        /* ----- Member Panel (Right) ----- */
         .member-panel {
             width: var(--zenith-member-width);
             min-width: var(--zenith-member-width);
@@ -1119,7 +1083,6 @@
             background: var(--zenith-text-muted);
         }
 
-        /* ----- Toast Notifications ----- */
         .toast-container {
             position: fixed;
             bottom: 24px;
@@ -1167,31 +1130,16 @@
             padding: 4px;
             font-size: 16px;
         }
-        .toast.success .toast-icon {
-            color: var(--zenith-success);
-        }
-        .toast.error .toast-icon {
-            color: var(--zenith-danger);
-        }
-        .toast.warning .toast-icon {
-            color: var(--zenith-warning);
-        }
-        .toast.info .toast-icon {
-            color: var(--zenith-info);
-        }
+        .toast.success .toast-icon { color: var(--zenith-success); }
+        .toast.error .toast-icon { color: var(--zenith-danger); }
+        .toast.warning .toast-icon { color: var(--zenith-warning); }
+        .toast.info .toast-icon { color: var(--zenith-info); }
 
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
-        /* ----- Modals ----- */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -1333,25 +1281,14 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95) translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* ----- Loading States ----- */
         .loading-spinner {
             display: inline-block;
             width: 24px;
@@ -1362,9 +1299,7 @@
             animation: spin 0.8s linear infinite;
         }
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
 
         .skeleton {
@@ -1373,48 +1308,23 @@
             animation: pulse 1.5s ease-in-out infinite;
         }
         @keyframes pulse {
-            0%,
-            100% {
-                opacity: 0.6;
-            }
-            50% {
-                opacity: 1;
-            }
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
 
-        /* ----- Responsive ----- */
         @media (max-width: 1200px) {
-            .member-panel {
-                width: 220px;
-                min-width: 220px;
-            }
+            .member-panel { width: 220px; min-width: 220px; }
         }
 
         @media (max-width: 1024px) {
-            .member-panel {
-                display: none !important;
-            }
-            .sidebar {
-                width: 200px;
-                min-width: 200px;
-            }
+            .member-panel { display: none !important; }
+            .sidebar { width: 200px; min-width: 200px; }
         }
 
         @media (max-width: 768px) {
-            .rail {
-                width: 52px;
-                min-width: 52px;
-            }
-            .rail .rail-item {
-                width: 36px;
-                height: 36px;
-                font-size: 16px;
-            }
-            .rail .rail-logo {
-                width: 32px;
-                height: 32px;
-                font-size: 14px;
-            }
+            .rail { width: 52px; min-width: 52px; }
+            .rail .rail-item { width: 36px; height: 36px; font-size: 14px; }
+            .rail .rail-logo { width: 32px; height: 32px; font-size: 14px; }
             .sidebar {
                 position: fixed;
                 left: 52px;
@@ -1427,9 +1337,7 @@
                 z-index: 20;
                 box-shadow: var(--zenith-shadow);
             }
-            .sidebar.open {
-                transform: translateX(0);
-            }
+            .sidebar.open { transform: translateX(0); }
             .sidebar-overlay {
                 position: fixed;
                 inset: 0;
@@ -1437,121 +1345,39 @@
                 z-index: 19;
                 display: none;
             }
-            .sidebar-overlay.active {
-                display: block;
-            }
-            .main-content .content-header {
-                padding: 8px 14px;
-            }
-            .main-content .content-header .channel-info .channel-topic {
-                display: none;
-            }
-            .message-area {
-                padding: 12px 12px 4px 12px;
-            }
-            .message {
-                padding: 3px 8px;
-            }
-            .composer {
-                padding: 8px 12px 12px 12px;
-            }
-            .composer .composer-input-row .btn-send {
-                padding: 8px 14px;
-                height: 40px;
-                font-size: 13px;
-            }
-            .auth-box {
-                padding: 32px 24px;
-                margin: 10px;
-            }
-            .modal {
-                padding: 24px 20px;
-                margin: 10px;
-            }
+            .sidebar-overlay.active { display: block; }
+            .main-content .content-header { padding: 8px 14px; }
+            .main-content .content-header .channel-info .channel-topic { display: none; }
+            .message-area { padding: 12px 12px 4px 12px; }
+            .message { padding: 3px 8px; }
+            .composer { padding: 8px 12px 12px 12px; }
+            .composer .composer-input-row .btn-send { padding: 8px 14px; height: 40px; font-size: 13px; }
+            .auth-box { padding: 32px 24px; margin: 10px; }
+            .modal { padding: 24px 20px; margin: 10px; }
         }
 
         @media (max-width: 480px) {
-            .rail {
-                width: 48px;
-                min-width: 48px;
-                padding: 8px 0;
-            }
-            .rail .rail-item {
-                width: 32px;
-                height: 32px;
-                font-size: 14px;
-            }
-            .rail .rail-logo {
-                width: 28px;
-                height: 28px;
-                font-size: 12px;
-            }
-            .sidebar {
-                width: 260px;
-                min-width: 260px;
-                left: 48px;
-            }
-            .auth-box {
-                padding: 24px 16px;
-            }
-            .auth-box .logo h1 {
-                font-size: 26px;
-            }
-            .message .msg-content {
-                font-size: 14px;
-            }
-            .message .msg-header .display-name {
-                font-size: 14px;
-            }
+            .rail { width: 48px; min-width: 48px; padding: 8px 0; }
+            .rail .rail-item { width: 32px; height: 32px; font-size: 12px; }
+            .rail .rail-logo { width: 28px; height: 28px; font-size: 12px; }
+            .sidebar { width: 260px; min-width: 260px; left: 48px; }
+            .auth-box { padding: 24px 16px; }
+            .auth-box .logo h1 { font-size: 26px; }
+            .message .msg-content { font-size: 14px; }
+            .message .msg-header .display-name { font-size: 14px; }
         }
 
-        /* ----- Utility Classes ----- */
-        .hidden {
-            display: none !important;
-        }
-        .flex-center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .gap-4 {
-            gap: 4px;
-        }
-        .gap-8 {
-            gap: 8px;
-        }
-        .gap-12 {
-            gap: 12px;
-        }
-        .text-muted {
-            color: var(--zenith-text-muted);
-        }
-        .text-secondary {
-            color: var(--zenith-text-secondary);
-        }
-        .text-center {
-            text-align: center;
-        }
-        .w-full {
-            width: 100%;
-        }
-        .mt-8 {
-            margin-top: 8px;
-        }
-        .mt-12 {
-            margin-top: 12px;
-        }
-        .mt-16 {
-            margin-top: 16px;
-        }
-        .mb-8 {
-            margin-bottom: 8px;
-        }
-        .mb-12 {
-            margin-bottom: 12px;
-        }
+        .hidden { display: none !important; }
+        .text-muted { color: var(--zenith-text-muted); }
+        .text-secondary { color: var(--zenith-text-secondary); }
+        .text-center { text-align: center; }
+        .w-full { width: 100%; }
+        .mt-8 { margin-top: 8px; }
+        .mt-12 { margin-top: 12px; }
+        .mt-16 { margin-top: 16px; }
+        .mb-8 { margin-bottom: 8px; }
+        .mb-12 { margin-bottom: 12px; }
 
-        /* ----- Typing Indicator ----- */
         .typing-indicator {
             padding: 4px 16px;
             font-size: 13px;
@@ -1572,26 +1398,13 @@
             background: var(--zenith-text-tertiary);
             animation: typingDot 1.4s ease-in-out infinite;
         }
-        .typing-indicator .dots span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        .typing-indicator .dots span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
+        .typing-indicator .dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator .dots span:nth-child(3) { animation-delay: 0.4s; }
         @keyframes typingDot {
-            0%,
-            60%,
-            100% {
-                transform: translateY(0);
-                opacity: 0.4;
-            }
-            30% {
-                transform: translateY(-6px);
-                opacity: 1;
-            }
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-6px); opacity: 1; }
         }
 
-        /* ----- Context Menu ----- */
         .context-menu {
             position: fixed;
             background: var(--zenith-bg-elevated);
@@ -1604,9 +1417,7 @@
             display: none;
             backdrop-filter: blur(12px);
         }
-        .context-menu.active {
-            display: block;
-        }
+        .context-menu.active { display: block; }
         .context-menu .menu-item {
             padding: 8px 14px;
             cursor: pointer;
@@ -1641,12 +1452,8 @@
 </head>
 <body>
 
-    <!-- ============================================================
-    APP
-    ============================================================ -->
     <div id="app">
 
-        <!-- ----- Auth Container ----- -->
         <div id="auth-container" class="active">
             <div class="auth-box">
                 <div class="logo">
@@ -1654,7 +1461,6 @@
                     <p>Your communities. Your people. Your Zenith.</p>
                 </div>
 
-                <!-- Login Form -->
                 <div id="login-form">
                     <div class="form-group">
                         <label for="login-username">Username or Email</label>
@@ -1671,11 +1477,11 @@
                     </div>
                 </div>
 
-                <!-- Register Form -->
                 <div id="register-form" style="display:none;">
                     <div class="form-group">
                         <label for="reg-username">Username</label>
                         <input type="text" id="reg-username" placeholder="Choose a username" />
+                        <div class="helper">Letters, numbers, and underscores only. 3-32 characters.</div>
                     </div>
                     <div class="form-group">
                         <label for="reg-displayname">Display Name</label>
@@ -1687,7 +1493,7 @@
                     </div>
                     <div class="form-group">
                         <label for="reg-password">Password</label>
-                        <input type="password" id="reg-password" placeholder="Create a password" />
+                        <input type="password" id="reg-password" placeholder="Create a password (min 6 characters)" />
                     </div>
                     <div id="register-error" class="error-message"></div>
                     <button class="btn-primary" id="register-btn">Create Account</button>
@@ -1698,27 +1504,23 @@
             </div>
         </div>
 
-        <!-- ----- Main App ----- -->
         <div id="main-app">
 
-            <!-- Rail -->
             <div class="rail" id="rail">
                 <div class="rail-logo">Z</div>
-                <button class="rail-item active" data-tab="home" title="Home">🏠</button>
-                <button class="rail-item" data-tab="friends" title="Friends">👥</button>
-                <button class="rail-item" data-tab="dms" title="Direct Messages">💬</button>
+                <button class="rail-item active" data-tab="home" title="Home">Home</button>
+                <button class="rail-item" data-tab="friends" title="Friends">Friends</button>
+                <button class="rail-item" data-tab="dms" title="Direct Messages">DMs</button>
                 <div class="rail-divider"></div>
-                <button class="rail-item" id="add-community-btn" title="Add Community">➕</button>
+                <button class="rail-item" id="add-community-btn" title="Add Community">+</button>
                 <div class="rail-divider"></div>
-                <button class="rail-item" data-tab="discover" title="Discover">🔍</button>
+                <button class="rail-item" data-tab="discover" title="Discover">Search</button>
                 <div style="flex:1;"></div>
-                <div class="rail-avatar" id="rail-avatar" title="Profile">👤</div>
+                <div class="rail-avatar" id="rail-avatar" title="Profile">?</div>
             </div>
 
-            <!-- Sidebar Overlay (mobile) -->
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-            <!-- Sidebar -->
             <div class="sidebar" id="sidebar">
                 <div class="sidebar-header">
                     <div class="community-name" id="community-selector">
@@ -1731,11 +1533,9 @@
                 <div class="channel-search">
                     <input type="text" id="channel-search" placeholder="Find a channel..." />
                 </div>
-                <div class="channel-list" id="channel-list">
-                    <!-- Channels rendered by JS -->
-                </div>
+                <div class="channel-list" id="channel-list"></div>
                 <div class="sidebar-footer" id="sidebar-user">
-                    <div class="user-avatar" id="sidebar-avatar">👤</div>
+                    <div class="user-avatar" id="sidebar-avatar">?</div>
                     <div class="user-info">
                         <div class="username" id="sidebar-username">User</div>
                         <div class="status">
@@ -1743,27 +1543,24 @@
                             <span id="sidebar-status">Online</span>
                         </div>
                     </div>
-                    <button class="btn-icon" id="settings-btn" title="Settings">⚙️</button>
+                    <button class="btn-icon" id="settings-btn" title="Settings">⚙</button>
                 </div>
             </div>
 
-            <!-- Main Content -->
             <div class="main-content" id="main-content">
                 <div class="content-header">
                     <div class="channel-info">
                         <span id="channel-icon-display">#</span>
                         <span class="channel-name" id="channel-name-display">general</span>
-                        <span class="channel-topic" id="channel-topic-display">Welcome to ZENITH!</span>
+                        <span class="channel-topic" id="channel-topic-display">Welcome to ZENITH</span>
                     </div>
                     <div class="channel-actions">
                         <button class="btn-icon" id="member-toggle" title="Members">👥</button>
                         <button class="btn-icon" id="search-channel-btn" title="Search">🔍</button>
-                        <button class="btn-icon" id="pin-toggle" title="Pins">📌</button>
                     </div>
                 </div>
 
                 <div class="message-area" id="message-area">
-                    <!-- Messages rendered by JS -->
                     <div class="empty-state" id="empty-state">
                         <div class="icon">💬</div>
                         <h3>No messages yet</h3>
@@ -1771,15 +1568,11 @@
                     </div>
                 </div>
 
-                <!-- Typing Indicator -->
                 <div class="typing-indicator" id="typing-indicator" style="display:none;">
                     <span id="typing-users">Someone</span> is typing
-                    <span class="dots">
-                        <span></span><span></span><span></span>
-                    </span>
+                    <span class="dots"><span></span><span></span><span></span></span>
                 </div>
 
-                <!-- Composer -->
                 <div class="composer" id="composer">
                     <div class="composer-reply" id="composer-reply">
                         <span class="reply-content">Replying to <strong id="reply-author">User</strong>: <span id="reply-preview">message</span></span>
@@ -1797,53 +1590,31 @@
                 </div>
             </div>
 
-            <!-- Member Panel -->
             <div class="member-panel" id="member-panel">
                 <div class="member-header">
                     Members <span class="count" id="member-count">0</span>
                 </div>
-                <div class="member-list" id="member-list">
-                    <!-- Members rendered by JS -->
-                </div>
+                <div class="member-list" id="member-list"></div>
             </div>
 
         </div>
 
-        <!-- ----- Toast Container ----- -->
         <div class="toast-container" id="toast-container"></div>
+        <div class="context-menu" id="context-menu"></div>
 
-        <!-- ----- Context Menu ----- -->
-        <div class="context-menu" id="context-menu">
-            <!-- Items rendered by JS -->
-        </div>
-
-        <!-- ----- Modals ----- -->
         <div class="modal-overlay" id="modal-overlay">
-            <div class="modal" id="modal-content">
-                <!-- Modal content rendered by JS -->
-            </div>
+            <div class="modal" id="modal-content"></div>
         </div>
 
     </div>
 
     <script>
-        // ============================================================
-        // ZENITH — COMPLETE APPLICATION
-        // ============================================================
-
         (function() {
             'use strict';
 
-            // ============================================================
-            // STATE
-            // ============================================================
-
             const STATE = {
-                // Auth
                 currentUser: null,
                 sessionToken: null,
-
-                // Data
                 users: {},
                 communities: {},
                 channels: {},
@@ -1852,8 +1623,6 @@
                 friendRequests: [],
                 memberships: {},
                 reactions: {},
-
-                // UI State
                 currentCommunityId: null,
                 currentChannelId: null,
                 currentTab: 'home',
@@ -1863,14 +1632,8 @@
                 editingMessage: null,
                 typingUsers: [],
                 unreadCounts: {},
-
-                // ID counters (for demo persistence)
                 _idCounter: 1000,
             };
-
-            // ============================================================
-            // DOM REFERENCES
-            // ============================================================
 
             const DOM = {};
 
@@ -1891,11 +1654,9 @@
                 DOM.registerBtn = document.getElementById('register-btn');
                 DOM.switchToRegister = document.getElementById('switch-to-register');
                 DOM.switchToLogin = document.getElementById('switch-to-login');
-
                 DOM.rail = document.getElementById('rail');
                 DOM.railAvatar = document.getElementById('rail-avatar');
                 DOM.addCommunityBtn = document.getElementById('add-community-btn');
-
                 DOM.sidebar = document.getElementById('sidebar');
                 DOM.sidebarOverlay = document.getElementById('sidebar-overlay');
                 DOM.sidebarToggle = document.getElementById('sidebar-toggle');
@@ -1908,20 +1669,16 @@
                 DOM.sidebarUsername = document.getElementById('sidebar-username');
                 DOM.sidebarStatus = document.getElementById('sidebar-status');
                 DOM.settingsBtn = document.getElementById('settings-btn');
-
                 DOM.mainContent = document.getElementById('main-content');
                 DOM.channelIconDisplay = document.getElementById('channel-icon-display');
                 DOM.channelNameDisplay = document.getElementById('channel-name-display');
                 DOM.channelTopicDisplay = document.getElementById('channel-topic-display');
                 DOM.memberToggle = document.getElementById('member-toggle');
                 DOM.searchChannelBtn = document.getElementById('search-channel-btn');
-                DOM.pinToggle = document.getElementById('pin-toggle');
-
                 DOM.messageArea = document.getElementById('message-area');
                 DOM.emptyState = document.getElementById('empty-state');
                 DOM.typingIndicator = document.getElementById('typing-indicator');
                 DOM.typingUsers = document.getElementById('typing-users');
-
                 DOM.composer = document.getElementById('composer');
                 DOM.composerReply = document.getElementById('composer-reply');
                 DOM.replyAuthor = document.getElementById('reply-author');
@@ -1932,23 +1689,15 @@
                 DOM.attachBtn = document.getElementById('attach-btn');
                 DOM.fileInput = document.getElementById('file-input');
                 DOM.sendBtn = document.getElementById('send-btn');
-
                 DOM.memberPanel = document.getElementById('member-panel');
                 DOM.memberCount = document.getElementById('member-count');
                 DOM.memberList = document.getElementById('member-list');
-
                 DOM.toastContainer = document.getElementById('toast-container');
                 DOM.contextMenu = document.getElementById('context-menu');
                 DOM.modalOverlay = document.getElementById('modal-overlay');
                 DOM.modalContent = document.getElementById('modal-content');
-
-                // Rail tabs
                 DOM.railItems = document.querySelectorAll('.rail-item[data-tab]');
             }
-
-            // ============================================================
-            // UTILITY FUNCTIONS
-            // ============================================================
 
             function uid() {
                 return (++STATE._idCounter).toString(36) + Date.now().toString(36);
@@ -1965,14 +1714,6 @@
                 { hour: '2-digit', minute: '2-digit' });
             }
 
-            function timeAgo(ts) {
-                const diff = Date.now() - ts;
-                if (diff < 60000) return 'just now';
-                if (diff < 3600000) return Math.floor(diff / 60000) + 'm ago';
-                if (diff < 86400000) return Math.floor(diff / 3600000) + 'h ago';
-                return Math.floor(diff / 86400000) + 'd ago';
-            }
-
             function escapeHTML(str) {
                 if (!str) return '';
                 const div = document.createElement('div');
@@ -1981,17 +1722,12 @@
             }
 
             function sanitizeText(text) {
-                // Simple sanitization - escape HTML and handle mentions
                 let html = escapeHTML(text);
-                // Simple markdown-like formatting
                 html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                 html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
                 html = html.replace(/`(.*?)`/g, '<code class="inline-code">$1</code>');
-                // Code blocks
                 html = html.replace(/```([\s\S]*?)```/g, '<div class="code-block">$1</div>');
-                // Mentions
                 html = html.replace(/@(\w+)/g, '<span class="mention">@$1</span>');
-                // Links
                 html = html.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
                 return html;
             }
@@ -2012,31 +1748,22 @@
                 return colors[Math.abs(hash) % colors.length];
             }
 
-            function showToast(message, type = 'info', title = '') {
+            function showToast(message, type, title) {
+                type = type || 'info';
                 const container = DOM.toastContainer;
                 const toast = document.createElement('div');
-                toast.className = `toast ${type}`;
-                const icons = {
-                    success: '✅',
-                    error: '❌',
-                    warning: '⚠️',
-                    info: 'ℹ️'
-                };
-                toast.innerHTML = `
-                    <span class="toast-icon">${icons[type] || 'ℹ️'}</span>
-                    <div class="toast-content">
-                        ${title ? `<div class="toast-title">${escapeHTML(title)}</div>` : ''}
-                        <div class="toast-message">${escapeHTML(message)}</div>
-                    </div>
-                    <button class="toast-close">✕</button>
-                `;
-                toast.querySelector('.toast-close').addEventListener('click', () => {
-                    toast.remove();
-                });
+                toast.className = 'toast ' + type;
+                const icons = { success: '✓', error: '✕', warning: '⚠', info: 'ℹ' };
+                toast.innerHTML =
+                    '<span class="toast-icon">' + (icons[type] || 'ℹ') + '</span>' +
+                    '<div class="toast-content">' +
+                    (title ? '<div class="toast-title">' + escapeHTML(title) + '</div>' : '') +
+                    '<div class="toast-message">' + escapeHTML(message) + '</div>' +
+                    '</div>' +
+                    '<button class="toast-close">✕</button>';
+                toast.querySelector('.toast-close').addEventListener('click', function() { toast.remove(); });
                 container.appendChild(toast);
-                setTimeout(() => {
-                    if (toast.parentNode) toast.remove();
-                }, 5000);
+                setTimeout(function() { if (toast.parentNode) toast.remove(); }, 5000);
             }
 
             function showModal(html) {
@@ -2048,16 +1775,12 @@
                 DOM.modalOverlay.classList.remove('active');
             }
 
-            DOM.modalOverlay.addEventListener('click', (e) => {
+            DOM.modalOverlay.addEventListener('click', function(e) {
                 if (e.target === DOM.modalOverlay) closeModal();
             });
 
-            // ============================================================
-            // DATA STORE (In-memory with localStorage persistence)
-            // ============================================================
-
             const DB = {
-                save() {
+                save: function() {
                     try {
                         const data = {
                             users: STATE.users,
@@ -2073,8 +1796,7 @@
                         localStorage.setItem('zenith_data', JSON.stringify(data));
                     } catch (e) { /* ignore */ }
                 },
-
-                load() {
+                load: function() {
                     try {
                         const raw = localStorage.getItem('zenith_data');
                         if (!raw) return false;
@@ -2093,18 +1815,12 @@
                         return false;
                     }
                 },
-
-                clear() {
+                clear: function() {
                     localStorage.removeItem('zenith_data');
                 }
             };
 
-            // ============================================================
-            // AUTHENTICATION
-            // ============================================================
-
             function hashPassword(password) {
-                // Simple hash for demo - in production use bcrypt/Argon2
                 let hash = 0;
                 for (let i = 0; i < password.length; i++) {
                     const char = password.charCodeAt(i);
@@ -2115,17 +1831,16 @@
             }
 
             function registerUser(username, displayName, email, password) {
-                // Validation
                 if (username.length < 3) throw new Error('Username must be at least 3 characters');
                 if (username.length > 32) throw new Error('Username must be less than 32 characters');
-                if (!/^[a-zA-Z0-9_]+$/.test(username)) throw new Error('Username can only contain letters, numbers, and underscores');
+                if (!/^[a-zA-Z0-9_]+$/.test(username)) throw new Error(
+                'Username can only contain letters, numbers, and underscores');
                 if (displayName.length < 1) throw new Error('Display name is required');
                 if (displayName.length > 64) throw new Error('Display name must be less than 64 characters');
-                if (!email.includes('@')) throw new Error('Invalid email address');
+                if (!email || !email.includes('@')) throw new Error('Invalid email address');
                 if (password.length < 6) throw new Error('Password must be at least 6 characters');
 
-                // Check existing
-                for (const id in STATE.users) {
+                for (var id in STATE.users) {
                     if (STATE.users[id].username.toLowerCase() === username.toLowerCase()) {
                         throw new Error('Username is already taken');
                     }
@@ -2134,12 +1849,12 @@
                     }
                 }
 
-                const id = uid();
-                const user = {
-                    id,
-                    username,
-                    displayName,
-                    email,
+                var userId = uid();
+                var user = {
+                    id: userId,
+                    username: username,
+                    displayName: displayName,
+                    email: email,
                     passwordHash: hashPassword(password),
                     avatar: null,
                     banner: null,
@@ -2150,15 +1865,15 @@
                     createdAt: Date.now(),
                     lastSeen: Date.now(),
                 };
-                STATE.users[id] = user;
+                STATE.users[userId] = user;
                 DB.save();
                 return user;
             }
 
             function loginUser(identifier, password) {
-                const hash = hashPassword(password);
-                for (const id in STATE.users) {
-                    const user = STATE.users[id];
+                var hash = hashPassword(password);
+                for (var id in STATE.users) {
+                    var user = STATE.users[id];
                     if ((user.username.toLowerCase() === identifier.toLowerCase() || user.email.toLowerCase() === identifier
                             .toLowerCase()) &&
                         user.passwordHash === hash) {
@@ -2187,32 +1902,23 @@
                 return STATE.currentUser;
             }
 
-            // ============================================================
-            // FRIEND SYSTEM
-            // ============================================================
-
             function sendFriendRequest(userId) {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
                 if (userId === current.id) throw new Error('Cannot add yourself');
-
-                // Check if already friends
-                if (STATE.friends.some(f =>
-                        (f.userId === current.id && f.friendId === userId) ||
-                        (f.userId === userId && f.friendId === current.id)
-                    )) {
+                if (STATE.friends.some(function(f) {
+                        return (f.userId === current.id && f.friendId === userId) ||
+                            (f.userId === userId && f.friendId === current.id);
+                    })) {
                     throw new Error('Already friends');
                 }
-
-                // Check existing request
-                if (STATE.friendRequests.some(r =>
-                        (r.senderId === current.id && r.receiverId === userId) ||
-                        (r.senderId === userId && r.receiverId === current.id)
-                    )) {
+                if (STATE.friendRequests.some(function(r) {
+                        return (r.senderId === current.id && r.receiverId === userId) ||
+                            (r.senderId === userId && r.receiverId === current.id);
+                    })) {
                     throw new Error('Friend request already exists');
                 }
-
-                const request = {
+                var request = {
                     id: uid(),
                     senderId: current.id,
                     receiverId: userId,
@@ -2225,13 +1931,15 @@
             }
 
             function acceptFriendRequest(requestId) {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
-                const idx = STATE.friendRequests.findIndex(r => r.id === requestId);
+                var idx = -1;
+                for (var i = 0; i < STATE.friendRequests.length; i++) {
+                    if (STATE.friendRequests[i].id === requestId) { idx = i; break; }
+                }
                 if (idx === -1) throw new Error('Request not found');
-                const request = STATE.friendRequests[idx];
+                var request = STATE.friendRequests[idx];
                 if (request.receiverId !== current.id) throw new Error('Not authorized');
-
                 request.status = 'ACCEPTED';
                 STATE.friends.push({
                     id: uid(),
@@ -2250,74 +1958,52 @@
             }
 
             function rejectFriendRequest(requestId) {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
-                const idx = STATE.friendRequests.findIndex(r => r.id === requestId);
+                var idx = -1;
+                for (var i = 0; i < STATE.friendRequests.length; i++) {
+                    if (STATE.friendRequests[i].id === requestId) { idx = i; break; }
+                }
                 if (idx === -1) throw new Error('Request not found');
                 if (STATE.friendRequests[idx].receiverId !== current.id) throw new Error('Not authorized');
                 STATE.friendRequests.splice(idx, 1);
                 DB.save();
             }
 
-            function getFriendStatus(userId) {
-                const current = getCurrentUser();
-                if (!current) return 'none';
-                if (userId === current.id) return 'self';
-
-                // Check friends
-                if (STATE.friends.some(f =>
-                        (f.userId === current.id && f.friendId === userId) ||
-                        (f.userId === userId && f.friendId === current.id)
-                    )) {
-                    return 'friends';
-                }
-
-                // Check requests
-                for (const r of STATE.friendRequests) {
-                    if (r.senderId === current.id && r.receiverId === userId && r.status === 'PENDING') {
-                        return 'outgoing';
-                    }
-                    if (r.senderId === userId && r.receiverId === current.id && r.status === 'PENDING') {
-                        return 'incoming';
-                    }
-                }
-                return 'none';
-            }
-
             function getFriends() {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) return [];
-                return STATE.friends.filter(f => f.userId === current.id).map(f => ({
-                    ...f,
-                    user: STATE.users[f.friendId]
-                }));
+                var result = [];
+                for (var i = 0; i < STATE.friends.length; i++) {
+                    var f = STATE.friends[i];
+                    if (f.userId === current.id) {
+                        result.push({ friend: f, user: STATE.users[f.friendId] });
+                    }
+                }
+                return result;
             }
 
-            // ============================================================
-            // COMMUNITY SYSTEM
-            // ============================================================
-
-            function createCommunity(name, description, isPublic = true) {
-                const current = getCurrentUser();
+            function createCommunity(name, description, isPublic) {
+                isPublic = (isPublic !== undefined) ? isPublic : true;
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
                 if (!name || name.length < 2) throw new Error('Community name must be at least 2 characters');
                 if (name.length > 100) throw new Error('Community name too long');
 
-                const id = uid();
-                const community = {
-                    id,
-                    name,
+                var id = uid();
+                var community = {
+                    id: id,
+                    name: name,
                     description: description || '',
                     icon: null,
                     banner: null,
                     ownerId: current.id,
-                    isPublic,
+                    isPublic: isPublic,
                     isDiscoverable: true,
                     createdAt: Date.now(),
                 };
                 STATE.communities[id] = community;
 
-                // Add owner as member
                 STATE.memberships[id] = STATE.memberships[id] || {};
                 STATE.memberships[id][current.id] = {
                     userId: current.id,
@@ -2329,8 +2015,7 @@
                     roles: ['owner'],
                 };
 
-                // Create default channel
-                const channelId = uid();
+                var channelId = uid();
                 STATE.channels[channelId] = {
                     id: channelId,
                     name: 'general',
@@ -2348,15 +2033,13 @@
             }
 
             function joinCommunity(communityId) {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
                 if (!STATE.communities[communityId]) throw new Error('Community not found');
-
                 STATE.memberships[communityId] = STATE.memberships[communityId] || {};
                 if (STATE.memberships[communityId][current.id]) {
                     throw new Error('Already a member');
                 }
-
                 STATE.memberships[communityId][current.id] = {
                     userId: current.id,
                     communityId: communityId,
@@ -2369,37 +2052,26 @@
                 DB.save();
             }
 
-            function leaveCommunity(communityId) {
-                const current = getCurrentUser();
-                if (!current) throw new Error('Not authenticated');
-                if (!STATE.memberships[communityId]) throw new Error('Not a member');
-                if (STATE.memberships[communityId][current.id]?.roles?.includes('owner')) {
-                    throw new Error('Owner cannot leave. Transfer ownership first or delete the community.');
-                }
-                delete STATE.memberships[communityId][current.id];
-                DB.save();
-            }
-
             function getCommunityChannels(communityId) {
-                const channels = [];
-                for (const id in STATE.channels) {
+                var channels = [];
+                for (var id in STATE.channels) {
                     if (STATE.channels[id].communityId === communityId) {
                         channels.push(STATE.channels[id]);
                     }
                 }
-                channels.sort((a, b) => a.position - b.position);
+                channels.sort(function(a, b) { return a.position - b.position; });
                 return channels;
             }
 
             function getCommunityMembers(communityId) {
-                const members = [];
-                const membership = STATE.memberships[communityId] || {};
-                for (const userId in membership) {
-                    const user = STATE.users[userId];
+                var members = [];
+                var membership = STATE.memberships[communityId] || {};
+                for (var userId in membership) {
+                    var user = STATE.users[userId];
                     if (user) {
                         members.push({
-                            ...membership[userId],
-                            user,
+                            membership: membership[userId],
+                            user: user,
                         });
                     }
                 }
@@ -2407,41 +2079,42 @@
             }
 
             function getUserCommunities() {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) return [];
-                const result = [];
-                for (const communityId in STATE.memberships) {
+                var result = [];
+                for (var communityId in STATE.memberships) {
                     if (STATE.memberships[communityId][current.id]) {
-                        const community = STATE.communities[communityId];
+                        var community = STATE.communities[communityId];
                         if (community) result.push(community);
                     }
                 }
                 return result;
             }
 
-            function createChannel(communityId, name, type = 'text', topic = '') {
-                const current = getCurrentUser();
+            function createChannel(communityId, name, type, topic) {
+                type = type || 'text';
+                topic = topic || '';
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
-                const community = STATE.communities[communityId];
+                var community = STATE.communities[communityId];
                 if (!community) throw new Error('Community not found');
                 if (community.ownerId !== current.id) {
-                    // Check if user has manage_channels permission
-                    const member = STATE.memberships[communityId]?.[current.id];
-                    if (!member || !member.roles?.includes('admin')) {
+                    var member = STATE.memberships[communityId] ? STATE.memberships[communityId][current.id] : null;
+                    if (!member || !member.roles || member.roles.indexOf('admin') === -1) {
                         throw new Error('Permission denied');
                     }
                 }
                 if (!name || name.length < 1) throw new Error('Channel name required');
                 if (name.length > 100) throw new Error('Channel name too long');
 
-                const id = uid();
-                const channel = {
-                    id,
-                    name,
-                    topic: topic || '',
-                    type,
+                var id = uid();
+                var channel = {
+                    id: id,
+                    name: name,
+                    topic: topic,
+                    type: type,
                     position: getCommunityChannels(communityId).length,
-                    communityId,
+                    communityId: communityId,
                     isPrivate: false,
                     slowMode: 0,
                     createdAt: Date.now(),
@@ -2451,29 +2124,26 @@
                 return channel;
             }
 
-            // ============================================================
-            // MESSAGING
-            // ============================================================
-
-            function sendMessage(channelId, content, attachments = [], replyTo = null) {
-                const current = getCurrentUser();
+            function sendMessage(channelId, content, attachments, replyTo) {
+                attachments = attachments || [];
+                replyTo = replyTo || null;
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
                 if (!content && attachments.length === 0) throw new Error('Message content required');
                 if (content && content.length > 4000) throw new Error('Message too long');
 
-                const channel = STATE.channels[channelId];
+                var channel = STATE.channels[channelId];
                 if (!channel) throw new Error('Channel not found');
 
-                // Check membership
-                const communityId = channel.communityId;
-                if (!STATE.memberships[communityId]?.[current.id]) {
+                var communityId = channel.communityId;
+                if (communityId && !STATE.memberships[communityId]?.[current.id]) {
                     throw new Error('Not a member of this community');
                 }
 
-                const id = uid();
-                const message = {
-                    id,
-                    channelId,
+                var id = uid();
+                var message = {
+                    id: id,
+                    channelId: channelId,
                     authorId: current.id,
                     content: content || '',
                     attachments: attachments || [],
@@ -2485,17 +2155,14 @@
                 };
                 STATE.messages[id] = message;
                 DB.save();
-
-                // Real-time event simulation
                 simulateRealtime('message:create', message);
-
                 return message;
             }
 
             function editMessage(messageId, content) {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
-                const message = STATE.messages[messageId];
+                var message = STATE.messages[messageId];
                 if (!message) throw new Error('Message not found');
                 if (message.authorId !== current.id) throw new Error('Not your message');
                 if (message.deleted) throw new Error('Message deleted');
@@ -2509,16 +2176,17 @@
             }
 
             function deleteMessage(messageId) {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
-                const message = STATE.messages[messageId];
+                var message = STATE.messages[messageId];
                 if (!message) throw new Error('Message not found');
                 if (message.authorId !== current.id) {
-                    // Check if moderator
-                    const communityId = STATE.channels[message.channelId]?.communityId;
+                    var communityId = STATE.channels[message.channelId] ? STATE.channels[message.channelId].communityId :
+                    null;
                     if (communityId) {
-                        const member = STATE.memberships[communityId]?.[current.id];
-                        if (!member || !member.roles?.some(r => r === 'admin' || r === 'moderator')) {
+                        var member = STATE.memberships[communityId] ? STATE.memberships[communityId][current.id] : null;
+                        if (!member || !member.roles || !member.roles.some(function(r) { return r === 'admin' || r ===
+                                'moderator'; })) {
                             throw new Error('Permission denied');
                         }
                     } else {
@@ -2532,53 +2200,60 @@
                 return message;
             }
 
-            function getChannelMessages(channelId, limit = 50, before = null) {
-                const messages = [];
-                for (const id in STATE.messages) {
-                    const m = STATE.messages[id];
+            function getChannelMessages(channelId, limit, before) {
+                limit = limit || 50;
+                var messages = [];
+                for (var id in STATE.messages) {
+                    var m = STATE.messages[id];
                     if (m.channelId === channelId && !m.deleted) {
                         messages.push(m);
                     }
                 }
-                messages.sort((a, b) => b.createdAt - a.createdAt);
+                messages.sort(function(a, b) { return b.createdAt - a.createdAt; });
                 if (before) {
-                    const idx = messages.findIndex(m => m.id === before);
+                    var idx = -1;
+                    for (var i = 0; i < messages.length; i++) {
+                        if (messages[i].id === before) { idx = i; break; }
+                    }
                     if (idx !== -1) messages.splice(idx);
                 }
                 return messages.slice(0, limit);
             }
 
             function addReaction(messageId, emoji) {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
-                const message = STATE.messages[messageId];
+                var message = STATE.messages[messageId];
                 if (!message || message.deleted) throw new Error('Message not found');
 
-                const key = messageId + ':' + emoji;
+                var key = messageId + ':' + emoji;
                 STATE.reactions[key] = STATE.reactions[key] || [];
-                if (!STATE.reactions[key].includes(current.id)) {
+                if (STATE.reactions[key].indexOf(current.id) === -1) {
                     STATE.reactions[key].push(current.id);
                 }
                 DB.save();
-                simulateRealtime('message:reaction', { messageId, emoji, userId: current.id });
+                simulateRealtime('message:reaction', { messageId: messageId, emoji: emoji, userId: current.id });
             }
 
             function removeReaction(messageId, emoji) {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
-                const key = messageId + ':' + emoji;
+                var key = messageId + ':' + emoji;
                 if (STATE.reactions[key]) {
-                    STATE.reactions[key] = STATE.reactions[key].filter(id => id !== current.id);
+                    var idx = STATE.reactions[key].indexOf(current.id);
+                    if (idx !== -1) STATE.reactions[key].splice(idx, 1);
                     if (STATE.reactions[key].length === 0) delete STATE.reactions[key];
                 }
                 DB.save();
-                simulateRealtime('message:unreaction', { messageId, emoji, userId: current.id });
+                simulateRealtime('message:unreaction', { messageId: messageId, emoji: emoji, userId: current.id });
             }
 
             function getMessageReactions(messageId) {
-                const result = {};
-                for (const key in STATE.reactions) {
-                    const [mid, emoji] = key.split(':');
+                var result = {};
+                for (var key in STATE.reactions) {
+                    var parts = key.split(':');
+                    var mid = parts[0];
+                    var emoji = parts[1];
                     if (mid === messageId) {
                         result[emoji] = STATE.reactions[key];
                     }
@@ -2586,15 +2261,10 @@
                 return result;
             }
 
-            // ============================================================
-            // DIRECT MESSAGES (Simple implementation)
-            // ============================================================
-
             function getDMChannel(userId) {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
-                // Create a pseudo-channel for DM
-                const channelId = 'dm_' + [current.id, userId].sort().join('_');
+                var channelId = 'dm_' + [current.id, userId].sort().join('_');
                 if (!STATE.channels[channelId]) {
                     STATE.channels[channelId] = {
                         id: channelId,
@@ -2612,21 +2282,7 @@
                 return STATE.channels[channelId];
             }
 
-            function sendDM(userId, content) {
-                const channel = getDMChannel(userId);
-                return sendMessage(channel.id, content);
-            }
-
-            function getDMs(userId) {
-                const channelId = 'dm_' + [getCurrentUser().id, userId].sort().join('_');
-                return getChannelMessages(channelId);
-            }
-
-            // ============================================================
-            // REALTIME SIMULATION
-            // ============================================================
-
-            const realtimeCallbacks = {};
+            var realtimeCallbacks = {};
 
             function onRealtime(event, callback) {
                 realtimeCallbacks[event] = realtimeCallbacks[event] || [];
@@ -2635,16 +2291,11 @@
 
             function simulateRealtime(event, data) {
                 if (realtimeCallbacks[event]) {
-                    for (const cb of realtimeCallbacks[event]) {
-                        try { cb(data); } catch (e) { /* ignore */ }
+                    for (var i = 0; i < realtimeCallbacks[event].length; i++) {
+                        try { realtimeCallbacks[event][i](data); } catch (e) { /* ignore */ }
                     }
                 }
-                // Also trigger UI updates
-                if (event === 'message:create') {
-                    renderMessages();
-                    updateUnreadCounts();
-                }
-                if (event === 'message:update' || event === 'message:delete') {
+                if (event === 'message:create' || event === 'message:update' || event === 'message:delete') {
                     renderMessages();
                 }
                 if (event === 'message:reaction' || event === 'message:unreaction') {
@@ -2652,12 +2303,8 @@
                 }
             }
 
-            // ============================================================
-            // RENDER FUNCTIONS
-            // ============================================================
-
             function renderAuth() {
-                const user = getCurrentUser();
+                var user = getCurrentUser();
                 if (user) {
                     DOM.authContainer.classList.remove('active');
                     DOM.mainApp.classList.add('active');
@@ -2674,12 +2321,11 @@
                 renderChannels();
                 renderMessages();
                 renderMembers();
-                renderFriends();
                 renderNotifications();
             }
 
             function renderUserInfo() {
-                const user = getCurrentUser();
+                var user = getCurrentUser();
                 if (!user) return;
                 DOM.sidebarUsername.textContent = user.displayName || user.username;
                 DOM.sidebarAvatar.textContent = getInitials(user.displayName || user.username);
@@ -2687,311 +2333,279 @@
                 DOM.railAvatar.textContent = getInitials(user.displayName || user.username);
                 DOM.railAvatar.style.backgroundColor = getAvatarColor(user.id);
 
-                const statusMap = {
+                var statusMap = {
                     online: { label: 'Online', dot: 'online' },
                     idle: { label: 'Idle', dot: 'idle' },
                     dnd: { label: 'Do Not Disturb', dot: 'dnd' },
                     offline: { label: 'Offline', dot: 'offline' },
                 };
-                const status = statusMap[user.status] || statusMap.online;
-                document.querySelector('.sidebar-footer .status .dot').className = `dot ${status.dot}`;
+                var status = statusMap[user.status] || statusMap.online;
+                var dot = document.querySelector('.sidebar-footer .status .dot');
+                if (dot) dot.className = 'dot ' + status.dot;
                 DOM.sidebarStatus.textContent = status.label;
             }
 
             function renderCommunities() {
-                const user = getCurrentUser();
+                var user = getCurrentUser();
                 if (!user) return;
-                const communities = getUserCommunities();
+                var communities = getUserCommunities();
 
-                // Update community selector
                 if (communities.length > 0) {
-                    const current = STATE.currentCommunityId || communities[0]?.id;
+                    var current = STATE.currentCommunityId || communities[0].id;
                     if (current && STATE.communities[current]) {
-                        const comm = STATE.communities[current];
+                        var comm = STATE.communities[current];
                         DOM.communityNameDisplay.textContent = comm.name;
                         DOM.communityIcon.textContent = getInitials(comm.name);
                         DOM.communityIcon.style.backgroundColor = getAvatarColor(comm.id);
                         STATE.currentCommunityId = current;
                     } else {
-                        STATE.currentCommunityId = communities[0]?.id;
+                        STATE.currentCommunityId = communities[0].id;
                         if (STATE.currentCommunityId) {
-                            const comm = STATE.communities[STATE.currentCommunityId];
-                            DOM.communityNameDisplay.textContent = comm.name;
-                            DOM.communityIcon.textContent = getInitials(comm.name);
-                            DOM.communityIcon.style.backgroundColor = getAvatarColor(comm.id);
+                            var comm2 = STATE.communities[STATE.currentCommunityId];
+                            DOM.communityNameDisplay.textContent = comm2.name;
+                            DOM.communityIcon.textContent = getInitials(comm2.name);
+                            DOM.communityIcon.style.backgroundColor = getAvatarColor(comm2.id);
                         }
                     }
                 } else {
-                    // No communities - show create prompt
                     DOM.communityNameDisplay.textContent = 'No Community';
-                    DOM.communityIcon.textContent = '➕';
+                    DOM.communityIcon.textContent = '+';
                     DOM.communityIcon.style.backgroundColor = 'var(--zenith-bg-tertiary)';
                     STATE.currentCommunityId = null;
                 }
 
-                // Update channel list
                 renderChannels();
             }
 
             function renderChannels() {
-                const communityId = STATE.currentCommunityId;
-                const list = DOM.channelList;
+                var communityId = STATE.currentCommunityId;
+                var list = DOM.channelList;
                 list.innerHTML = '';
 
                 if (!communityId || !STATE.communities[communityId]) {
-                    list.innerHTML = `
-                        <div style="padding:20px;text-align:center;color:var(--zenith-text-muted);font-size:13px;">
-                            No community selected.<br>
-                            <button onclick="window.Zenith.showCreateCommunity()" style="background:var(--zenith-accent);border:none;color:white;padding:8px 16px;border-radius:8px;cursor:pointer;margin-top:8px;font-family:var(--zenith-font);">
-                                Create One
-                            </button>
-                        </div>
-                    `;
+                    list.innerHTML =
+                        '<div style="padding:20px;text-align:center;color:var(--zenith-text-muted);font-size:13px;">' +
+                        'No community selected.<br>' +
+                        '<button onclick="window.Zenith.showCreateCommunity()" style="background:var(--zenith-accent);border:none;color:white;padding:8px 16px;border-radius:8px;cursor:pointer;margin-top:8px;font-family:var(--zenith-font);">' +
+                        'Create One' +
+                        '</button>' +
+                        '</div>';
                     return;
                 }
 
-                const channels = getCommunityChannels(communityId);
-                const categories = {
+                var channels = getCommunityChannels(communityId);
+                var categories = {
                     text: { label: 'Text Channels', icon: '#' },
                     voice: { label: 'Voice Channels', icon: '🔊' },
                     announcement: { label: 'Announcements', icon: '📢' },
                     dm: { label: 'Direct Messages', icon: '💬' },
                 };
 
-                // Group by type
-                const grouped = {};
-                for (const ch of channels) {
-                    const type = ch.type || 'text';
+                var grouped = {};
+                for (var i = 0; i < channels.length; i++) {
+                    var ch = channels[i];
+                    var type = ch.type || 'text';
                     if (!grouped[type]) grouped[type] = [];
                     grouped[type].push(ch);
                 }
 
-                // Select first channel if none selected
                 if (!STATE.currentChannelId && channels.length > 0) {
                     STATE.currentChannelId = channels[0].id;
                 }
 
-                for (const type in categories) {
-                    if (grouped[type] && grouped[type].length > 0) {
-                        const cat = categories[type] || { label: type, icon: '#' };
-                        const div = document.createElement('div');
-                        div.innerHTML = `
-                            <div class="category">
-                                <span>${cat.icon} ${cat.label}</span>
-                                <span class="chevron">▼</span>
-                            </div>
-                        `;
+                for (var typeKey in categories) {
+                    if (grouped[typeKey] && grouped[typeKey].length > 0) {
+                        var cat = categories[typeKey] || { label: typeKey, icon: '#' };
+                        var div = document.createElement('div');
+                        div.innerHTML =
+                            '<div class="category"><span>' + cat.icon + ' ' + cat.label +
+                            '</span><span class="chevron">▼</span></div>';
                         list.appendChild(div.firstElementChild);
 
-                        for (const ch of grouped[type]) {
-                            const isActive = STATE.currentChannelId === ch.id;
-                            const el = document.createElement('div');
-                            el.className = `channel${isActive ? ' active' : ''}`;
-                            el.dataset.channelId = ch.id;
-                            el.innerHTML = `
-                                <span class="channel-icon">${type === 'voice' ? '🔊' : '#'}</span>
-                                <span class="channel-name">${escapeHTML(ch.name)}</span>
-                                ${ch.slowMode > 0 ? '<span class="channel-badge">🐢</span>' : ''}
-                            `;
-                            el.addEventListener('click', () => {
-                                selectChannel(ch.id);
+                        for (var j = 0; j < grouped[typeKey].length; j++) {
+                            var ch2 = grouped[typeKey][j];
+                            var isActive = STATE.currentChannelId === ch2.id;
+                            var el = document.createElement('div');
+                            el.className = 'channel' + (isActive ? ' active' : '');
+                            el.dataset.channelId = ch2.id;
+                            el.innerHTML =
+                                '<span class="channel-icon">' + (typeKey === 'voice' ? '🔊' : '#') + '</span>' +
+                                '<span class="channel-name">' + escapeHTML(ch2.name) + '</span>' +
+                                (ch2.slowMode > 0 ? '<span class="channel-badge">🐢</span>' : '');
+                            el.addEventListener('click', function() {
+                                selectChannel(this.dataset.channelId);
                             });
                             list.appendChild(el);
                         }
                     }
                 }
 
-                // Add channel button
-                const addBtn = document.createElement('div');
-                addBtn.style.cssText = 'padding:8px 12px;cursor:pointer;color:var(--zenith-text-tertiary);font-size:13px;margin-top:4px;';
-                addBtn.innerHTML = '➕ Create Channel';
-                addBtn.addEventListener('click', () => {
+                var addBtn = document.createElement('div');
+                addBtn.style.cssText =
+                    'padding:8px 12px;cursor:pointer;color:var(--zenith-text-tertiary);font-size:13px;margin-top:4px;';
+                addBtn.innerHTML = '+ Create Channel';
+                addBtn.addEventListener('click', function() {
                     window.Zenith.showCreateChannel();
                 });
                 list.appendChild(addBtn);
 
-                // Update current channel display
                 if (STATE.currentChannelId && STATE.channels[STATE.currentChannelId]) {
-                    const ch = STATE.channels[STATE.currentChannelId];
-                    DOM.channelNameDisplay.textContent = ch.name;
-                    DOM.channelIconDisplay.textContent = ch.type === 'voice' ? '🔊' : '#';
-                    DOM.channelTopicDisplay.textContent = ch.topic || 'No topic set';
+                    var ch3 = STATE.channels[STATE.currentChannelId];
+                    DOM.channelNameDisplay.textContent = ch3.name;
+                    DOM.channelIconDisplay.textContent = ch3.type === 'voice' ? '🔊' : '#';
+                    DOM.channelTopicDisplay.textContent = ch3.topic || 'No topic set';
                 }
             }
 
             function renderMessages() {
-                const area = DOM.messageArea;
-                const channelId = STATE.currentChannelId;
-                const empty = DOM.emptyState;
+                var area = DOM.messageArea;
+                var channelId = STATE.currentChannelId;
 
                 if (!channelId || !STATE.channels[channelId]) {
-                    area.innerHTML = `
-                        <div class="empty-state">
-                            <div class="icon">📡</div>
-                            <h3>Select a channel</h3>
-                            <p>Choose a channel from the sidebar to start chatting.</p>
-                        </div>
-                    `;
+                    area.innerHTML =
+                        '<div class="empty-state"><div class="icon">📡</div><h3>Select a channel</h3><p>Choose a channel from the sidebar to start chatting.</p></div>';
                     return;
                 }
 
-                const messages = getChannelMessages(channelId);
+                var messages = getChannelMessages(channelId);
                 if (messages.length === 0) {
-                    area.innerHTML = `
-                        <div class="empty-state">
-                            <div class="icon">💬</div>
-                            <h3>No messages yet</h3>
-                            <p>This is the beginning of your conversation. Send the first message to get started.</p>
-                        </div>
-                    `;
+                    area.innerHTML =
+                        '<div class="empty-state"><div class="icon">💬</div><h3>No messages yet</h3><p>This is the beginning of your conversation. Send the first message to get started.</p></div>';
                     return;
                 }
 
-                let html = '';
-                let lastAuthorId = null;
-                let lastTimestamp = 0;
+                var html = '';
+                var lastAuthorId = null;
+                var lastTimestamp = 0;
+                var reversed = messages.slice().reverse();
 
-                // Render in reverse chronological (newest at bottom)
-                const reversed = [...messages].reverse();
-
-                for (let i = 0; i < reversed.length; i++) {
-                    const msg = reversed[i];
-                    const author = STATE.users[msg.authorId];
+                for (var i = 0; i < reversed.length; i++) {
+                    var msg = reversed[i];
+                    var author = STATE.users[msg.authorId];
                     if (!author) continue;
 
-                    const isCompact = (author.id === lastAuthorId && (msg.createdAt - lastTimestamp) < 60000);
-                    const reactions = getMessageReactions(msg.id);
+                    var isCompact = (author.id === lastAuthorId && (msg.createdAt - lastTimestamp) < 60000);
+                    var reactions = getMessageReactions(msg.id);
 
-                    html += `
-                        <div class="message${isCompact ? ' compact' : ''}" data-message-id="${msg.id}">
-                            <div class="msg-avatar" style="background-color:${getAvatarColor(author.id)};">
-                                ${author.avatar ? `<img src="${author.avatar}" alt="${author.displayName}">` : getInitials(author.displayName)}
-                            </div>
-                            <div class="msg-body">
-                                <div class="msg-header">
-                                    <span class="display-name" style="color:${getAvatarColor(author.id)};">
-                                        ${escapeHTML(author.displayName)}
-                                    </span>
-                                    <span class="timestamp">${formatTime(msg.createdAt)}</span>
-                                    ${msg.edited ? '<span class="edited">(edited)</span>' : ''}
-                                </div>
-                                <div class="msg-content">
-                                    ${msg.deleted ? '<em>Message deleted</em>' : sanitizeText(msg.content)}
-                                </div>
-                                ${Object.keys(reactions).length > 0 ? `
-                                    <div class="msg-reactions">
-                                        ${Object.entries(reactions).map(([emoji, users]) => {
-                                            const hasReacted = users.includes(STATE.currentUser?.id);
-                                            return `
-                                                <span class="reaction${hasReacted ? ' reacted' : ''}" 
-                                                      data-message="${msg.id}" data-emoji="${emoji}"
-                                                      onclick="window.Zenith.toggleReaction('${msg.id}','${emoji}')">
-                                                    ${emoji} <span class="count">${users.length}</span>
-                                                </span>
-                                            `;
-                                        }).join('')}
-                                    </div>
-                                ` : ''}
-                            </div>
-                            <div class="msg-actions">
-                                <button class="btn-icon" onclick="window.Zenith.replyTo('${msg.id}')" title="Reply">↩️</button>
-                                ${msg.authorId === STATE.currentUser?.id ? `
-                                    <button class="btn-icon" onclick="window.Zenith.editMessage('${msg.id}')" title="Edit">✏️</button>
-                                    <button class="btn-icon" onclick="window.Zenith.deleteMessage('${msg.id}')" title="Delete">🗑️</button>
-                                ` : ''}
-                                <button class="btn-icon" onclick="window.Zenith.addReactionPicker('${msg.id}')" title="React">😊</button>
-                            </div>
-                        </div>
-                    `;
+                    html += '<div class="message' + (isCompact ? ' compact' : '') + '" data-message-id="' + msg.id + '">';
+                    html += '<div class="msg-avatar" style="background-color:' + getAvatarColor(author.id) + ';">';
+                    html += author.avatar ? '<img src="' + author.avatar + '" alt="' + author.displayName + '">' : getInitials(
+                        author.displayName);
+                    html += '</div>';
+                    html += '<div class="msg-body">';
+                    html += '<div class="msg-header">';
+                    html += '<span class="display-name" style="color:' + getAvatarColor(author.id) + ';">' + escapeHTML(
+                        author.displayName) + '</span>';
+                    html += '<span class="timestamp">' + formatTime(msg.createdAt) + '</span>';
+                    if (msg.edited) html += '<span class="edited">(edited)</span>';
+                    html += '</div>';
+                    html += '<div class="msg-content">' + (msg.deleted ? '<em>Message deleted</em>' : sanitizeText(msg
+                        .content)) + '</div>';
+
+                    var reactionKeys = Object.keys(reactions);
+                    if (reactionKeys.length > 0) {
+                        html += '<div class="msg-reactions">';
+                        for (var ri = 0; ri < reactionKeys.length; ri++) {
+                            var emoji = reactionKeys[ri];
+                            var users = reactions[emoji];
+                            var hasReacted = users.indexOf(STATE.currentUser ? STATE.currentUser.id : null) !== -1;
+                            html += '<span class="reaction' + (hasReacted ? ' reacted' : '') +
+                                '" data-message="' + msg.id + '" data-emoji="' + emoji +
+                                '" onclick="window.Zenith.toggleReaction(\'' + msg.id + '\',\'' + emoji + '\')">';
+                            html += emoji + ' <span class="count">' + users.length + '</span>';
+                            html += '</span>';
+                        }
+                        html += '</div>';
+                    }
+
+                    html += '</div>';
+                    html += '<div class="msg-actions">';
+                    html += '<button class="btn-icon" onclick="window.Zenith.replyTo(\'' + msg.id +
+                        '\')" title="Reply">↩</button>';
+                    if (msg.authorId === (STATE.currentUser ? STATE.currentUser.id : null)) {
+                        html += '<button class="btn-icon" onclick="window.Zenith.editMessage(\'' + msg.id +
+                            '\')" title="Edit">✎</button>';
+                        html += '<button class="btn-icon" onclick="window.Zenith.deleteMessage(\'' + msg.id +
+                            '\')" title="Delete">✕</button>';
+                    }
+                    html += '<button class="btn-icon" onclick="window.Zenith.addReactionPicker(\'' + msg.id +
+                        '\')" title="React">😊</button>';
+                    html += '</div>';
+                    html += '</div>';
 
                     lastAuthorId = author.id;
                     lastTimestamp = msg.createdAt;
                 }
 
                 area.innerHTML = html;
-
-                // Scroll to bottom
                 area.scrollTop = area.scrollHeight;
             }
 
             function renderMembers() {
-                const communityId = STATE.currentCommunityId;
-                const list = DOM.memberList;
+                var communityId = STATE.currentCommunityId;
+                var list = DOM.memberList;
                 if (!communityId || !STATE.communities[communityId]) {
-                    list.innerHTML = '<div style="padding:20px;text-align:center;color:var(--zenith-text-muted);font-size:13px;">No members</div>';
+                    list.innerHTML =
+                        '<div style="padding:20px;text-align:center;color:var(--zenith-text-muted);font-size:13px;">No members</div>';
                     DOM.memberCount.textContent = '0';
                     return;
                 }
 
-                const members = getCommunityMembers(communityId);
+                var members = getCommunityMembers(communityId);
                 DOM.memberCount.textContent = members.length;
 
                 if (members.length === 0) {
-                    list.innerHTML = '<div style="padding:20px;text-align:center;color:var(--zenith-text-muted);font-size:13px;">No members yet</div>';
+                    list.innerHTML =
+                        '<div style="padding:20px;text-align:center;color:var(--zenith-text-muted);font-size:13px;">No members yet</div>';
                     return;
                 }
 
-                let html = '';
-                for (const m of members) {
-                    const user = m.user;
+                var html = '';
+                for (var i = 0; i < members.length; i++) {
+                    var m = members[i];
+                    var user = m.user;
                     if (!user) continue;
-                    const statusMap = {
-                        online: 'online',
-                        idle: 'idle',
-                        dnd: 'dnd',
-                        offline: 'offline'
-                    };
-                    const status = statusMap[user.status] || 'offline';
-                    const roles = m.roles || [];
-                    const roleTag = roles.includes('owner') ? '👑' : roles.includes('admin') ? '⚡' : roles.includes(
-                    'moderator') ? '🛡️' : '';
+                    var statusMap2 = { online: 'online', idle: 'idle', dnd: 'dnd', offline: 'offline' };
+                    var status = statusMap2[user.status] || 'offline';
+                    var roles = m.membership.roles || [];
+                    var roleTag = '';
+                    if (roles.indexOf('owner') !== -1) roleTag = '👑';
+                    else if (roles.indexOf('admin') !== -1) roleTag = '⚡';
+                    else if (roles.indexOf('moderator') !== -1) roleTag = '🛡';
 
-                    html += `
-                        <div class="member">
-                            <div class="member-avatar" style="background-color:${getAvatarColor(user.id)};">
-                                ${user.avatar ? `<img src="${user.avatar}" alt="${user.displayName}">` : getInitials(user.displayName)}
-                            </div>
-                            <div class="member-info">
-                                <div class="name">${escapeHTML(user.displayName)} ${roleTag}</div>
-                            </div>
-                            <span class="status-dot ${status}"></span>
-                        </div>
-                    `;
+                    html += '<div class="member">';
+                    html += '<div class="member-avatar" style="background-color:' + getAvatarColor(user.id) + ';">';
+                    html += user.avatar ? '<img src="' + user.avatar + '" alt="' + user.displayName + '">' : getInitials(
+                        user.displayName);
+                    html += '</div>';
+                    html += '<div class="member-info"><div class="name">' + escapeHTML(user.displayName) + ' ' + roleTag +
+                        '</div></div>';
+                    html += '<span class="status-dot ' + status + '"></span>';
+                    html += '</div>';
                 }
                 list.innerHTML = html;
             }
 
-            function renderFriends() {
-                // Simple friends list in the friends tab
-                // This is handled by tab switching
-            }
-
             function renderNotifications() {
-                // Simple notification count on rail
-                // In production, this would fetch from DB
-                const badge = document.querySelector('.rail-item[data-tab="friends"] .badge');
+                var badge = document.querySelector('.rail-item[data-tab="friends"] .badge');
                 if (badge) {
-                    const pending = STATE.friendRequests.filter(r =>
-                        r.receiverId === STATE.currentUser?.id && r.status === 'PENDING'
-                    ).length;
+                    var pending = 0;
+                    for (var i = 0; i < STATE.friendRequests.length; i++) {
+                        var r = STATE.friendRequests[i];
+                        if (r.receiverId === (STATE.currentUser ? STATE.currentUser.id : null) && r.status === 'PENDING') {
+                            pending++;
+                        }
+                    }
                     badge.textContent = pending > 0 ? pending : '';
                     badge.style.display = pending > 0 ? 'flex' : 'none';
                 }
-            }
-
-            function updateUnreadCounts() {
-                // Simple unread tracking - just show count on channel
-                // In production, this would track read state per user
             }
 
             function selectChannel(channelId) {
                 STATE.currentChannelId = channelId;
                 renderMessages();
                 renderChannels();
-                // Close sidebar on mobile
-                if (window.innerWidth <= 768) {
-                    closeSidebar();
-                }
+                if (window.innerWidth <= 768) closeSidebar();
             }
 
             function selectCommunity(communityId) {
@@ -3001,15 +2615,8 @@
                 renderChannels();
                 renderMessages();
                 renderMembers();
-                // Close sidebar on mobile
-                if (window.innerWidth <= 768) {
-                    closeSidebar();
-                }
+                if (window.innerWidth <= 768) closeSidebar();
             }
-
-            // ============================================================
-            // UI INTERACTIONS
-            // ============================================================
 
             function toggleSidebar() {
                 if (window.innerWidth <= 768) {
@@ -3028,39 +2635,37 @@
             }
 
             function showCreateCommunity() {
-                showModal(`
-                    <div class="modal-header">
-                        <h2>Create Community</h2>
-                        <button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>
-                    </div>
-                    <div class="form-group">
-                        <label>Community Name</label>
-                        <input type="text" id="new-community-name" placeholder="Enter community name" maxlength="100" />
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea id="new-community-desc" placeholder="What's this community about?" maxlength="500"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" id="new-community-public" checked /> Public community
-                        </label>
-                        <div class="helper">Public communities are discoverable and anyone can join.</div>
-                    </div>
-                    <div class="modal-actions">
-                        <button class="btn-secondary" onclick="window.Zenith.closeModal()">Cancel</button>
-                        <button class="btn-primary" id="create-community-submit">Create</button>
-                    </div>
-                `);
+                showModal(
+                    '<div class="modal-header">' +
+                    '<h2>Create Community</h2>' +
+                    '<button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Community Name</label>' +
+                    '<input type="text" id="new-community-name" placeholder="Enter community name" maxlength="100" />' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Description</label>' +
+                    '<textarea id="new-community-desc" placeholder="What is this community about?" maxlength="500"></textarea>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label><input type="checkbox" id="new-community-public" checked /> Public community</label>' +
+                    '<div class="helper">Public communities are discoverable and anyone can join.</div>' +
+                    '</div>' +
+                    '<div class="modal-actions">' +
+                    '<button class="btn-secondary" onclick="window.Zenith.closeModal()">Cancel</button>' +
+                    '<button class="btn-primary" id="create-community-submit">Create</button>' +
+                    '</div>'
+                );
 
-                document.getElementById('create-community-submit').addEventListener('click', () => {
-                    const name = document.getElementById('new-community-name').value.trim();
-                    const desc = document.getElementById('new-community-desc').value.trim();
-                    const isPublic = document.getElementById('new-community-public').checked;
+                document.getElementById('create-community-submit').addEventListener('click', function() {
+                    var name = document.getElementById('new-community-name').value.trim();
+                    var desc = document.getElementById('new-community-desc').value.trim();
+                    var isPublic = document.getElementById('new-community-public').checked;
                     try {
-                        const comm = createCommunity(name, desc, isPublic);
+                        var comm = createCommunity(name, desc, isPublic);
                         closeModal();
-                        showToast(`Community "${name}" created!`, 'success');
+                        showToast('Community "' + name + '" created!', 'success');
                         selectCommunity(comm.id);
                     } catch (e) {
                         showToast(e.message, 'error');
@@ -3073,41 +2678,41 @@
                     showToast('Select a community first', 'warning');
                     return;
                 }
-                showModal(`
-                    <div class="modal-header">
-                        <h2>Create Channel</h2>
-                        <button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>
-                    </div>
-                    <div class="form-group">
-                        <label>Channel Name</label>
-                        <input type="text" id="new-channel-name" placeholder="Enter channel name" maxlength="100" />
-                    </div>
-                    <div class="form-group">
-                        <label>Type</label>
-                        <select id="new-channel-type">
-                            <option value="text">Text</option>
-                            <option value="voice">Voice</option>
-                            <option value="announcement">Announcement</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Topic (optional)</label>
-                        <input type="text" id="new-channel-topic" placeholder="What's this channel about?" />
-                    </div>
-                    <div class="modal-actions">
-                        <button class="btn-secondary" onclick="window.Zenith.closeModal()">Cancel</button>
-                        <button class="btn-primary" id="create-channel-submit">Create</button>
-                    </div>
-                `);
+                showModal(
+                    '<div class="modal-header">' +
+                    '<h2>Create Channel</h2>' +
+                    '<button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Channel Name</label>' +
+                    '<input type="text" id="new-channel-name" placeholder="Enter channel name" maxlength="100" />' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Type</label>' +
+                    '<select id="new-channel-type">' +
+                    '<option value="text">Text</option>' +
+                    '<option value="voice">Voice</option>' +
+                    '<option value="announcement">Announcement</option>' +
+                    '</select>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Topic (optional)</label>' +
+                    '<input type="text" id="new-channel-topic" placeholder="What is this channel about?" />' +
+                    '</div>' +
+                    '<div class="modal-actions">' +
+                    '<button class="btn-secondary" onclick="window.Zenith.closeModal()">Cancel</button>' +
+                    '<button class="btn-primary" id="create-channel-submit">Create</button>' +
+                    '</div>'
+                );
 
-                document.getElementById('create-channel-submit').addEventListener('click', () => {
-                    const name = document.getElementById('new-channel-name').value.trim();
-                    const type = document.getElementById('new-channel-type').value;
-                    const topic = document.getElementById('new-channel-topic').value.trim();
+                document.getElementById('create-channel-submit').addEventListener('click', function() {
+                    var name = document.getElementById('new-channel-name').value.trim();
+                    var type = document.getElementById('new-channel-type').value;
+                    var topic = document.getElementById('new-channel-topic').value.trim();
                     try {
-                        const ch = createChannel(STATE.currentCommunityId, name, type, topic);
+                        var ch = createChannel(STATE.currentCommunityId, name, type, topic);
                         closeModal();
-                        showToast(`Channel #${name} created!`, 'success');
+                        showToast('Channel #' + name + ' created!', 'success');
                         selectChannel(ch.id);
                     } catch (e) {
                         showToast(e.message, 'error');
@@ -3116,19 +2721,19 @@
             }
 
             function sendMessageAction() {
-                const input = DOM.composerInput;
-                const content = input.value.trim();
+                var input = DOM.composerInput;
+                var content = input.value.trim();
                 if (!content) return;
 
-                const channelId = STATE.currentChannelId;
+                var channelId = STATE.currentChannelId;
                 if (!channelId) {
                     showToast('Select a channel first', 'warning');
                     return;
                 }
 
-                const replyTo = STATE.replyingTo;
+                var replyTo = STATE.replyingTo;
                 try {
-                    const msg = sendMessage(channelId, content, [], replyTo);
+                    var msg = sendMessage(channelId, content, [], replyTo);
                     input.value = '';
                     input.style.height = 'auto';
                     STATE.replyingTo = null;
@@ -3140,9 +2745,9 @@
             }
 
             function replyTo(messageId) {
-                const msg = STATE.messages[messageId];
+                var msg = STATE.messages[messageId];
                 if (!msg) return;
-                const author = STATE.users[msg.authorId];
+                var author = STATE.users[msg.authorId];
                 if (!author) return;
                 STATE.replyingTo = messageId;
                 DOM.replyAuthor.textContent = author.displayName;
@@ -3157,27 +2762,27 @@
             }
 
             function editMessage(messageId) {
-                const msg = STATE.messages[messageId];
+                var msg = STATE.messages[messageId];
                 if (!msg) return;
-                const currentContent = msg.content;
 
-                showModal(`
-                    <div class="modal-header">
-                        <h2>Edit Message</h2>
-                        <button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea id="edit-message-content" rows="3" maxlength="4000">${escapeHTML(currentContent)}</textarea>
-                    </div>
-                    <div class="modal-actions">
-                        <button class="btn-secondary" onclick="window.Zenith.closeModal()">Cancel</button>
-                        <button class="btn-primary" id="edit-message-submit">Save</button>
-                    </div>
-                `);
+                showModal(
+                    '<div class="modal-header">' +
+                    '<h2>Edit Message</h2>' +
+                    '<button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Message</label>' +
+                    '<textarea id="edit-message-content" rows="3" maxlength="4000">' + escapeHTML(msg.content) +
+                    '</textarea>' +
+                    '</div>' +
+                    '<div class="modal-actions">' +
+                    '<button class="btn-secondary" onclick="window.Zenith.closeModal()">Cancel</button>' +
+                    '<button class="btn-primary" id="edit-message-submit">Save</button>' +
+                    '</div>'
+                );
 
-                document.getElementById('edit-message-submit').addEventListener('click', () => {
-                    const content = document.getElementById('edit-message-content').value.trim();
+                document.getElementById('edit-message-submit').addEventListener('click', function() {
+                    var content = document.getElementById('edit-message-content').value.trim();
                     if (!content) {
                         showToast('Message cannot be empty', 'error');
                         return;
@@ -3205,11 +2810,11 @@
             }
 
             function toggleReaction(messageId, emoji) {
-                const current = getCurrentUser();
+                var current = getCurrentUser();
                 if (!current) return;
-                const reactions = getMessageReactions(messageId);
-                const users = reactions[emoji] || [];
-                if (users.includes(current.id)) {
+                var reactions = getMessageReactions(messageId);
+                var users = reactions[emoji] || [];
+                if (users.indexOf(current.id) !== -1) {
                     removeReaction(messageId, emoji);
                 } else {
                     addReaction(messageId, emoji);
@@ -3217,24 +2822,24 @@
             }
 
             function addReactionPicker(messageId) {
-                const emojis = ['👍', '❤️', '😂', '😮', '😢', '😡', '🎉', '👀'];
-                showModal(`
-                    <div class="modal-header">
-                        <h2>Add Reaction</h2>
-                        <button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>
-                    </div>
-                    <div style="display:flex;flex-wrap:wrap;gap:12px;padding:16px 0;justify-content:center;">
-                        ${emojis.map(e => `
-                            <button onclick="window.Zenith.toggleReaction('${messageId}','${e}');window.Zenith.closeModal();" 
-                                    style="font-size:32px;background:transparent;border:1px solid var(--zenith-border);border-radius:12px;padding:12px;cursor:pointer;transition:var(--zenith-transition);">
-                                ${e}
-                            </button>
-                        `).join('')}
-                    </div>
-                    <div class="modal-actions">
-                        <button class="btn-secondary" onclick="window.Zenith.closeModal()">Close</button>
-                    </div>
-                `);
+                var emojis = ['👍', '❤️', '😂', '😮', '😢', '😡', '🎉', '👀'];
+                showModal(
+                    '<div class="modal-header">' +
+                    '<h2>Add Reaction</h2>' +
+                    '<button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>' +
+                    '</div>' +
+                    '<div style="display:flex;flex-wrap:wrap;gap:12px;padding:16px 0;justify-content:center;">' +
+                    emojis.map(function(e) {
+                        return '<button onclick="window.Zenith.toggleReaction(\'' + messageId + '\',\'' + e +
+                            '\');window.Zenith.closeModal();" ' +
+                            'style="font-size:32px;background:transparent;border:1px solid var(--zenith-border);border-radius:12px;padding:12px;cursor:pointer;transition:var(--zenith-transition);">' +
+                            e + '</button>';
+                    }).join('') +
+                    '</div>' +
+                    '<div class="modal-actions">' +
+                    '<button class="btn-secondary" onclick="window.Zenith.closeModal()">Close</button>' +
+                    '</div>'
+                );
             }
 
             function handleKeydown(e) {
@@ -3248,23 +2853,17 @@
             }
 
             function autoResizeTextarea() {
-                const el = DOM.composerInput;
+                var el = DOM.composerInput;
                 el.style.height = 'auto';
                 el.style.height = Math.min(el.scrollHeight, 200) + 'px';
             }
 
-            // ============================================================
-            // TAB SWITCHING
-            // ============================================================
-
             function switchTab(tab) {
                 STATE.currentTab = tab;
-                DOM.railItems.forEach(item => {
-                    item.classList.toggle('active', item.dataset.tab === tab);
-                });
+                for (var i = 0; i < DOM.railItems.length; i++) {
+                    DOM.railItems[i].classList.toggle('active', DOM.railItems[i].dataset.tab === tab);
+                }
 
-                // Show/hide appropriate views
-                // For now, just update the channel list
                 if (tab === 'home') {
                     renderCommunities();
                 } else if (tab === 'friends') {
@@ -3277,105 +2876,137 @@
             }
 
             function showFriendsView() {
-                const user = getCurrentUser();
+                var user = getCurrentUser();
                 if (!user) return;
 
-                const friends = getFriends();
-                const pending = STATE.friendRequests.filter(r =>
-                    r.receiverId === user.id && r.status === 'PENDING'
-                );
+                var friends = getFriends();
+                var pending = [];
+                for (var i = 0; i < STATE.friendRequests.length; i++) {
+                    var r = STATE.friendRequests[i];
+                    if (r.receiverId === user.id && r.status === 'PENDING') {
+                        pending.push(r);
+                    }
+                }
 
-                let html = `
-                    <div style="padding:20px;">
-                        <h2 style="margin-bottom:16px;">Friends</h2>
-                        <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
-                            <button onclick="window.Zenith.showAddFriend()" style="background:var(--zenith-accent-gradient);border:none;color:white;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:var(--zenith-font);">
-                                ➕ Add Friend
-                            </button>
-                        </div>
-                        ${pending.length > 0 ? `
-                            <h3 style="margin:16px 0 8px;font-size:14px;color:var(--zenith-text-secondary);">Pending Requests</h3>
-                            ${pending.map(r => {
-                                const sender = STATE.users[r.senderId];
-                                return sender ? `
-                                    <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--zenith-bg-tertiary);border-radius:8px;margin-bottom:6px;">
-                                        <span style="font-weight:500;">${escapeHTML(sender.displayName)}</span>
-                                        <button onclick="window.Zenith.acceptFriend('${r.id}')" style="background:var(--zenith-success);border:none;color:white;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;">Accept</button>
-                                        <button onclick="window.Zenith.rejectFriend('${r.id}')" style="background:var(--zenith-danger);border:none;color:white;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;">Reject</button>
-                                    </div>
-                                ` : '';
-                            }).join('')}
-                        ` : ''}
-                        <h3 style="margin:16px 0 8px;font-size:14px;color:var(--zenith-text-secondary);">Your Friends (${friends.length})</h3>
-                        ${friends.length === 0 ? `
-                            <div style="color:var(--zenith-text-muted);padding:20px 0;">No friends yet. Add some!</div>
-                        ` : friends.map(f => {
-                            const friend = f.user;
-                            return friend ? `
-                                <div style="display:flex;align-items:center;gap:12px;padding:8px 10px;background:var(--zenith-bg-tertiary);border-radius:8px;margin-bottom:4px;">
-                                    <div style="width:32px;height:32px;border-radius:50%;background:${getAvatarColor(friend.id)};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">
-                                        ${friend.avatar ? `<img src="${friend.avatar}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">` : getInitials(friend.displayName)}
-                                    </div>
-                                    <span style="flex:1;">${escapeHTML(friend.displayName)}</span>
-                                    <button onclick="window.Zenith.startDM('${friend.id}')" style="background:transparent;border:1px solid var(--zenith-border);color:var(--zenith-text-secondary);padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;">💬 DM</button>
-                                    <button onclick="window.Zenith.removeFriend('${friend.id}')" style="background:transparent;border:none;color:var(--zenith-text-muted);cursor:pointer;font-size:14px;">✕</button>
-                                </div>
-                            ` : '';
-                        }).join('')}
-                    </div>
-                `;
+                var html =
+                    '<div style="padding:20px;">' +
+                    '<h2 style="margin-bottom:16px;">Friends</h2>' +
+                    '<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">' +
+                    '<button onclick="window.Zenith.showAddFriend()" style="background:var(--zenith-accent-gradient);border:none;color:white;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:var(--zenith-font);">' +
+                    '+ Add Friend' +
+                    '</button>' +
+                    '</div>';
 
-                // Show in message area
+                if (pending.length > 0) {
+                    html +=
+                        '<h3 style="margin:16px 0 8px;font-size:14px;color:var(--zenith-text-secondary);">Pending Requests</h3>';
+                    for (var pi = 0; pi < pending.length; pi++) {
+                        var pr = pending[pi];
+                        var sender = STATE.users[pr.senderId];
+                        if (sender) {
+                            html +=
+                                '<div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--zenith-bg-tertiary);border-radius:8px;margin-bottom:6px;">' +
+                                '<span style="font-weight:500;">' + escapeHTML(sender.displayName) + '</span>' +
+                                '<button onclick="window.Zenith.acceptFriend(\'' + pr.id +
+                                '\')" style="background:var(--zenith-success);border:none;color:white;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;">Accept</button>' +
+                                '<button onclick="window.Zenith.rejectFriend(\'' + pr.id +
+                                '\')" style="background:var(--zenith-danger);border:none;color:white;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;">Reject</button>' +
+                                '</div>';
+                        }
+                    }
+                }
+
+                html +=
+                    '<h3 style="margin:16px 0 8px;font-size:14px;color:var(--zenith-text-secondary);">Your Friends (' +
+                    friends.length + ')</h3>';
+
+                if (friends.length === 0) {
+                    html +=
+                        '<div style="color:var(--zenith-text-muted);padding:20px 0;">No friends yet. Add some!</div>';
+                } else {
+                    for (var fi = 0; fi < friends.length; fi++) {
+                        var f = friends[fi];
+                        var friend = f.user;
+                        if (friend) {
+                            html +=
+                                '<div style="display:flex;align-items:center;gap:12px;padding:8px 10px;background:var(--zenith-bg-tertiary);border-radius:8px;margin-bottom:4px;">' +
+                                '<div style="width:32px;height:32px;border-radius:50%;background:' + getAvatarColor(
+                                    friend.id) +
+                                ';display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">' +
+                                (friend.avatar ? '<img src="' + friend.avatar +
+                                    '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">' :
+                                    getInitials(friend.displayName)) +
+                                '</div>' +
+                                '<span style="flex:1;">' + escapeHTML(friend.displayName) + '</span>' +
+                                '<button onclick="window.Zenith.startDM(\'' + friend.id +
+                                '\')" style="background:transparent;border:1px solid var(--zenith-border);color:var(--zenith-text-secondary);padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;">DM</button>' +
+                                '<button onclick="window.Zenith.removeFriend(\'' + friend.id +
+                                '\')" style="background:transparent;border:none;color:var(--zenith-text-muted);cursor:pointer;font-size:14px;">✕</button>' +
+                                '</div>';
+                        }
+                    }
+                }
+
+                html += '</div>';
                 DOM.messageArea.innerHTML = html;
-                // Clear channel display
                 DOM.channelNameDisplay.textContent = 'Friends';
                 DOM.channelIconDisplay.textContent = '👥';
                 DOM.channelTopicDisplay.textContent = 'Your friends and requests';
             }
 
             function showDMsView() {
-                const user = getCurrentUser();
+                var user = getCurrentUser();
                 if (!user) return;
 
-                // Get all users the current user has DMed with
-                const dmUsers = new Set();
-                for (const id in STATE.messages) {
-                    const msg = STATE.messages[id];
-                    if (msg.channelId && msg.channelId.startsWith('dm_')) {
-                        const parts = msg.channelId.replace('dm_', '').split('_');
-                        if (parts.includes(user.id)) {
-                            const other = parts.find(p => p !== user.id);
-                            if (other) dmUsers.add(other);
+                var dmUsers = {};
+                for (var id in STATE.messages) {
+                    var msg = STATE.messages[id];
+                    if (msg.channelId && msg.channelId.indexOf('dm_') === 0) {
+                        var parts = msg.channelId.replace('dm_', '').split('_');
+                        if (parts.indexOf(user.id) !== -1) {
+                            var other = parts[0] === user.id ? parts[1] : parts[0];
+                            if (other) dmUsers[other] = true;
                         }
                     }
                 }
+                var dmUserIds = Object.keys(dmUsers);
 
-                let html = `
-                    <div style="padding:20px;">
-                        <h2 style="margin-bottom:16px;">Direct Messages</h2>
-                        ${dmUsers.size === 0 ? `
-                            <div style="color:var(--zenith-text-muted);padding:20px 0;">No DM conversations yet.</div>
-                        ` : Array.from(dmUsers).map(id => {
-                            const u = STATE.users[id];
-                            if (!u) return '';
-                            return `
-                                <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--zenith-bg-tertiary);border-radius:8px;margin-bottom:6px;cursor:pointer;" 
-                                     onclick="window.Zenith.openDM('${id}')">
-                                    <div style="width:36px;height:36px;border-radius:50%;background:${getAvatarColor(id)};display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;">
-                                        ${getInitials(u.displayName)}
-                                    </div>
-                                    <span style="flex:1;font-weight:500;">${escapeHTML(u.displayName)}</span>
-                                    <span style="color:var(--zenith-text-muted);font-size:12px;">${u.status === 'online' ? '🟢 Online' : u.status === 'idle' ? '🟡 Idle' : '⚫ Offline'}</span>
-                                </div>
-                            `;
-                        }).join('')}
-                        <div style="margin-top:16px;">
-                            <button onclick="window.Zenith.showAddFriend()" style="background:var(--zenith-accent-gradient);border:none;color:white;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:var(--zenith-font);">
-                                💬 New DM
-                            </button>
-                        </div>
-                    </div>
-                `;
+                var html =
+                    '<div style="padding:20px;">' +
+                    '<h2 style="margin-bottom:16px;">Direct Messages</h2>';
+
+                if (dmUserIds.length === 0) {
+                    html +=
+                        '<div style="color:var(--zenith-text-muted);padding:20px 0;">No DM conversations yet.</div>';
+                } else {
+                    for (var di = 0; di < dmUserIds.length; di++) {
+                        var id2 = dmUserIds[di];
+                        var u = STATE.users[id2];
+                        if (!u) continue;
+                        var statusMap3 = { online: 'Online', idle: 'Idle', dnd: 'Do Not Disturb', offline: 'Offline' };
+                        var statusLabel = statusMap3[u.status] || 'Offline';
+                        var statusDot = u.status === 'online' ? '🟢' : u.status === 'idle' ? '🟡' : '⚫';
+                        html +=
+                            '<div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--zenith-bg-tertiary);border-radius:8px;margin-bottom:6px;cursor:pointer;" ' +
+                            'onclick="window.Zenith.openDM(\'' + id2 + '\')">' +
+                            '<div style="width:36px;height:36px;border-radius:50%;background:' + getAvatarColor(id2) +
+                            ';display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;">' +
+                            getInitials(u.displayName) +
+                            '</div>' +
+                            '<span style="flex:1;font-weight:500;">' + escapeHTML(u.displayName) + '</span>' +
+                            '<span style="color:var(--zenith-text-muted);font-size:12px;">' + statusDot + ' ' +
+                            statusLabel + '</span>' +
+                            '</div>';
+                    }
+                }
+
+                html +=
+                    '<div style="margin-top:16px;">' +
+                    '<button onclick="window.Zenith.showAddFriend()" style="background:var(--zenith-accent-gradient);border:none;color:white;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:var(--zenith-font);">' +
+                    'New DM' +
+                    '</button>' +
+                    '</div>' +
+                    '</div>';
 
                 DOM.messageArea.innerHTML = html;
                 DOM.channelNameDisplay.textContent = 'Direct Messages';
@@ -3384,69 +3015,83 @@
             }
 
             function showDiscoverView() {
-                let html = `
-                    <div style="padding:20px;">
-                        <h2 style="margin-bottom:16px;">Discover Communities</h2>
-                        <div style="margin-bottom:16px;">
-                            <input type="text" id="discover-search" placeholder="Search communities..." 
-                                   style="width:100%;padding:10px 14px;background:var(--zenith-bg-tertiary);border:1px solid var(--zenith-border);border-radius:8px;color:var(--zenith-text-primary);font-family:var(--zenith-font);outline:none;" />
-                        </div>
-                        <div id="discover-results">
-                            ${Object.values(STATE.communities).filter(c => c.isDiscoverable).map(c => {
-                                const isMember = STATE.memberships[c.id]?.[getCurrentUser()?.id];
-                                return `
-                                    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--zenith-bg-tertiary);border-radius:8px;margin-bottom:8px;">
-                                        <div>
-                                            <div style="font-weight:600;">${escapeHTML(c.name)}</div>
-                                            <div style="font-size:13px;color:var(--zenith-text-tertiary);">${escapeHTML(c.description || 'No description')}</div>
-                                            <div style="font-size:12px;color:var(--zenith-text-muted);">${Object.keys(STATE.memberships[c.id] || {}).length} members</div>
-                                        </div>
-                                        ${isMember ? `
-                                            <span style="color:var(--zenith-text-muted);font-size:13px;">✓ Member</span>
-                                        ` : `
-                                            <button onclick="window.Zenith.joinCommunity('${c.id}')" style="background:var(--zenith-accent-gradient);border:none;color:white;padding:6px 16px;border-radius:6px;cursor:pointer;font-family:var(--zenith-font);">Join</button>
-                                        `}
-                                    </div>
-                                `;
-                            }).join('')}
-                        </div>
-                    </div>
-                `;
+                var html =
+                    '<div style="padding:20px;">' +
+                    '<h2 style="margin-bottom:16px;">Discover Communities</h2>' +
+                    '<div style="margin-bottom:16px;">' +
+                    '<input type="text" id="discover-search" placeholder="Search communities..." ' +
+                    'style="width:100%;padding:10px 14px;background:var(--zenith-bg-tertiary);border:1px solid var(--zenith-border);border-radius:8px;color:var(--zenith-text-primary);font-family:var(--zenith-font);outline:none;" />' +
+                    '</div>' +
+                    '<div id="discover-results">';
+
+                var communitiesList = [];
+                for (var cid in STATE.communities) {
+                    if (STATE.communities[cid].isDiscoverable) {
+                        communitiesList.push(STATE.communities[cid]);
+                    }
+                }
+
+                for (var ci = 0; ci < communitiesList.length; ci++) {
+                    var c = communitiesList[ci];
+                    var isMember = STATE.memberships[c.id] && STATE.memberships[c.id][getCurrentUser() ? getCurrentUser()
+                        .id : null];
+                    var memberCount = STATE.memberships[c.id] ? Object.keys(STATE.memberships[c.id]).length : 0;
+                    html +=
+                        '<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--zenith-bg-tertiary);border-radius:8px;margin-bottom:8px;">' +
+                        '<div>' +
+                        '<div style="font-weight:600;">' + escapeHTML(c.name) + '</div>' +
+                        '<div style="font-size:13px;color:var(--zenith-text-tertiary);">' + escapeHTML(c
+                            .description || 'No description') + '</div>' +
+                        '<div style="font-size:12px;color:var(--zenith-text-muted);">' + memberCount +
+                        ' members</div>' +
+                        '</div>';
+                    if (isMember) {
+                        html += '<span style="color:var(--zenith-text-muted);font-size:13px;">✓ Member</span>';
+                    } else {
+                        html +=
+                            '<button onclick="window.Zenith.joinCommunity(\'' + c.id +
+                            '\')" style="background:var(--zenith-accent-gradient);border:none;color:white;padding:6px 16px;border-radius:6px;cursor:pointer;font-family:var(--zenith-font);">Join</button>';
+                    }
+                    html += '</div>';
+                }
+
+                html += '</div></div>';
 
                 DOM.messageArea.innerHTML = html;
                 DOM.channelNameDisplay.textContent = 'Discover';
                 DOM.channelIconDisplay.textContent = '🔍';
                 DOM.channelTopicDisplay.textContent = 'Find communities to join';
 
-                // Search functionality
-                const searchInput = document.getElementById('discover-search');
+                var searchInput = document.getElementById('discover-search');
                 if (searchInput) {
                     searchInput.addEventListener('input', function() {
-                        const query = this.value.toLowerCase();
-                        const results = document.getElementById('discover-results');
-                        const items = results.querySelectorAll('div[style*="display:flex;align-items:center;justify-content:space-between"]');
-                        items.forEach(el => {
-                            const name = el.querySelector('div:first-child div:first-child')?.textContent?.toLowerCase() ||
-                                '';
-                            const desc = el.querySelector('div:first-child div:nth-child(2)')?.textContent?.toLowerCase() ||
-                                '';
-                            el.style.display = (name.includes(query) || desc.includes(query)) ? '' : 'none';
-                        });
+                        var query = this.value.toLowerCase();
+                        var results = document.getElementById('discover-results');
+                        var items = results.querySelectorAll(
+                            'div[style*="display:flex;align-items:center;justify-content:space-between"]');
+                        for (var i2 = 0; i2 < items.length; i2++) {
+                            var el = items[i2];
+                            var nameEl = el.querySelector('div:first-child div:first-child');
+                            var descEl = el.querySelector('div:first-child div:nth-child(2)');
+                            var name = nameEl ? nameEl.textContent.toLowerCase() : '';
+                            var desc = descEl ? descEl.textContent.toLowerCase() : '';
+                            el.style.display = (name.indexOf(query) !== -1 || desc.indexOf(query) !== -1) ? '' :
+                                'none';
+                        }
                     });
                 }
             }
 
             function openDM(userId) {
-                const user = STATE.users[userId];
+                var user = STATE.users[userId];
                 if (!user) {
                     showToast('User not found', 'error');
                     return;
                 }
-                const channel = getDMChannel(userId);
+                var channel = getDMChannel(userId);
                 selectChannel(channel.id);
                 switchTab('home');
-                // Update channel display
-                DOM.channelNameDisplay.textContent = `DM with ${user.displayName}`;
+                DOM.channelNameDisplay.textContent = 'DM with ' + user.displayName;
                 DOM.channelIconDisplay.textContent = '💬';
                 DOM.channelTopicDisplay.textContent = 'Direct Message';
                 renderMessages();
@@ -3457,30 +3102,29 @@
             }
 
             function showAddFriend() {
-                showModal(`
-                    <div class="modal-header">
-                        <h2>Add Friend</h2>
-                        <button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>
-                    </div>
-                    <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" id="add-friend-username" placeholder="Enter username" />
-                    </div>
-                    <div class="modal-actions">
-                        <button class="btn-secondary" onclick="window.Zenith.closeModal()">Cancel</button>
-                        <button class="btn-primary" id="add-friend-submit">Send Request</button>
-                    </div>
-                `);
+                showModal(
+                    '<div class="modal-header">' +
+                    '<h2>Add Friend</h2>' +
+                    '<button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Username</label>' +
+                    '<input type="text" id="add-friend-username" placeholder="Enter username" />' +
+                    '</div>' +
+                    '<div class="modal-actions">' +
+                    '<button class="btn-secondary" onclick="window.Zenith.closeModal()">Cancel</button>' +
+                    '<button class="btn-primary" id="add-friend-submit">Send Request</button>' +
+                    '</div>'
+                );
 
-                document.getElementById('add-friend-submit').addEventListener('click', () => {
-                    const username = document.getElementById('add-friend-username').value.trim();
+                document.getElementById('add-friend-submit').addEventListener('click', function() {
+                    var username = document.getElementById('add-friend-username').value.trim();
                     if (!username) {
                         showToast('Enter a username', 'error');
                         return;
                     }
-                    // Find user
-                    let target = null;
-                    for (const id in STATE.users) {
+                    var target = null;
+                    for (var id in STATE.users) {
                         if (STATE.users[id].username.toLowerCase() === username.toLowerCase()) {
                             target = STATE.users[id];
                             break;
@@ -3493,7 +3137,7 @@
                     try {
                         sendFriendRequest(target.id);
                         closeModal();
-                        showToast(`Friend request sent to ${target.displayName}`, 'success');
+                        showToast('Friend request sent to ' + target.displayName, 'success');
                         renderNotifications();
                     } catch (e) {
                         showToast(e.message, 'error');
@@ -3505,7 +3149,7 @@
                 try {
                     acceptFriendRequest(requestId);
                     showToast('Friend request accepted!', 'success');
-                    renderFriends();
+                    renderFriendsView();
                     renderNotifications();
                 } catch (e) {
                     showToast(e.message, 'error');
@@ -3516,7 +3160,7 @@
                 try {
                     rejectFriendRequest(requestId);
                     showToast('Friend request rejected', 'info');
-                    renderFriends();
+                    renderFriendsView();
                     renderNotifications();
                 } catch (e) {
                     showToast(e.message, 'error');
@@ -3524,16 +3168,16 @@
             }
 
             function removeFriend(friendId) {
-                if (!confirm(`Remove this friend?`)) return;
-                const current = getCurrentUser();
+                if (!confirm('Remove this friend?')) return;
+                var current = getCurrentUser();
                 if (!current) return;
-                STATE.friends = STATE.friends.filter(f =>
-                    !((f.userId === current.id && f.friendId === friendId) ||
-                        (f.userId === friendId && f.friendId === current.id))
-                );
+                STATE.friends = STATE.friends.filter(function(f) {
+                    return !((f.userId === current.id && f.friendId === friendId) ||
+                        (f.userId === friendId && f.friendId === current.id));
+                });
                 DB.save();
                 showToast('Friend removed', 'info');
-                renderFriends();
+                renderFriendsView();
             }
 
             function joinCommunity(communityId) {
@@ -3542,68 +3186,68 @@
                     showToast('Joined community!', 'success');
                     renderCommunities();
                     selectCommunity(communityId);
-                    // Switch to home tab
                     switchTab('home');
                 } catch (e) {
                     showToast(e.message, 'error');
                 }
             }
 
-            // ============================================================
-            // SETTINGS
-            // ============================================================
-
             function showSettings() {
-                const user = getCurrentUser();
+                var user = getCurrentUser();
                 if (!user) return;
 
-                showModal(`
-                    <div class="modal-header">
-                        <h2>Settings</h2>
-                        <button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>
-                    </div>
-                    <div style="display:flex;flex-direction:column;gap:16px;">
-                        <div class="form-group">
-                            <label>Display Name</label>
-                            <input type="text" id="settings-displayname" value="${escapeHTML(user.displayName)}" />
-                        </div>
-                        <div class="form-group">
-                            <label>Username</label>
-                            <input type="text" id="settings-username" value="${escapeHTML(user.username)}" disabled style="opacity:0.6;" />
-                            <div class="helper">Username cannot be changed</div>
-                        </div>
-                        <div class="form-group">
-                            <label>Bio</label>
-                            <textarea id="settings-bio" rows="3" maxlength="200">${escapeHTML(user.bio || '')}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Status</label>
-                            <select id="settings-status">
-                                <option value="online" ${user.status === 'online' ? 'selected' : ''}>Online</option>
-                                <option value="idle" ${user.status === 'idle' ? 'selected' : ''}>Idle</option>
-                                <option value="dnd" ${user.status === 'dnd' ? 'selected' : ''}>Do Not Disturb</option>
-                                <option value="offline" ${user.status === 'offline' ? 'selected' : ''}>Invisible</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Custom Status</label>
-                            <input type="text" id="settings-custom-status" placeholder="What's on your mind?" value="${escapeHTML(user.customStatus || '')}" maxlength="100" />
-                        </div>
-                        <div style="border-top:1px solid var(--zenith-border);padding-top:16px;margin-top:8px;">
-                            <button class="btn-danger" onclick="window.Zenith.deleteAccount()" style="width:100%;">Delete Account</button>
-                        </div>
-                    </div>
-                    <div class="modal-actions">
-                        <button class="btn-secondary" onclick="window.Zenith.closeModal()">Cancel</button>
-                        <button class="btn-primary" id="settings-save">Save Changes</button>
-                    </div>
-                `);
+                showModal(
+                    '<div class="modal-header">' +
+                    '<h2>Settings</h2>' +
+                    '<button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>' +
+                    '</div>' +
+                    '<div style="display:flex;flex-direction:column;gap:16px;">' +
+                    '<div class="form-group">' +
+                    '<label>Display Name</label>' +
+                    '<input type="text" id="settings-displayname" value="' + escapeHTML(user.displayName) + '" />' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Username</label>' +
+                    '<input type="text" id="settings-username" value="' + escapeHTML(user.username) +
+                    '" disabled style="opacity:0.6;" />' +
+                    '<div class="helper">Username cannot be changed</div>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Bio</label>' +
+                    '<textarea id="settings-bio" rows="3" maxlength="200">' + escapeHTML(user.bio || '') +
+                    '</textarea>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Status</label>' +
+                    '<select id="settings-status">' +
+                    '<option value="online"' + (user.status === 'online' ? ' selected' : '') + '>Online</option>' +
+                    '<option value="idle"' + (user.status === 'idle' ? ' selected' : '') + '>Idle</option>' +
+                    '<option value="dnd"' + (user.status === 'dnd' ? ' selected' : '') +
+                    '>Do Not Disturb</option>' +
+                    '<option value="offline"' + (user.status === 'offline' ? ' selected' : '') +
+                    '>Invisible</option>' +
+                    '</select>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<label>Custom Status</label>' +
+                    '<input type="text" id="settings-custom-status" placeholder="What is on your mind?" value="' +
+                    escapeHTML(user.customStatus || '') + '" maxlength="100" />' +
+                    '</div>' +
+                    '<div style="border-top:1px solid var(--zenith-border);padding-top:16px;margin-top:8px;">' +
+                    '<button class="btn-danger" onclick="window.Zenith.deleteAccount()" style="width:100%;">Delete Account</button>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="modal-actions">' +
+                    '<button class="btn-secondary" onclick="window.Zenith.closeModal()">Cancel</button>' +
+                    '<button class="btn-primary" id="settings-save">Save Changes</button>' +
+                    '</div>'
+                );
 
-                document.getElementById('settings-save').addEventListener('click', () => {
-                    const displayName = document.getElementById('settings-displayname').value.trim();
-                    const bio = document.getElementById('settings-bio').value.trim();
-                    const status = document.getElementById('settings-status').value;
-                    const customStatus = document.getElementById('settings-custom-status').value.trim();
+                document.getElementById('settings-save').addEventListener('click', function() {
+                    var displayName = document.getElementById('settings-displayname').value.trim();
+                    var bio = document.getElementById('settings-bio').value.trim();
+                    var status = document.getElementById('settings-status').value;
+                    var customStatus = document.getElementById('settings-custom-status').value.trim();
 
                     if (!displayName) {
                         showToast('Display name is required', 'error');
@@ -3623,25 +3267,20 @@
 
             function deleteAccount() {
                 if (!confirm('Are you sure you want to delete your account? This cannot be undone!')) return;
-                if (!confirm('Type your username to confirm: ' + getCurrentUser()?.username)) {
-                    showToast('Deletion cancelled', 'info');
-                    return;
-                }
-                const user = getCurrentUser();
+                var user = getCurrentUser();
                 if (!user) return;
 
-                // Remove user data
                 delete STATE.users[user.id];
-                // Remove from communities
-                for (const commId in STATE.memberships) {
+                for (var commId in STATE.memberships) {
                     delete STATE.memberships[commId][user.id];
                 }
-                // Remove friends
-                STATE.friends = STATE.friends.filter(f => f.userId !== user.id && f.friendId !== user.id);
-                // Remove friend requests
-                STATE.friendRequests = STATE.friendRequests.filter(r => r.senderId !== user.id && r.receiverId !== user.id);
-                // Remove messages
-                for (const msgId in STATE.messages) {
+                STATE.friends = STATE.friends.filter(function(f) {
+                    return f.userId !== user.id && f.friendId !== user.id;
+                });
+                STATE.friendRequests = STATE.friendRequests.filter(function(r) {
+                    return r.senderId !== user.id && r.receiverId !== user.id;
+                });
+                for (var msgId in STATE.messages) {
                     if (STATE.messages[msgId].authorId === user.id) {
                         STATE.messages[msgId].deleted = true;
                         STATE.messages[msgId].content = '*Account deleted*';
@@ -3653,18 +3292,23 @@
                 closeModal();
             }
 
-            // ============================================================
-            // INITIALIZATION
-            // ============================================================
+            function insertEmoji(emoji) {
+                var input = DOM.composerInput;
+                var start = input.selectionStart;
+                var end = input.selectionEnd;
+                var text = input.value;
+                input.value = text.slice(0, start) + emoji + text.slice(end);
+                input.focus();
+                input.selectionStart = input.selectionEnd = start + emoji.length;
+                autoResizeTextarea();
+            }
 
             function init() {
                 cacheDOMElements();
 
-                // Load data
                 DB.load();
 
-                // Check for existing session
-                const savedSession = localStorage.getItem('zenith_session');
+                var savedSession = localStorage.getItem('zenith_session');
                 if (savedSession && STATE.users[savedSession]) {
                     STATE.currentUser = STATE.users[savedSession];
                     STATE.currentUser.status = 'online';
@@ -3672,176 +3316,164 @@
                     DB.save();
                 }
 
-                // Render auth state
                 renderAuth();
 
-                // --- Event Listeners ---
-
-                // Auth
-                DOM.loginBtn.addEventListener('click', () => {
-                    const username = DOM.loginUsername.value.trim();
-                    const password = DOM.loginPassword.value;
+                DOM.loginBtn.addEventListener('click', function() {
+                    var username = DOM.loginUsername.value.trim();
+                    var password = DOM.loginPassword.value;
                     try {
-                        const user = loginUser(username, password);
+                        var user = loginUser(username, password);
                         STATE.currentUser = user;
                         localStorage.setItem('zenith_session', user.id);
                         DOM.loginError.classList.remove('visible');
                         DOM.loginError.textContent = '';
                         renderAuth();
-                        showToast(`Welcome back, ${user.displayName}!`, 'success');
+                        showToast('Welcome back, ' + user.displayName + '!', 'success');
                     } catch (e) {
                         DOM.loginError.textContent = e.message;
                         DOM.loginError.classList.add('visible');
                     }
                 });
 
-                DOM.registerBtn.addEventListener('click', () => {
-                    const username = DOM.regUsername.value.trim();
-                    const displayName = DOM.regDisplayName.value.trim();
-                    const email = DOM.regEmail.value.trim();
-                    const password = DOM.regPassword.value;
+                DOM.registerBtn.addEventListener('click', function() {
+                    var username = DOM.regUsername.value.trim();
+                    var displayName = DOM.regDisplayName.value.trim();
+                    var email = DOM.regEmail.value.trim();
+                    var password = DOM.regPassword.value;
+
+                    console.log('Registering:', username, displayName, email, password);
+
                     try {
-                        const user = registerUser(username, displayName, email, password);
+                        var user = registerUser(username, displayName, email, password);
                         STATE.currentUser = user;
                         localStorage.setItem('zenith_session', user.id);
                         DOM.registerError.classList.remove('visible');
                         DOM.registerError.textContent = '';
                         renderAuth();
-                        showToast(`Welcome to ZENITH, ${user.displayName}!`, 'success');
+                        showToast('Welcome to ZENITH, ' + user.displayName + '!', 'success');
                     } catch (e) {
+                        console.error('Registration error:', e.message);
                         DOM.registerError.textContent = e.message;
                         DOM.registerError.classList.add('visible');
                     }
                 });
 
-                DOM.switchToRegister.addEventListener('click', () => {
+                DOM.switchToRegister.addEventListener('click', function() {
                     DOM.loginForm.style.display = 'none';
                     DOM.registerForm.style.display = 'block';
                 });
 
-                DOM.switchToLogin.addEventListener('click', () => {
+                DOM.switchToLogin.addEventListener('click', function() {
                     DOM.registerForm.style.display = 'none';
                     DOM.loginForm.style.display = 'block';
                 });
 
-                // Enter key on auth forms
-                DOM.loginPassword.addEventListener('keydown', (e) => {
+                DOM.loginPassword.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') DOM.loginBtn.click();
                 });
-                DOM.regPassword.addEventListener('keydown', (e) => {
+                DOM.regPassword.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') DOM.registerBtn.click();
                 });
 
-                // Sidebar
                 DOM.sidebarToggle.addEventListener('click', toggleSidebar);
                 DOM.sidebarOverlay.addEventListener('click', closeSidebar);
-
-                // Member panel
                 DOM.memberToggle.addEventListener('click', toggleMemberPanel);
 
-                // Composer
                 DOM.composerInput.addEventListener('keydown', handleKeydown);
                 DOM.composerInput.addEventListener('input', autoResizeTextarea);
                 DOM.sendBtn.addEventListener('click', sendMessageAction);
                 DOM.cancelReply.addEventListener('click', cancelReply);
 
-                // File attachment
-                DOM.attachBtn.addEventListener('click', () => DOM.fileInput.click());
+                DOM.attachBtn.addEventListener('click', function() { DOM.fileInput.click(); });
                 DOM.fileInput.addEventListener('change', function() {
                     if (this.files.length > 0) {
-                        const file = this.files[0];
+                        var file = this.files[0];
                         if (file.size > 10 * 1024 * 1024) {
                             showToast('File too large (max 10MB)', 'error');
                             this.value = '';
                             return;
                         }
-                        showToast(`Attached: ${file.name}`, 'info');
-                        // In production, upload to server
+                        showToast('Attached: ' + file.name, 'info');
                         this.value = '';
                     }
                 });
 
-                // Emoji picker - simple emoji insertion
-                DOM.emojiBtn.addEventListener('click', () => {
-                    const emojis = ['😊', '❤️', '👍', '😂', '🎉', '🔥', '✨', '👀', '💪', '🤔', '😎', '🥺', '💀', '👋', '🙌', '🤝'];
-                    showModal(`
-                        <div class="modal-header">
-                            <h2>Emojis</h2>
-                            <button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>
-                        </div>
-                        <div style="display:flex;flex-wrap:wrap;gap:8px;padding:12px 0;justify-content:center;">
-                            ${emojis.map(e => `
-                                <button onclick="window.Zenith.insertEmoji('${e}');window.Zenith.closeModal();" 
-                                        style="font-size:28px;background:transparent;border:1px solid var(--zenith-border);border-radius:8px;padding:8px 12px;cursor:pointer;transition:var(--zenith-transition);">
-                                    ${e}
-                                </button>
-                            `).join('')}
-                        </div>
-                    `);
+                DOM.emojiBtn.addEventListener('click', function() {
+                    var emojis = ['😊', '❤️', '👍', '😂', '🎉', '🔥', '✨', '👀', '💪', '🤔', '😎', '🥺'];
+                    showModal(
+                        '<div class="modal-header">' +
+                        '<h2>Emojis</h2>' +
+                        '<button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>' +
+                        '</div>' +
+                        '<div style="display:flex;flex-wrap:wrap;gap:8px;padding:12px 0;justify-content:center;">' +
+                        emojis.map(function(e) {
+                            return '<button onclick="window.Zenith.insertEmoji(\'' + e +
+                                '\');window.Zenith.closeModal();" ' +
+                                'style="font-size:28px;background:transparent;border:1px solid var(--zenith-border);border-radius:8px;padding:8px 12px;cursor:pointer;transition:var(--zenith-transition);">' +
+                                e + '</button>';
+                        }).join('') +
+                        '</div>'
+                    );
                 });
 
-                // Rail tabs
-                DOM.railItems.forEach(item => {
-                    item.addEventListener('click', () => {
-                        switchTab(item.dataset.tab);
+                for (var i = 0; i < DOM.railItems.length; i++) {
+                    DOM.railItems[i].addEventListener('click', function() {
+                        switchTab(this.dataset.tab);
                     });
-                });
+                }
 
-                // Add community
                 DOM.addCommunityBtn.addEventListener('click', showCreateCommunity);
-
-                // Settings
                 DOM.settingsBtn.addEventListener('click', showSettings);
-
-                // Avatar click - profile
                 DOM.railAvatar.addEventListener('click', showSettings);
                 DOM.sidebarAvatar.addEventListener('click', showSettings);
 
-                // Community selector
-                DOM.communitySelector.addEventListener('click', () => {
-                    const communities = getUserCommunities();
+                DOM.communitySelector.addEventListener('click', function() {
+                    var communities = getUserCommunities();
                     if (communities.length === 0) {
                         showCreateCommunity();
                         return;
                     }
-                    showModal(`
-                        <div class="modal-header">
-                            <h2>Switch Community</h2>
-                            <button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:6px;padding:8px 0;">
-                            ${communities.map(c => `
-                                <button onclick="window.Zenith.selectCommunity('${c.id}');window.Zenith.closeModal();" 
-                                        style="background:${STATE.currentCommunityId === c.id ? 'var(--zenith-bg-active)' : 'transparent'};border:1px solid var(--zenith-border);border-radius:8px;padding:12px 16px;cursor:pointer;color:var(--zenith-text-primary);text-align:left;font-family:var(--zenith-font);">
-                                    <strong>${escapeHTML(c.name)}</strong>
-                                    <div style="font-size:12px;color:var(--zenith-text-tertiary);">${escapeHTML(c.description || 'No description')}</div>
-                                </button>
-                            `).join('')}
-                            <button onclick="window.Zenith.showCreateCommunity();window.Zenith.closeModal();" 
-                                    style="background:transparent;border:1px dashed var(--zenith-border);border-radius:8px;padding:12px 16px;cursor:pointer;color:var(--zenith-text-tertiary);font-family:var(--zenith-font);margin-top:4px;">
-                                ➕ Create New Community
-                            </button>
-                        </div>
-                    `);
+                    showModal(
+                        '<div class="modal-header">' +
+                        '<h2>Switch Community</h2>' +
+                        '<button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>' +
+                        '</div>' +
+                        '<div style="display:flex;flex-direction:column;gap:6px;padding:8px 0;">' +
+                        communities.map(function(c) {
+                            return '<button onclick="window.Zenith.selectCommunity(\'' + c.id +
+                                '\');window.Zenith.closeModal();" ' +
+                                'style="background:' + (STATE.currentCommunityId === c.id ?
+                                    'var(--zenith-bg-active)' : 'transparent') +
+                                ';border:1px solid var(--zenith-border);border-radius:8px;padding:12px 16px;cursor:pointer;color:var(--zenith-text-primary);text-align:left;font-family:var(--zenith-font);">' +
+                                '<strong>' + escapeHTML(c.name) + '</strong>' +
+                                '<div style="font-size:12px;color:var(--zenith-text-tertiary);">' + escapeHTML(c
+                                    .description || 'No description') + '</div>' +
+                                '</button>';
+                        }).join('') +
+                        '<button onclick="window.Zenith.showCreateCommunity();window.Zenith.closeModal();" ' +
+                        'style="background:transparent;border:1px dashed var(--zenith-border);border-radius:8px;padding:12px 16px;cursor:pointer;color:var(--zenith-text-tertiary);font-family:var(--zenith-font);margin-top:4px;">' +
+                        '+ Create New Community' +
+                        '</button>' +
+                        '</div>'
+                    );
                 });
 
-                // Channel search
                 DOM.channelSearch.addEventListener('input', function() {
-                    const query = this.value.toLowerCase();
-                    const channels = DOM.channelList.querySelectorAll('.channel');
-                    channels.forEach(ch => {
-                        const name = ch.querySelector('.channel-name')?.textContent?.toLowerCase() || '';
-                        ch.style.display = name.includes(query) ? '' : 'none';
-                    });
+                    var query = this.value.toLowerCase();
+                    var channels = DOM.channelList.querySelectorAll('.channel');
+                    for (var ci2 = 0; ci2 < channels.length; ci2++) {
+                        var ch = channels[ci2];
+                        var name = ch.querySelector('.channel-name');
+                        var nameText = name ? name.textContent.toLowerCase() : '';
+                        ch.style.display = nameText.indexOf(query) !== -1 ? '' : 'none';
+                    }
                 });
 
-                // Click outside context menu
-                document.addEventListener('click', () => {
+                document.addEventListener('click', function() {
                     DOM.contextMenu.classList.remove('active');
                 });
 
-                // Keyboard shortcuts
-                document.addEventListener('keydown', (e) => {
+                document.addEventListener('keydown', function(e) {
                     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                         e.preventDefault();
                         DOM.channelSearch.focus();
@@ -3852,60 +3484,46 @@
                     }
                 });
 
-                // Resize handling
-                window.addEventListener('resize', () => {
-                    if (window.innerWidth > 768) {
-                        closeSidebar();
-                    }
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) closeSidebar();
                 });
 
-                // Expose to window for inline onclick
                 window.Zenith = {
-                    closeModal,
-                    showCreateCommunity,
-                    showCreateChannel,
-                    sendMessageAction,
-                    replyTo,
-                    cancelReply,
-                    editMessage,
-                    deleteMessage,
-                    toggleReaction,
-                    addReactionPicker,
-                    selectChannel,
-                    selectCommunity,
-                    toggleSidebar,
-                    toggleMemberPanel,
-                    showSettings,
-                    deleteAccount,
-                    switchTab,
-                    showAddFriend,
-                    acceptFriend,
-                    rejectFriend,
-                    removeFriend,
-                    joinCommunity,
-                    startDM,
-                    openDM,
-                    insertEmoji: (emoji) => {
-                        const input = DOM.composerInput;
-                        const start = input.selectionStart;
-                        const end = input.selectionEnd;
-                        const text = input.value;
-                        input.value = text.slice(0, start) + emoji + text.slice(end);
-                        input.focus();
-                        input.selectionStart = input.selectionEnd = start + emoji.length;
-                        autoResizeTextarea();
-                    },
-                    showToast,
-                    getState: () => STATE,
+                    closeModal: closeModal,
+                    showCreateCommunity: showCreateCommunity,
+                    showCreateChannel: showCreateChannel,
+                    sendMessageAction: sendMessageAction,
+                    replyTo: replyTo,
+                    cancelReply: cancelReply,
+                    editMessage: editMessage,
+                    deleteMessage: deleteMessage,
+                    toggleReaction: toggleReaction,
+                    addReactionPicker: addReactionPicker,
+                    selectChannel: selectChannel,
+                    selectCommunity: selectCommunity,
+                    toggleSidebar: toggleSidebar,
+                    toggleMemberPanel: toggleMemberPanel,
+                    showSettings: showSettings,
+                    deleteAccount: deleteAccount,
+                    switchTab: switchTab,
+                    showAddFriend: showAddFriend,
+                    acceptFriend: acceptFriend,
+                    rejectFriend: rejectFriend,
+                    removeFriend: removeFriend,
+                    joinCommunity: joinCommunity,
+                    startDM: startDM,
+                    openDM: openDM,
+                    insertEmoji: insertEmoji,
+                    showToast: showToast,
+                    renderFriendsView: showFriendsView,
+                    getState: function() { return STATE; },
                 };
 
-                // Initial render
                 if (getCurrentUser()) {
-                    // Select first community if available
-                    const communities = getUserCommunities();
+                    var communities = getUserCommunities();
                     if (communities.length > 0) {
                         STATE.currentCommunityId = communities[0].id;
-                        const channels = getCommunityChannels(STATE.currentCommunityId);
+                        var channels = getCommunityChannels(STATE.currentCommunityId);
                         if (channels.length > 0) {
                             STATE.currentChannelId = channels[0].id;
                         }
@@ -3913,11 +3531,12 @@
                     renderUI();
                 }
 
-                console.log('🚀 ZENITH initialized successfully!');
-                console.log(`📊 ${Object.keys(STATE.users).length} users, ${Object.keys(STATE.communities).length} communities, ${Object.keys(STATE.messages).length} messages`);
+                console.log('ZENITH initialized successfully');
+                console.log('Users:', Object.keys(STATE.users).length);
+                console.log('Communities:', Object.keys(STATE.communities).length);
+                console.log('Messages:', Object.keys(STATE.messages).length);
             }
 
-            // Run on DOM ready
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', init);
             } else {
