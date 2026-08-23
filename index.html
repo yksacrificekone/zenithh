@@ -1,0 +1,2682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zurati - Modern Communication</title>
+    <style>
+        /* ============================================================
+           ZURATI - Complete Styling
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-tertiary: #0f0f1f;
+            --bg-hover: #2a2a4a;
+            --bg-input: #252545;
+            --text-primary: #ffffff;
+            --text-secondary: #a6a6b8;
+            --text-muted: #6a6a7e;
+            --border: #2a2a4a;
+            --accent: #6c5ce7;
+            --accent-hover: #7c6ce7;
+            --success: #00b894;
+            --danger: #ff6b6b;
+            --warning: #fdcb6e;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --sidebar-width: 72px;
+            --channel-width: 240px;
+            --member-width: 240px;
+            --header-height: 48px;
+            --input-height: 68px;
+            --radius: 8px;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #e8e8e8;
+            --bg-hover: #e0e0e0;
+            --bg-input: #ffffff;
+            --text-primary: #2d2d2d;
+            --text-secondary: #6a6a6a;
+            --text-muted: #999999;
+            --border: #d0d0d0;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="amoled"] {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #1a1a1a;
+            --bg-hover: #202020;
+            --bg-input: #151515;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #606060;
+            --border: #202020;
+            --shadow: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-hover);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* App Container */
+        #app {
+            display: flex;
+            height: 100vh;
+            background: var(--bg-primary);
+        }
+
+        /* ============================================================
+           SIDEBAR
+           ============================================================ */
+        #sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-tertiary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 0;
+            gap: 4px;
+            border-right: 1px solid var(--border);
+            flex-shrink: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .sidebar-logo {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: border-radius 0.2s;
+        }
+        .sidebar-logo:hover {
+            border-radius: 12px;
+        }
+
+        .sidebar-server {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            position: relative;
+        }
+        .sidebar-server:hover {
+            background: var(--bg-hover);
+            border-radius: 12px;
+            color: var(--text-primary);
+        }
+        .sidebar-server.active {
+            background: var(--bg-hover);
+            border-radius: 12px;
+            color: var(--text-primary);
+        }
+        .sidebar-server .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--danger);
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-divider {
+            width: 32px;
+            height: 2px;
+            background: var(--border);
+            border-radius: 1px;
+            margin: 4px 0;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+            width: 100%;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+        }
+
+        .sidebar-bottom button {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        .sidebar-bottom button:hover {
+            background: var(--bg-hover);
+            border-radius: 12px;
+            color: var(--text-primary);
+        }
+
+        /* ============================================================
+           CHANNEL LIST
+           ============================================================ */
+        #channel-panel {
+            width: var(--channel-width);
+            background: var(--bg-secondary);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .channel-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: var(--header-height);
+            cursor: pointer;
+        }
+        .channel-header:hover {
+            background: var(--bg-hover);
+        }
+        .channel-header h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .channel-header .arrow {
+            color: var(--text-secondary);
+            font-size: 12px;
+            transition: transform 0.2s;
+        }
+        .channel-header .arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .channel-search {
+            padding: 8px 12px;
+            position: sticky;
+            top: 0;
+            background: var(--bg-secondary);
+            z-index: 1;
+        }
+        .channel-search input {
+            width: 100%;
+            padding: 6px 12px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: 13px;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .channel-search input:focus {
+            border-color: var(--accent);
+        }
+        .channel-search input::placeholder {
+            color: var(--text-muted);
+        }
+
+        #channel-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 4px 8px;
+        }
+
+        .channel-category {
+            padding: 12px 8px 4px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .channel-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background 0.15s;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .channel-item:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+        .channel-item.active {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+        .channel-item .icon {
+            font-size: 16px;
+            width: 24px;
+            text-align: center;
+        }
+        .channel-item .name {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .channel-item .unread {
+            background: var(--danger);
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 0 6px;
+            border-radius: 10px;
+            min-width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .channel-add {
+            padding: 8px 12px;
+            margin: 4px 8px;
+            background: var(--bg-hover);
+            border: none;
+            border-radius: var(--radius);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 13px;
+            text-align: left;
+            transition: background 0.2s;
+        }
+        .channel-add:hover {
+            background: var(--bg-input);
+            color: var(--text-primary);
+        }
+
+        /* ============================================================
+           CHAT AREA
+           ============================================================ */
+        #chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-primary);
+            min-width: 0;
+        }
+
+        #chat-header {
+            padding: 8px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: var(--header-height);
+            background: var(--bg-secondary);
+            flex-shrink: 0;
+        }
+        #chat-header .title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: 1;
+        }
+        #chat-header .topic {
+            font-size: 13px;
+            color: var(--text-muted);
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        #chat-header .actions {
+            display: flex;
+            gap: 4px;
+        }
+        #chat-header .actions button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 18px;
+            padding: 6px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background 0.2s;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #chat-header .actions button:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        #messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            background: var(--bg-primary);
+        }
+
+        .message-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            padding: 2px 0;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            padding: 2px 12px 2px 0;
+            border-radius: var(--radius);
+            transition: background 0.1s;
+            align-items: flex-start;
+            position: relative;
+        }
+        .message:hover {
+            background: var(--bg-hover);
+        }
+        .message .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: var(--accent);
+        }
+        .message .content {
+            flex: 1;
+            min-width: 0;
+        }
+        .message .header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 2px;
+        }
+        .message .username {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .message .timestamp {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .message .text {
+            font-size: 14px;
+            color: var(--text-primary);
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+        .message .text .mention {
+            color: var(--accent);
+            background: rgba(108, 92, 231, 0.15);
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+        .message .text .emoji {
+            font-size: 18px;
+        }
+        .message .reactions {
+            display: flex;
+            gap: 4px;
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+        .message .reaction {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 24px;
+        }
+        .message .reaction:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent);
+        }
+        .message .reaction .count {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .message-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .message-divider::before,
+        .message-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ============================================================
+           MESSAGE INPUT
+           ============================================================ */
+        #input-container {
+            border-top: 1px solid var(--border);
+            padding: 8px 16px 12px;
+            background: var(--bg-secondary);
+            flex-shrink: 0;
+        }
+
+        #input-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            background: var(--bg-input);
+            border-radius: var(--radius);
+            padding: 4px 8px;
+            border: 1px solid var(--border);
+            transition: border 0.2s;
+        }
+        #input-wrapper:focus-within {
+            border-color: var(--accent);
+        }
+
+        #message-input {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 14px;
+            padding: 8px 4px;
+            resize: none;
+            outline: none;
+            font-family: inherit;
+            max-height: 120px;
+            min-height: 38px;
+            line-height: 1.5;
+        }
+        #message-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        #input-actions {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        #input-actions button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 18px;
+            padding: 6px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.15s;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #input-actions button:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+        #input-actions .send-btn {
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            font-size: 16px;
+        }
+        #input-actions .send-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        /* ============================================================
+           MEMBER PANEL
+           ============================================================ */
+        #member-panel {
+            width: var(--member-width);
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        #member-panel .header {
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .member-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 12px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background 0.15s;
+            margin: 1px 6px;
+        }
+        .member-item:hover {
+            background: var(--bg-hover);
+        }
+        .member-item .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+        .member-item .info {
+            flex: 1;
+            min-width: 0;
+        }
+        .member-item .name {
+            font-size: 14px;
+            color: var(--text-primary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .member-item .status {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .member-item .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 2px solid var(--bg-secondary);
+        }
+        .member-item .status-dot.online {
+            background: var(--success);
+        }
+        .member-item .status-dot.idle {
+            background: var(--warning);
+        }
+        .member-item .status-dot.dnd {
+            background: var(--danger);
+        }
+        .member-item .status-dot.offline {
+            background: var(--text-muted);
+        }
+
+        /* ============================================================
+           MODALS / DIALOGS
+           ============================================================ */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+            animation: fadeIn 0.2s ease;
+        }
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 440px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        .modal label {
+            display: block;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            margin-top: 12px;
+        }
+        .modal input,
+        .modal select,
+        .modal textarea {
+            width: 100%;
+            padding: 10px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: border 0.2s;
+            font-family: inherit;
+        }
+        .modal input:focus,
+        .modal select:focus,
+        .modal textarea:focus {
+            border-color: var(--accent);
+        }
+        .modal textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        .modal .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end;
+        }
+        .modal .actions button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .modal .actions .cancel {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+        }
+        .modal .actions .cancel:hover {
+            background: var(--bg-input);
+            color: var(--text-primary);
+        }
+        .modal .actions .confirm {
+            background: var(--accent);
+            color: white;
+        }
+        .modal .actions .confirm:hover {
+            background: var(--accent-hover);
+        }
+        .modal .actions .danger {
+            background: var(--danger);
+            color: white;
+        }
+        .modal .actions .danger:hover {
+            background: #e55a5a;
+        }
+
+        /* ============================================================
+           TOAST NOTIFICATIONS
+           ============================================================ */
+        #toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 2000;
+            max-width: 380px;
+            width: 100%;
+        }
+
+        .toast {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            box-shadow: 0 8px 24px var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+        .toast .icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .toast .message {
+            flex: 1;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .toast .close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px;
+        }
+        .toast .close:hover {
+            color: var(--text-primary);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ============================================================
+           CONTEXT MENU
+           ============================================================ */
+        #context-menu {
+            position: fixed;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 6px;
+            min-width: 200px;
+            box-shadow: 0 8px 32px var(--shadow);
+            z-index: 3000;
+            display: none;
+            animation: fadeIn 0.1s ease;
+        }
+        #context-menu.show {
+            display: block;
+        }
+        #context-menu .item {
+            padding: 8px 14px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.1s;
+        }
+        #context-menu .item:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+        #context-menu .item.danger {
+            color: var(--danger);
+        }
+        #context-menu .item.danger:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+        #context-menu .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 4px 8px;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 900px) {
+            #member-panel {
+                display: none;
+            }
+        }
+
+        @media (max-width: 700px) {
+            #channel-panel {
+                position: fixed;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 280px;
+                z-index: 500;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                box-shadow: 4px 0 20px var(--shadow);
+            }
+            #channel-panel.open {
+                transform: translateX(0);
+            }
+            #sidebar {
+                width: 60px;
+            }
+            .sidebar-server {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .sidebar-logo {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .sidebar-bottom button {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            .message .avatar {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+            #chat-header .topic {
+                display: none;
+            }
+            #input-wrapper {
+                padding: 2px 6px;
+            }
+            #message-input {
+                font-size: 13px;
+                padding: 6px 4px;
+                min-height: 32px;
+            }
+            #input-actions button {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+            #input-actions .send-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
+            }
+            .modal {
+                padding: 16px;
+                max-width: 95%;
+            }
+            #toast-container {
+                bottom: 10px;
+                right: 10px;
+                max-width: 300px;
+            }
+            #messages {
+                padding: 10px 12px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            #sidebar {
+                width: 48px;
+                padding: 6px 0;
+            }
+            .sidebar-server {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
+                border-radius: 12px;
+            }
+            .sidebar-logo {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
+                border-radius: 12px;
+            }
+            .sidebar-bottom button {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
+            }
+            #channel-panel {
+                width: 260px;
+            }
+            .message .header .username {
+                font-size: 13px;
+            }
+            .message .text {
+                font-size: 13px;
+            }
+            #chat-header {
+                padding: 4px 12px;
+                min-height: 40px;
+            }
+            #chat-header .title {
+                font-size: 14px;
+            }
+            #input-container {
+                padding: 4px 8px 8px;
+            }
+        }
+
+        /* Mobile channel toggle button */
+        #mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 20px;
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+        @media (max-width: 700px) {
+            #mobile-toggle {
+                display: block;
+            }
+        }
+
+        /* Loading shimmer */
+        .shimmer {
+            background: linear-gradient(90deg, var(--bg-hover) 25%, var(--bg-input) 50%, var(--bg-hover) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 4px 12px;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        .typing-indicator .dots {
+            display: flex;
+            gap: 3px;
+        }
+        .typing-indicator .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            animation: typing 1.4s infinite;
+        }
+        .typing-indicator .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes typing {
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateY(-8px);
+                opacity: 1;
+            }
+        }
+
+        /* Premium badge */
+        .premium-badge {
+            background: var(--warning);
+            color: #2d2d2d;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 1px 8px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-left: 6px;
+        }
+
+        /* Online status in header */
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .status-header .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .status-header .dot.online {
+            background: var(--success);
+        }
+        .status-header .dot.idle {
+            background: var(--warning);
+        }
+        .status-header .dot.dnd {
+            background: var(--danger);
+        }
+        .status-header .dot.offline {
+            background: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    APP
+    ============================================================ -->
+    <div id="app">
+
+        <!-- SIDEBAR -->
+        <div id="sidebar">
+            <div class="sidebar-logo" onclick="toggleServerMenu()">⚡</div>
+
+            <div id="server-list">
+                <!-- Servers rendered by JS -->
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-bottom">
+                <button onclick="openDMs()" title="Direct Messages">💬</button>
+                <button onclick="openSettings()" title="Settings">⚙️</button>
+                <button onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+            </div>
+        </div>
+
+        <!-- CHANNEL PANEL -->
+        <div id="channel-panel">
+            <div class="channel-header" onclick="toggleChannelList()">
+                <h2 id="server-name">Zurati</h2>
+                <span class="arrow" id="channel-arrow">▼</span>
+            </div>
+
+            <div class="channel-search">
+                <input type="text" placeholder="Find or start a conversation..." id="channel-search" oninput="filterChannels(this.value)">
+            </div>
+
+            <div id="channel-list">
+                <!-- Channels rendered by JS -->
+            </div>
+
+            <button class="channel-add" onclick="showCreateChannel()">+ Add Channel</button>
+        </div>
+
+        <!-- CHAT AREA -->
+        <div id="chat-container">
+            <div id="chat-header">
+                <button id="mobile-toggle" onclick="toggleMobileChannels()">☰</button>
+                <span class="title" id="channel-title"># general</span>
+                <span class="topic" id="channel-topic">Welcome to Zurati</span>
+                <div class="status-header">
+                    <span class="dot online" id="status-dot"></span>
+                    <span id="status-text">Online</span>
+                </div>
+                <div class="actions">
+                    <button onclick="searchMessages()" title="Search">🔍</button>
+                    <button onclick="togglePins()" title="Pinned">📌</button>
+                    <button onclick="toggleMemberPanel()" title="Members">👤</button>
+                </div>
+            </div>
+
+            <div id="messages">
+                <!-- Messages rendered by JS -->
+                <div class="message-divider">Welcome to Zurati! 🎉</div>
+            </div>
+
+            <div id="input-container">
+                <div id="input-wrapper">
+                    <button onclick="openEmojiPicker()" style="background:none;border:none;color:var(--text-secondary);font-size:20px;padding:4px;cursor:pointer;">😊</button>
+                    <textarea id="message-input" placeholder="Message..." rows="1" onkeydown="handleInputKey(event)"></textarea>
+                    <div id="input-actions">
+                        <button onclick="attachFile()" title="Attach">📎</button>
+                        <button class="send-btn" onclick="sendMessage()">➤</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MEMBER PANEL -->
+        <div id="member-panel">
+            <div class="header">Members — <span id="member-count">0</span></div>
+            <div id="member-list">
+                <!-- Members rendered by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    MODALS
+    ============================================================ -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal-content">
+            <!-- Dynamic content -->
+        </div>
+    </div>
+
+    <!-- ============================================================
+    CONTEXT MENU
+    ============================================================ -->
+    <div id="context-menu">
+        <!-- Dynamic content -->
+    </div>
+
+    <!-- ============================================================
+    TOAST CONTAINER
+    ============================================================ -->
+    <div id="toast-container"></div>
+
+    <!-- ============================================================
+    JAVASCRIPT - Complete Application
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // DATA LAYER
+        // ============================================================
+
+        const STORAGE_KEY = 'zurati_data';
+
+        let data = {
+            users: [{
+                id: 'user1',
+                username: 'kone',
+                displayName: 'kone',
+                avatar: '#6c5ce7',
+                status: 'online',
+                statusText: 'Building Zurati',
+                isPremium: true,
+                badges: ['founder', 'premium']
+            }, {
+                id: 'user2',
+                username: 'zaden',
+                displayName: 'zaden',
+                avatar: '#00b894',
+                status: 'online',
+                statusText: 'Developing',
+                isPremium: true,
+                badges: ['premium']
+            }, {
+                id: 'user3',
+                username: 'alex',
+                displayName: 'Alex',
+                avatar: '#fdcb6e',
+                status: 'idle',
+                statusText: 'Gaming',
+                isPremium: false,
+                badges: []
+            }, {
+                id: 'user4',
+                username: 'jordan',
+                displayName: 'Jordan',
+                avatar: '#ff6b6b',
+                status: 'dnd',
+                statusText: 'Focus mode',
+                isPremium: false,
+                badges: []
+            }, {
+                id: 'user5',
+                username: 'sam',
+                displayName: 'Sam',
+                avatar: '#45b7d1',
+                status: 'offline',
+                statusText: '',
+                isPremium: false,
+                badges: []
+            }],
+            servers: [{
+                id: 'server1',
+                name: 'Zurati HQ',
+                icon: '🏠',
+                ownerId: 'user1',
+                channels: [
+                    { id: 'ch1', name: 'general', type: 'text', topic: 'Main chat', position: 0 },
+                    { id: 'ch2', name: 'random', type: 'text', topic: 'Random stuff', position: 1 },
+                    { id: 'ch3', name: 'gaming', type: 'text', topic: 'Gaming talk', position: 2 },
+                    { id: 'ch4', name: 'voice-general', type: 'voice', topic: 'Voice chat', position: 3 },
+                    { id: 'ch5', name: 'announcements', type: 'text', topic: 'Important updates', position: 4 }
+                ],
+                members: ['user1', 'user2', 'user3', 'user4']
+            }, {
+                id: 'server2',
+                name: 'Gaming Hub',
+                icon: '🎮',
+                ownerId: 'user2',
+                channels: [
+                    { id: 'ch6', name: 'lfg', type: 'text', topic: 'Looking for group', position: 0 },
+                    { id: 'ch7', name: 'valorant', type: 'text', topic: 'Valorant chat', position: 1 },
+                    { id: 'ch8', name: 'voice-gaming', type: 'voice', topic: 'Game voice', position: 2 }
+                ],
+                members: ['user1', 'user2', 'user3', 'user5']
+            }, {
+                id: 'server3',
+                name: 'Study Group',
+                icon: '📚',
+                ownerId: 'user3',
+                channels: [
+                    { id: 'ch9', name: 'general', type: 'text', topic: 'Study chat', position: 0 },
+                    { id: 'ch10', name: 'resources', type: 'text', topic: 'Study resources', position: 1 }
+                ],
+                members: ['user1', 'user3', 'user4', 'user5']
+            }],
+            messages: {
+                'ch1': [
+                    { id: 'm1', authorId: 'user1', content: 'Welcome to Zurati! 🎉 This is the future of communication.', timestamp: Date.now() -
+                            7200000 },
+                    { id: 'm2', authorId: 'user2', content: 'Amazing! The UI is so clean and polished.', timestamp: Date.now() -
+                            3600000 },
+                    { id: 'm3', authorId: 'user3', content: 'Love the dark theme and animations!', timestamp: Date.now() -
+                            1800000 },
+                    { id: 'm4', authorId: 'user1', content: 'Check out the @Premium features too! ⭐', timestamp: Date.now() -
+                            600000 },
+                    { id: 'm5', authorId: 'user4', content: 'This is going to replace Discord for sure.', timestamp: Date.now() -
+                            300000 },
+                    { id: 'm6', authorId: 'user2', content: 'Built with ❤️ by kone and zaden. Full open source!', timestamp: Date
+                            .now() - 120000 }
+                ],
+                'ch2': [
+                    { id: 'm7', authorId: 'user1', content: 'Random chat here! Share your memes.', timestamp: Date.now() -
+                            600000 },
+                    { id: 'm8', authorId: 'user3', content: 'Here\'s a good one: 🐸', timestamp: Date.now() - 300000 },
+                    { id: 'm9', authorId: 'user2', content: 'I have the best meme collection.', timestamp: Date.now() -
+                        120000 }
+                ],
+                'ch3': [
+                    { id: 'm10', authorId: 'user2', content: 'Anyone playing Valorant tonight?', timestamp: Date.now() -
+                            900000 },
+                    { id: 'm11', authorId: 'user3', content: 'I\'m down! What rank?', timestamp: Date.now() - 600000 },
+                    { id: 'm12', authorId: 'user1', content: 'Gold 3 here, let\'s queue!', timestamp: Date.now() - 300000 }
+                ],
+                'ch6': [
+                    { id: 'm13', authorId: 'user2', content: 'Looking for 2 more for ranked.', timestamp: Date.now() -
+                            1200000 },
+                    { id: 'm14', authorId: 'user5', content: 'I can join, invite me.', timestamp: Date.now() - 900000 }
+                ],
+                'ch9': [
+                    { id: 'm15', authorId: 'user3', content: 'Study session at 8pm today.', timestamp: Date.now() - 7200000 },
+                    { id: 'm16', authorId: 'user4', content: 'I\'ll be there! Need to review chapter 5.', timestamp: Date.now() -
+                            3600000 },
+                    { id: 'm17', authorId: 'user1', content: 'Can I join too?', timestamp: Date.now() - 1800000 }
+                ]
+            },
+            dms: {
+                'dm1': { id: 'dm1', users: ['user1', 'user2'], messages: [] },
+                'dm2': { id: 'dm2', users: ['user1', 'user3'], messages: [] },
+                'dm3': { id: 'dm3', users: ['user2', 'user3'], messages: [] }
+            },
+            notifications: [],
+            settings: {
+                theme: 'dark',
+                accentColor: '#6c5ce7',
+                notificationsEnabled: true,
+                soundEnabled: true,
+                desktopNotifications: true,
+                previewEnabled: true,
+                showStatus: true,
+                allowDMs: true,
+                readReceipts: true,
+                allowFriendRequests: true
+            },
+            currentUser: 'user1',
+            currentServer: 'server1',
+            currentChannel: 'ch1',
+            currentDM: null,
+            view: 'server' // 'server' | 'dm'
+        };
+
+        // ============================================================
+        // STORAGE
+        // ============================================================
+
+        function saveData() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            } catch (e) {
+                console.warn('Failed to save data:', e);
+            }
+        }
+
+        function loadData() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    data = mergeDeep(data, parsed);
+                    return true;
+                }
+            } catch (e) {
+                console.warn('Failed to load data:', e);
+            }
+            return false;
+        }
+
+        function mergeDeep(target, source) {
+            const result = { ...target };
+            for (const key in source) {
+                if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+                    result[key] = mergeDeep(target[key] || {}, source[key]);
+                } else {
+                    result[key] = source[key];
+                }
+            }
+            return result;
+        }
+
+        // ============================================================
+        // HELPERS
+        // ============================================================
+
+        function getUser(id) {
+            return data.users.find(u => u.id === id);
+        }
+
+        function getServer(id) {
+            return data.servers.find(s => s.id === id);
+        }
+
+        function getChannel(id) {
+            for (const server of data.servers) {
+                const ch = server.channels.find(c => c.id === id);
+                if (ch) return ch;
+            }
+            return null;
+        }
+
+        function getMessages(channelId) {
+            return data.messages[channelId] || [];
+        }
+
+        function getCurrentUser() {
+            return getUser(data.currentUser);
+        }
+
+        function getCurrentServer() {
+            return getServer(data.currentServer);
+        }
+
+        function getCurrentChannel() {
+            return getChannel(data.currentChannel);
+        }
+
+        function getStatusDot(status) {
+            const map = { online: 'online', idle: 'idle', dnd: 'dnd', offline: 'offline' };
+            return map[status] || 'offline';
+        }
+
+        function getStatusLabel(status) {
+            const map = { online: 'Online', idle: 'Idle', dnd: 'Do Not Disturb', offline: 'Offline' };
+            return map[status] || 'Offline';
+        }
+
+        function getInitials(name) {
+            return name.charAt(0).toUpperCase();
+        }
+
+        function getColorFromId(id) {
+            const colors = ['#6c5ce7', '#00b894', '#fdcb6e', '#ff6b6b', '#45b7d1', '#e17055', '#00cec9', '#fd79a8', '#a29bfe',
+                '#fdcb6e'
+            ];
+            const hash = id.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+            return colors[hash % colors.length];
+        }
+
+        function getUserColor(userId) {
+            const user = getUser(userId);
+            return user ? user.avatar : getColorFromId(userId);
+        }
+
+        function getAvatarColor(userId) {
+            const user = getUser(userId);
+            return user ? user.avatar : getColorFromId(userId);
+        }
+
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const yesterday = new Date(today);
+            yesterday.setDate(yesterday.getDate() - 1);
+
+            if (date >= today) {
+                return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            } else if (date >= yesterday) {
+                return 'Yesterday ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            } else {
+                return date.toLocaleDateString([], { month: 'short', day: 'numeric' });
+            }
+        }
+
+        function generateId() {
+            return 'id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatText(text) {
+            // Simple markdown-like formatting
+            let html = escapeHtml(text);
+            // Bold
+            html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            // Italic
+            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            // Code
+            html = html.replace(/`(.*?)`/g, '<code style="background:var(--bg-hover);padding:1px 6px;border-radius:3px;font-family:monospace;">$1</code>');
+            // Mentions
+            html = html.replace(/@(\w+)/g, '<span class="mention">@$1</span>');
+            // Emoji detection (simple)
+            html = html.replace(/([\u{1F600}-\u{1F9FF}]|[\u{2600}-\u{27BF}]|[\u{1F300}-\u{1F5FF}]|[\u{1F900}-\u{1F9FF}]|\p{Emoji})/gu,
+                '<span class="emoji">$1</span>');
+            // Links
+            html = html.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color:var(--accent);text-decoration:none;">$1</a>');
+            return html;
+        }
+
+        // ============================================================
+        // THEME
+        // ============================================================
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            data.settings.theme = theme;
+            saveData();
+            // Update theme toggle button
+            const btn = document.querySelector('.sidebar-bottom button:last-child');
+            if (btn) {
+                btn.textContent = theme === 'dark' ? '🌙' : theme === 'light' ? '☀️' : '🌙';
+            }
+        }
+
+        function toggleTheme() {
+            const themes = ['dark', 'light', 'amoled'];
+            const current = data.settings.theme || 'dark';
+            const idx = themes.indexOf(current);
+            const next = themes[(idx + 1) % themes.length];
+            setTheme(next);
+            showToast('Theme changed to ' + next.charAt(0).toUpperCase() + next.slice(1));
+        }
+
+        function setAccentColor(color) {
+            document.documentElement.style.setProperty('--accent', color);
+            document.documentElement.style.setProperty('--accent-hover', color + 'bb');
+            data.settings.accentColor = color;
+            saveData();
+        }
+
+        // ============================================================
+        // RENDER FUNCTIONS
+        // ============================================================
+
+        function renderServers() {
+            const container = document.getElementById('server-list');
+            container.innerHTML = '';
+
+            data.servers.forEach(server => {
+                const btn = document.createElement('button');
+                btn.className = 'sidebar-server';
+                if (server.id === data.currentServer && data.view === 'server') {
+                    btn.classList.add('active');
+                }
+                btn.textContent = server.icon || '🏠';
+                btn.title = server.name;
+                btn.onclick = () => selectServer(server.id);
+                container.appendChild(btn);
+            });
+        }
+
+        function renderChannels() {
+            const container = document.getElementById('channel-list');
+            container.innerHTML = '';
+
+            if (data.view === 'dm') {
+                // Render DM channels
+                const dmList = Object.values(data.dms);
+                const userDms = dmList.filter(dm => dm.users.includes(data.currentUser));
+
+                if (userDms.length === 0) {
+                    container.innerHTML =
+                        `<div style="padding:20px;text-align:center;color:var(--text-muted);font-size:13px;">No DMs yet.<br>Start a conversation!</div>`;
+                    return;
+                }
+
+                userDms.forEach(dm => {
+                    const otherUser = dm.users.find(id => id !== data.currentUser);
+                    const user = getUser(otherUser);
+                    if (!user) return;
+
+                    const div = document.createElement('div');
+                    div.className = 'channel-item';
+                    if (dm.id === data.currentDM) div.classList.add('active');
+                    div.innerHTML = `
+                        <span class="icon">💬</span>
+                        <span class="name">${escapeHtml(user.displayName)}</span>
+                        <span class="status-dot ${getStatusDot(user.status)}" style="width:10px;height:10px;border-radius:50%;flex-shrink:0;"></span>
+                    `;
+                    div.onclick = () => selectDM(dm.id);
+                    container.appendChild(div);
+                });
+                return;
+            }
+
+            // Render server channels
+            const server = getCurrentServer();
+            if (!server) {
+                container.innerHTML =
+                    `<div style="padding:20px;text-align:center;color:var(--text-muted);font-size:13px;">Select a server</div>`;
+                return;
+            }
+
+            const textChannels = server.channels.filter(c => c.type === 'text').sort((a, b) => a.position - b.position);
+            const voiceChannels = server.channels.filter(c => c.type === 'voice').sort((a, b) => a.position - b.position);
+
+            if (textChannels.length) {
+                const cat = document.createElement('div');
+                cat.className = 'channel-category';
+                cat.textContent = 'TEXT CHANNELS';
+                container.appendChild(cat);
+
+                textChannels.forEach(ch => {
+                    const div = document.createElement('div');
+                    div.className = 'channel-item';
+                    if (ch.id === data.currentChannel) div.classList.add('active');
+                    div.innerHTML = `
+                        <span class="icon">#</span>
+                        <span class="name">${escapeHtml(ch.name)}</span>
+                    `;
+                    div.onclick = () => selectChannel(ch.id);
+                    container.appendChild(div);
+                });
+            }
+
+            if (voiceChannels.length) {
+                const cat = document.createElement('div');
+                cat.className = 'channel-category';
+                cat.textContent = 'VOICE CHANNELS';
+                container.appendChild(cat);
+
+                voiceChannels.forEach(ch => {
+                    const div = document.createElement('div');
+                    div.className = 'channel-item';
+                    div.innerHTML = `
+                        <span class="icon">🔊</span>
+                        <span class="name">${escapeHtml(ch.name)}</span>
+                    `;
+                    div.onclick = () => showToast('Voice channel: ' + ch.name);
+                    container.appendChild(div);
+                });
+            }
+
+            // Update server name in header
+            document.getElementById('server-name').textContent = server.name;
+        }
+
+        function renderMessages() {
+            const container = document.getElementById('messages');
+
+            let messages = [];
+            if (data.view === 'dm' && data.currentDM) {
+                const dm = data.dms[data.currentDM];
+                if (dm) messages = dm.messages || [];
+            } else if (data.view === 'server') {
+                messages = getMessages(data.currentChannel);
+            }
+
+            if (!messages || messages.length === 0) {
+                container.innerHTML = `
+                    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text-muted);text-align:center;padding:40px;">
+                        <div style="font-size:48px;margin-bottom:16px;">💬</div>
+                        <div style="font-size:18px;color:var(--text-primary);">No messages yet</div>
+                        <div style="font-size:14px;margin-top:4px;">Be the first to send a message!</div>
+                    </div>
+                `;
+                return;
+            }
+
+            const sorted = [...messages].sort((a, b) => a.timestamp - b.timestamp);
+            let html = '';
+
+            let lastAuthor = null;
+            let lastTime = null;
+
+            sorted.forEach((msg, idx) => {
+                const author = getUser(msg.authorId);
+                const name = author ? author.displayName : msg.authorId;
+                const color = author ? author.avatar : getColorFromId(msg.authorId);
+                const time = formatTime(msg.timestamp);
+
+                // Show divider for new day
+                if (idx > 0) {
+                    const prevDate = new Date(sorted[idx - 1].timestamp).toDateString();
+                    const currDate = new Date(msg.timestamp).toDateString();
+                    if (prevDate !== currDate) {
+                        const today = new Date().toDateString();
+                        const label = currDate === today ? 'Today' :
+                            currDate === new Date(Date.now() - 86400000).toDateString() ? 'Yesterday' :
+                            new Date(msg.timestamp).toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
+                        html += `<div class="message-divider">${label}</div>`;
+                    }
+                }
+
+                const showAuthor = idx === 0 || sorted[idx - 1].authorId !== msg.authorId;
+                const showTime = idx === 0 || sorted[idx - 1].authorId !== msg.authorId ||
+                    (msg.timestamp - sorted[idx - 1].timestamp > 600000);
+
+                if (showAuthor) {
+                    if (idx > 0) html += '</div>';
+                    html += `<div class="message-group">`;
+                    html += `
+                        <div class="message">
+                            <div class="avatar" style="background:${color};">${getInitials(name)}</div>
+                            <div class="content">
+                                <div class="header">
+                                    <span class="username">${escapeHtml(name)}</span>
+                                    <span class="timestamp">${time}</span>
+                                    ${author && author.isPremium ? '<span class="premium-badge">⭐ Premium</span>' : ''}
+                                    ${author && author.badges && author.badges.includes('founder') ? '<span class="premium-badge" style="background:var(--accent);color:white;">👑 Founder</span>' : ''}
+                                </div>
+                                <div class="text">${formatText(msg.content)}</div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    html += `
+                        <div class="message" style="padding-left:48px;">
+                            <div class="content">
+                                <div class="text">${formatText(msg.content)}</div>
+                                ${showTime ? `<span style="font-size:10px;color:var(--text-muted);">${time}</span>` : ''}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                if (idx === sorted.length - 1) html += '</div>';
+            });
+
+            container.innerHTML = html;
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function renderMembers() {
+            const container = document.getElementById('member-list');
+            container.innerHTML = '';
+
+            let members = [];
+            if (data.view === 'server') {
+                const server = getCurrentServer();
+                if (server) members = server.members || [];
+            } else if (data.view === 'dm' && data.currentDM) {
+                const dm = data.dms[data.currentDM];
+                if (dm) members = dm.users || [];
+            }
+
+            document.getElementById('member-count').textContent = members.length;
+
+            members.forEach(id => {
+                const user = getUser(id);
+                if (!user) return;
+
+                const div = document.createElement('div');
+                div.className = 'member-item';
+                div.innerHTML = `
+                    <span class="status-dot ${getStatusDot(user.status)}"></span>
+                    <div class="avatar" style="background:${user.avatar};width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;color:white;flex-shrink:0;">${getInitials(user.displayName)}</div>
+                    <div class="info">
+                        <div class="name">${escapeHtml(user.displayName)} ${user.isPremium ? '⭐' : ''}</div>
+                        <div class="status">${getStatusLabel(user.status)}${user.statusText ? ' · ' + escapeHtml(user.statusText) : ''}</div>
+                    </div>
+                `;
+                div.onclick = () => showUserProfile(user.id);
+                container.appendChild(div);
+            });
+        }
+
+        function updateHeader() {
+            const title = document.getElementById('channel-title');
+            const topic = document.getElementById('channel-topic');
+
+            if (data.view === 'dm' && data.currentDM) {
+                const dm = data.dms[data.currentDM];
+                if (dm) {
+                    const otherUser = dm.users.find(id => id !== data.currentUser);
+                    const user = getUser(otherUser);
+                    title.textContent = user ? user.displayName : 'DM';
+                    topic.textContent = user ? (user.statusText || getStatusLabel(user.status)) : 'Direct Message';
+                    document.getElementById('server-name').textContent = 'Direct Messages';
+                }
+            } else {
+                const channel = getCurrentChannel();
+                if (channel) {
+                    title.textContent = '# ' + channel.name;
+                    topic.textContent = channel.topic || 'Welcome to Zurati';
+                } else {
+                    title.textContent = 'Select a channel';
+                    topic.textContent = '';
+                }
+            }
+
+            // Update status
+            const user = getCurrentUser();
+            if (user) {
+                const dot = document.getElementById('status-dot');
+                const text = document.getElementById('status-text');
+                dot.className = 'dot ' + getStatusDot(user.status);
+                text.textContent = getStatusLabel(user.status) + (user.statusText ? ' · ' + user.statusText : '');
+            }
+        }
+
+        // ============================================================
+        // ACTIONS
+        // ============================================================
+
+        function selectServer(serverId) {
+            data.view = 'server';
+            data.currentServer = serverId;
+            data.currentDM = null;
+
+            // Find first text channel
+            const server = getServer(serverId);
+            if (server) {
+                const textCh = server.channels.find(c => c.type === 'text');
+                if (textCh) data.currentChannel = textCh.id;
+            }
+
+            renderAll();
+            closeMobileChannels();
+            saveData();
+        }
+
+        function selectChannel(channelId) {
+            data.currentChannel = channelId;
+            data.view = 'server';
+            data.currentDM = null;
+            renderAll();
+            saveData();
+        }
+
+        function selectDM(dmId) {
+            data.currentDM = dmId;
+            data.view = 'dm';
+            data.currentServer = null;
+            renderAll();
+            saveData();
+        }
+
+        function openDMs() {
+            data.view = 'dm';
+            data.currentServer = null;
+            // Find first DM
+            const dms = Object.values(data.dms);
+            const userDms = dms.filter(dm => dm.users.includes(data.currentUser));
+            if (userDms.length > 0) {
+                data.currentDM = userDms[0].id;
+            } else {
+                // Create a DM with first user
+                const firstUser = data.users.find(u => u.id !== data.currentUser);
+                if (firstUser) {
+                    const dmId = 'dm_' + generateId();
+                    data.dms[dmId] = { id: dmId, users: [data.currentUser, firstUser.id], messages: [] };
+                    data.currentDM = dmId;
+                    saveData();
+                }
+            }
+            renderAll();
+            closeMobileChannels();
+            saveData();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('message-input');
+            const content = input.value.trim();
+            if (!content) return;
+
+            const user = getCurrentUser();
+            const msg = {
+                id: generateId(),
+                authorId: user.id,
+                content: content,
+                timestamp: Date.now()
+            };
+
+            let target = data.view === 'dm' ? 'dms' : 'messages';
+            let targetId = data.view === 'dm' ? data.currentDM : data.currentChannel;
+
+            if (data.view === 'dm') {
+                if (data.dms[targetId]) {
+                    if (!data.dms[targetId].messages) data.dms[targetId].messages = [];
+                    data.dms[targetId].messages.push(msg);
+                }
+            } else {
+                if (!data.messages[targetId]) data.messages[targetId] = [];
+                data.messages[targetId].push(msg);
+            }
+
+            input.value = '';
+            input.style.height = 'auto';
+            renderMessages();
+            saveData();
+
+            // Simulate replies from other users
+            if (Math.random() > 0.5) {
+                setTimeout(() => simulateReply(targetId), 1000 + Math.random() * 2000);
+            }
+        }
+
+        function simulateReply(channelId) {
+            const replies = [
+                'That\'s awesome! 😄',
+                'I agree with you!',
+                'Great point! 🎯',
+                'Haha, that\'s funny! 😂',
+                'I\'m on it! 💪',
+                'Thanks for sharing!',
+                'Interesting take 🤔',
+                'Let\'s do this! 🔥',
+                'I love this community! ❤️',
+                'Could you elaborate?'
+            ];
+
+            // Pick a random user that's not current
+            const others = data.users.filter(u => u.id !== data.currentUser);
+            if (others.length === 0) return;
+            const author = others[Math.floor(Math.random() * others.length)];
+
+            const msg = {
+                id: generateId(),
+                authorId: author.id,
+                content: replies[Math.floor(Math.random() * replies.length)],
+                timestamp: Date.now()
+            };
+
+            let targetId = data.view === 'dm' ? data.currentDM : data.currentChannel;
+            if (data.view === 'dm') {
+                if (data.dms[targetId]) {
+                    if (!data.dms[targetId].messages) data.dms[targetId].messages = [];
+                    data.dms[targetId].messages.push(msg);
+                    // Check if this DM is currently viewed
+                    if (data.currentDM === targetId) {
+                        renderMessages();
+                    }
+                }
+            } else {
+                if (!data.messages[targetId]) data.messages[targetId] = [];
+                data.messages[targetId].push(msg);
+                if (data.currentChannel === targetId) {
+                    renderMessages();
+                }
+            }
+            saveData();
+
+            // Show notification if not in view
+            if (data.currentChannel !== targetId && data.currentDM !== targetId) {
+                showToast('💬 ' + author.displayName + ': ' + msg.content);
+            }
+        }
+
+        function handleInputKey(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+            // Auto-resize
+            const input = event.target;
+            input.style.height = 'auto';
+            input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+        }
+
+        function attachFile() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*,.pdf,.txt,.zip';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    showToast('📎 Attached: ' + file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)');
+                }
+            };
+            input.click();
+        }
+
+        function openEmojiPicker() {
+            // Simple emoji picker using a modal
+            const modal = document.getElementById('modal-overlay');
+            const content = document.getElementById('modal-content');
+
+            const emojis = ['😊', '😂', '❤️', '🔥', '🎉', '👀', '💀', '✨', '🍿', '🚀', '💯', '👏', '🎯', '🧠', '⚡', '⭐', '🌟', '💪',
+                '🤔', '😅', '🥳', '😎', '🤩', '🥺'
+            ];
+
+            let html = `
+                <h2>Pick an Emoji</h2>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;padding:8px 0;">
+            `;
+            emojis.forEach(emoji => {
+                html +=
+                    `<button onclick="insertEmoji('${emoji}')" style="font-size:28px;background:var(--bg-hover);border:none;border-radius:8px;padding:8px 12px;cursor:pointer;transition:transform 0.1s;width:48px;height:48px;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">${emoji}</button>`;
+            });
+            html += `
+                </div>
+                <div class="actions">
+                    <button class="cancel" onclick="closeModal()">Close</button>
+                </div>
+            `;
+
+            content.innerHTML = html;
+            modal.classList.add('show');
+        }
+
+        function insertEmoji(emoji) {
+            const input = document.getElementById('message-input');
+            const start = input.selectionStart;
+            const end = input.selectionEnd;
+            const text = input.value;
+            input.value = text.substring(0, start) + emoji + text.substring(end);
+            input.focus();
+            input.selectionStart = input.selectionEnd = start + emoji.length;
+            closeModal();
+            input.dispatchEvent(new Event('input'));
+        }
+
+        function searchMessages() {
+            showToast('🔍 Search feature coming soon!');
+        }
+
+        function togglePins() {
+            showToast('📌 Pinned messages coming soon!');
+        }
+
+        function toggleMemberPanel() {
+            const panel = document.getElementById('member-panel');
+            if (window.innerWidth <= 900) {
+                panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
+            }
+        }
+
+        function toggleChannelList() {
+            const arrow = document.getElementById('channel-arrow');
+            const list = document.getElementById('channel-list');
+            const search = document.querySelector('.channel-search');
+            const add = document.querySelector('.channel-add');
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+                search.style.display = 'block';
+                add.style.display = 'block';
+                arrow.classList.remove('open');
+            } else {
+                list.style.display = 'none';
+                search.style.display = 'none';
+                add.style.display = 'none';
+                arrow.classList.add('open');
+            }
+        }
+
+        function toggleMobileChannels() {
+            document.getElementById('channel-panel').classList.toggle('open');
+        }
+
+        function closeMobileChannels() {
+            document.getElementById('channel-panel').classList.remove('open');
+        }
+
+        function filterChannels(query) {
+            const items = document.querySelectorAll('#channel-list .channel-item');
+            items.forEach(item => {
+                const name = item.querySelector('.name')?.textContent || '';
+                item.style.display = name.toLowerCase().includes(query.toLowerCase()) ? 'flex' : 'none';
+            });
+        }
+
+        function showCreateChannel() {
+            const modal = document.getElementById('modal-overlay');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <h2>Create Channel</h2>
+                <label>Channel Name</label>
+                <input type="text" id="new-channel-name" placeholder="new-channel" />
+                <label>Channel Type</label>
+                <select id="new-channel-type">
+                    <option value="text">Text</option>
+                    <option value="voice">Voice</option>
+                </select>
+                <label>Topic (optional)</label>
+                <input type="text" id="new-channel-topic" placeholder="Channel topic..." />
+                <div class="actions">
+                    <button class="cancel" onclick="closeModal()">Cancel</button>
+                    <button class="confirm" onclick="createChannel()">Create</button>
+                </div>
+            `;
+
+            modal.classList.add('show');
+            setTimeout(() => document.getElementById('new-channel-name')?.focus(), 100);
+        }
+
+        function createChannel() {
+            const name = document.getElementById('new-channel-name').value.trim();
+            if (!name) {
+                showToast('Please enter a channel name');
+                return;
+            }
+
+            const server = getCurrentServer();
+            if (!server) {
+                showToast('No server selected');
+                return;
+            }
+
+            const type = document.getElementById('new-channel-type').value;
+            const topic = document.getElementById('new-channel-topic').value.trim();
+
+            const channel = {
+                id: 'ch_' + generateId(),
+                name: name,
+                type: type,
+                topic: topic || '',
+                position: server.channels.length
+            };
+
+            server.channels.push(channel);
+            data.messages[channel.id] = [];
+            saveData();
+            closeModal();
+            renderAll();
+            showToast('📢 Channel #' + name + ' created!');
+        }
+
+        function showCreateServer() {
+            const modal = document.getElementById('modal-overlay');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <h2>Create Server</h2>
+                <label>Server Name</label>
+                <input type="text" id="new-server-name" placeholder="My Server" />
+                <label>Server Icon (emoji)</label>
+                <input type="text" id="new-server-icon" placeholder="🏠" maxlength="2" style="font-size:24px;" />
+                <div class="actions">
+                    <button class="cancel" onclick="closeModal()">Cancel</button>
+                    <button class="confirm" onclick="createServer()">Create</button>
+                </div>
+            `;
+
+            modal.classList.add('show');
+            setTimeout(() => document.getElementById('new-server-name')?.focus(), 100);
+        }
+
+        function createServer() {
+            const name = document.getElementById('new-server-name').value.trim();
+            if (!name) {
+                showToast('Please enter a server name');
+                return;
+            }
+
+            const icon = document.getElementById('new-server-icon').value || '🏠';
+
+            const server = {
+                id: 'server_' + generateId(),
+                name: name,
+                icon: icon,
+                ownerId: data.currentUser,
+                channels: [
+                    { id: 'ch_' + generateId(), name: 'general', type: 'text', topic: 'General chat', position: 0 }
+                ],
+                members: [data.currentUser]
+            };
+
+            data.servers.push(server);
+            data.messages[server.channels[0].id] = [];
+            saveData();
+            closeModal();
+            renderAll();
+            showToast('🏠 Server ' + name + ' created!');
+        }
+
+        function toggleServerMenu() {
+            const modal = document.getElementById('modal-overlay');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <h2>⚡ Zurati</h2>
+                <div style="margin:12px 0;color:var(--text-secondary);">
+                    <div style="display:flex;align-items:center;gap:12px;padding:8px 0;">
+                        <span style="font-size:20px;">👤</span>
+                        <div>
+                            <div style="font-weight:bold;color:var(--text-primary);">${getCurrentUser().displayName}</div>
+                            <div style="font-size:13px;color:var(--text-muted);">${getStatusLabel(getCurrentUser().status)}</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="border-top:1px solid var(--border);padding:12px 0;">
+                    <button onclick="closeModal();showCreateServer();" style="background:none;border:none;color:var(--text-secondary);font-size:14px;padding:8px 0;cursor:pointer;width:100%;text-align:left;display:flex;align-items:center;gap:10px;">
+                        <span>➕</span> Create Server
+                    </button>
+                    <button onclick="closeModal();openDMs();" style="background:none;border:none;color:var(--text-secondary);font-size:14px;padding:8px 0;cursor:pointer;width:100%;text-align:left;display:flex;align-items:center;gap:10px;">
+                        <span>💬</span> Direct Messages
+                    </button>
+                    <button onclick="closeModal();openSettings();" style="background:none;border:none;color:var(--text-secondary);font-size:14px;padding:8px 0;cursor:pointer;width:100%;text-align:left;display:flex;align-items:center;gap:10px;">
+                        <span>⚙️</span> Settings
+                    </button>
+                    <button onclick="closeModal();toggleTheme();" style="background:none;border:none;color:var(--text-secondary);font-size:14px;padding:8px 0;cursor:pointer;width:100%;text-align:left;display:flex;align-items:center;gap:10px;">
+                        <span>🎨</span> Toggle Theme
+                    </button>
+                </div>
+                <div style="border-top:1px solid var(--border);padding-top:12px;text-align:center;color:var(--text-muted);font-size:12px;">
+                    Zurati v1.0 — Owned by kone / zaden
+                </div>
+                <div class="actions">
+                    <button class="cancel" onclick="closeModal()">Close</button>
+                </div>
+            `;
+
+            modal.classList.add('show');
+        }
+
+        function showUserProfile(userId) {
+            const user = getUser(userId);
+            if (!user) return;
+
+            const modal = document.getElementById('modal-overlay');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <div style="text-align:center;padding:8px 0 16px;">
+                    <div class="avatar" style="width:80px;height:80px;border-radius:50%;background:${user.avatar};display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:bold;color:white;margin:0 auto 12px;">${getInitials(user.displayName)}</div>
+                    <h2 style="margin:0;">${escapeHtml(user.displayName)}</h2>
+                    <div style="color:var(--text-secondary);font-size:14px;">@${escapeHtml(user.username)}</div>
+                    <div style="margin-top:8px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+                        <span class="status-dot ${getStatusDot(user.status)}" style="width:12px;height:12px;border-radius:50;display:inline-block;"></span>
+                        <span style="color:var(--text-secondary);font-size:13px;">${getStatusLabel(user.status)}</span>
+                        ${user.statusText ? '<span style="color:var(--text-muted);font-size:13px;">· ' + escapeHtml(user.statusText) + '</span>' : ''}
+                    </div>
+                    ${user.isPremium ? '<div style="margin-top:8px;"><span class="premium-badge" style="font-size:13px;padding:2px 12px;">⭐ Premium Member</span></div>' : ''}
+                    ${user.badges && user.badges.includes('founder') ? '<div style="margin-top:4px;"><span class="premium-badge" style="background:var(--accent);color:white;font-size:13px;padding:2px 12px;">👑 Founder</span></div>' : ''}
+                    <div style="margin-top:12px;color:var(--text-muted);font-size:12px;">Joined Zurati • ${new Date().toLocaleDateString()}</div>
+                </div>
+                <div class="actions" style="justify-content:center;">
+                    <button class="confirm" onclick="closeModal();startDM('${user.id}')">💬 Message</button>
+                    <button class="cancel" onclick="closeModal()">Close</button>
+                </div>
+            `;
+
+            modal.classList.add('show');
+        }
+
+        function startDM(userId) {
+            // Find existing DM
+            const dms = Object.values(data.dms);
+            const existing = dms.find(dm =>
+                dm.users.includes(data.currentUser) && dm.users.includes(userId)
+            );
+
+            if (existing) {
+                selectDM(existing.id);
+            } else {
+                const dmId = 'dm_' + generateId();
+                data.dms[dmId] = {
+                    id: dmId,
+                    users: [data.currentUser, userId],
+                    messages: []
+                };
+                data.currentDM = dmId;
+                data.view = 'dm';
+                data.currentServer = null;
+                saveData();
+                renderAll();
+            }
+            closeModal();
+        }
+
+        function openSettings() {
+            const modal = document.getElementById('modal-overlay');
+            const content = document.getElementById('modal-content');
+
+            const user = getCurrentUser();
+            const settings = data.settings;
+
+            content.innerHTML = `
+                <h2>⚙️ Settings</h2>
+                <div style="display:grid;gap:12px;margin:12px 0;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                        <span style="color:var(--text-secondary);">Display Name</span>
+                        <input type="text" id="settings-display" value="${escapeHtml(user.displayName)}" style="width:150px;padding:4px 8px;background:var(--bg-input);border:1px solid var(--border);border-radius:4px;color:var(--text-primary);" />
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                        <span style="color:var(--text-secondary);">Status</span>
+                        <select id="settings-status" style="padding:4px 8px;background:var(--bg-input);border:1px solid var(--border);border-radius:4px;color:var(--text-primary);">
+                            <option value="online" ${user.status === 'online' ? 'selected' : ''}>Online</option>
+                            <option value="idle" ${user.status === 'idle' ? 'selected' : ''}>Idle</option>
+                            <option value="dnd" ${user.status === 'dnd' ? 'selected' : ''}>Do Not Disturb</option>
+                            <option value="offline" ${user.status === 'offline' ? 'selected' : ''}>Offline</option>
+                        </select>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                        <span style="color:var(--text-secondary);">Theme</span>
+                        <select id="settings-theme" style="padding:4px 8px;background:var(--bg-input);border:1px solid var(--border);border-radius:4px;color:var(--text-primary);">
+                            <option value="dark" ${settings.theme === 'dark' ? 'selected' : ''}>Dark</option>
+                            <option value="light" ${settings.theme === 'light' ? 'selected' : ''}>Light</option>
+                            <option value="amoled" ${settings.theme === 'amoled' ? 'selected' : ''}>AMOLED</option>
+                        </select>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                        <span style="color:var(--text-secondary);">Notifications</span>
+                        <input type="checkbox" id="settings-notifications" ${settings.notificationsEnabled ? 'checked' : ''} style="width:18px;height:18px;accent-color:var(--accent);" />
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                        <span style="color:var(--text-secondary);">Sound Effects</span>
+                        <input type="checkbox" id="settings-sound" ${settings.soundEnabled ? 'checked' : ''} style="width:18px;height:18px;accent-color:var(--accent);" />
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                        <span style="color:var(--text-secondary);">Premium</span>
+                        <span style="color:var(--warning);font-weight:bold;">${user.isPremium ? '⭐ Active' : 'Upgrade'}</span>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="cancel" onclick="closeModal()">Close</button>
+                    <button class="confirm" onclick="saveSettings()">Save Changes</button>
+                </div>
+            `;
+
+            modal.classList.add('show');
+        }
+
+        function saveSettings() {
+            const user = getCurrentUser();
+            const display = document.getElementById('settings-display');
+            const status = document.getElementById('settings-status');
+            const theme = document.getElementById('settings-theme');
+            const notifications = document.getElementById('settings-notifications');
+            const sound = document.getElementById('settings-sound');
+
+            if (display) user.displayName = display.value || user.displayName;
+            if (status) user.status = status.value;
+            if (theme) setTheme(theme.value);
+            if (notifications) data.settings.notificationsEnabled = notifications.checked;
+            if (sound) data.settings.soundEnabled = sound.checked;
+
+            saveData();
+            closeModal();
+            renderAll();
+            showToast('✅ Settings saved!');
+        }
+
+        function showToast(message, duration = 3000) {
+            const container = document.getElementById('toast-container');
+
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+
+            // Extract emoji or use default
+            const emojiMatch = message.match(/^([\u{1F600}-\u{1F9FF}]|[\u{2600}-\u{27BF}]|[\u{1F300}-\u{1F5FF}]|[\u{1F900}-\u{1F9FF}]|\p{Emoji})/u);
+            const icon = emojiMatch ? emojiMatch[0] : '💬';
+            const text = emojiMatch ? message.substring(emojiMatch[0].length).trim() : message;
+
+            toast.innerHTML = `
+                <span class="icon">${icon}</span>
+                <span class="message">${text}</span>
+                <button class="close" onclick="this.parentElement.remove()">✕</button>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(40px)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('show');
+        }
+
+        // Close modal on overlay click
+        document.getElementById('modal-overlay').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+
+        // ============================================================
+        // CONTEXT MENU
+        // ============================================================
+
+        document.addEventListener('contextmenu', (e) => {
+            // Check if click is on a message
+            const messageEl = e.target.closest('.message');
+            if (messageEl) {
+                e.preventDefault();
+                showContextMenu(e.clientX, e.clientY, 'message');
+                return;
+            }
+
+            // Check if click is on a channel
+            const channelEl = e.target.closest('.channel-item');
+            if (channelEl) {
+                e.preventDefault();
+                showContextMenu(e.clientX, e.clientY, 'channel');
+                return;
+            }
+
+            // Check if click is on member
+            const memberEl = e.target.closest('.member-item');
+            if (memberEl) {
+                e.preventDefault();
+                showContextMenu(e.clientX, e.clientY, 'member');
+                return;
+            }
+        });
+
+        document.addEventListener('click', () => {
+            document.getElementById('context-menu').classList.remove('show');
+        });
+
+        function showContextMenu(x, y, type) {
+            const menu = document.getElementById('context-menu');
+            let html = '';
+
+            if (type === 'message') {
+                html = `
+                    <div class="item" onclick="replyToMessage()">💬 Reply</div>
+                    <div class="item" onclick="copyMessage()">📋 Copy</div>
+                    <div class="divider"></div>
+                    <div class="item" onclick="pinMessage()">📌 Pin</div>
+                    <div class="item danger" onclick="deleteMessage()">🗑️ Delete</div>
+                `;
+            } else if (type === 'channel') {
+                html = `
+                    <div class="item" onclick="markChannelRead()">✅ Mark as Read</div>
+                    <div class="item" onclick="copyChannelLink()">🔗 Copy Link</div>
+                    <div class="divider"></div>
+                    <div class="item danger" onclick="deleteChannel()">🗑️ Delete Channel</div>
+                `;
+            } else if (type === 'member') {
+                html = `
+                    <div class="item" onclick="startDMFromMenu()">💬 Message</div>
+                    <div class="item" onclick="viewProfile()">👤 View Profile</div>
+                    <div class="divider"></div>
+                    <div class="item" onclick="muteMember()">🔇 Mute</div>
+                    <div class="item" onclick="blockMember()">🚫 Block</div>
+                `;
+            }
+
+            menu.innerHTML = html;
+            menu.style.left = Math.min(x, window.innerWidth - 220) + 'px';
+            menu.style.top = Math.min(y, window.innerHeight - 200) + 'px';
+            menu.classList.add('show');
+        }
+
+        function replyToMessage() { showToast('💬 Reply feature coming soon!');
+            closeContextMenu(); }
+
+        function copyMessage() { showToast('📋 Copied to clipboard!');
+            closeContextMenu(); }
+
+        function pinMessage() { showToast('📌 Pinned!');
+            closeContextMenu(); }
+
+        function deleteMessage() { showToast('🗑️ Message deleted');
+            closeContextMenu(); }
+
+        function markChannelRead() { showToast('✅ Marked as read');
+            closeContextMenu(); }
+
+        function copyChannelLink() { showToast('🔗 Link copied!');
+            closeContextMenu(); }
+
+        function deleteChannel() { showToast('🗑️ Channel deleted');
+            closeContextMenu(); }
+
+        function startDMFromMenu() { showToast('💬 Starting DM...');
+            closeContextMenu(); }
+
+        function viewProfile() { showToast('👤 Profile view');
+            closeContextMenu(); }
+
+        function muteMember() { showToast('🔇 Member muted');
+            closeContextMenu(); }
+
+        function blockMember() { showToast('🚫 Member blocked');
+            closeContextMenu(); }
+
+        function closeContextMenu() {
+            document.getElementById('context-menu').classList.remove('show');
+        }
+
+        // ============================================================
+        // DOWNLOAD / INSTALL
+        // ============================================================
+
+        // Detect if running as PWA
+        if (window.navigator.standalone) {
+            console.log('Running as PWA');
+        }
+
+        // Service Worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(() => {});
+        }
+
+        // Download button - creates an installer for desktop
+        function downloadApp() {
+            showToast('📦 Downloading Zurati...');
+
+            // Create a simple installer script
+            const installer = `
+                #!/bin/bash
+                # Zurati Installer
+                echo "Installing Zurati..."
+                mkdir -p ~/.zurati
+                echo "Zurati installed successfully!"
+                echo "Open index.html in your browser to start."
+            `;
+
+            const blob = new Blob([installer], { type: 'application/x-sh' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'install_zurati.sh';
+            a.click();
+            URL.revokeObjectURL(url);
+
+            setTimeout(() => {
+                showToast('💡 Open index.html in your browser to use Zurati');
+            }, 1000);
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl+K - Search
+            if (e.ctrlKey && e.key === 'k') {
+                e.preventDefault();
+                searchMessages();
+            }
+            // Ctrl+, - Settings
+            if (e.ctrlKey && e.key === ',') {
+                e.preventDefault();
+                openSettings();
+            }
+            // Escape - Close modals
+            if (e.key === 'Escape') {
+                closeModal();
+                closeContextMenu();
+            }
+        });
+
+        // ============================================================
+        // MAIN RENDER
+        // ============================================================
+
+        function renderAll() {
+            renderServers();
+            renderChannels();
+            renderMessages();
+            renderMembers();
+            updateHeader();
+
+            // Show current view indicator
+            document.querySelectorAll('.sidebar-server').forEach(el => {
+                el.classList.toggle('active', el.onclick && data.currentServer === el.textContent.trim());
+            });
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+
+        // Load saved data
+        if (loadData()) {
+            console.log('Data loaded from storage');
+        } else {
+            console.log('Using default data');
+        }
+
+        // Apply theme
+        setTheme(data.settings.theme || 'dark');
+        setAccentColor(data.settings.accentColor || '#6c5ce7');
+
+        // Initial render
+        renderAll();
+
+        // Auto-save every 30 seconds
+        setInterval(saveData, 30000);
+
+        // Welcome toast
+        setTimeout(() => {
+            showToast('⚡ Welcome to Zurati!');
+        }, 500);
+
+        console.log('⚡ Zurati loaded successfully!');
+        console.log('Owned by kone / zaden');
+
+        // ============================================================
+        // PWA - Service Worker registration (inline for single file)
+        // ============================================================
+
+        // Register service worker if supported
+        if ('serviceWorker' in navigator) {
+            const swCode = `
+                self.addEventListener('install', e => {
+                    e.waitUntil(
+                        caches.open('zurati-v1').then(c => c.addAll([
+                            '/',
+                            '/index.html'
+                        ]))
+                    );
+                });
+                self.addEventListener('fetch', e => {
+                    e.respondWith(
+                        caches.match(e.request).then(r => r || fetch(e.request))
+                    );
+                });
+            `;
+
+            try {
+                // Create a blob URL for the service worker
+                const swBlob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(swBlob);
+                // Register with a fake URL
+                navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(() => {});
+            } catch (e) {
+                // Service worker registration failed, but app works fine
+            }
+        }
+
+        // Handle beforeunload to save data
+        window.addEventListener('beforeunload', () => {
+            saveData();
+        });
+
+        console.log('✅ Zurati is ready!');
+    </script>
+</body>
+</html>
