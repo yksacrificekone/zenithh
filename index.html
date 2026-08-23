@@ -9,6 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         :root {
             --zenith-bg-primary: #0a0a0f;
             --zenith-bg-secondary: #12121a;
@@ -44,15 +50,8 @@
             --zenith-header-height: 56px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         html {
             font-size: 16px;
-            scroll-behavior: smooth;
         }
 
         body {
@@ -63,34 +62,12 @@
             height: 100vh;
             width: 100vw;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        ::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--zenith-border-light);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--zenith-accent);
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--zenith-font-display);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        a {
-            color: var(--zenith-accent);
-            text-decoration: none;
-        }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--zenith-border-light); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--zenith-accent); }
 
         #app {
             display: flex;
@@ -110,9 +87,7 @@
             align-items: center;
             padding: 20px;
         }
-        #auth-container.active {
-            display: flex;
-        }
+        #auth-container.active { display: flex; }
 
         .auth-box {
             background: var(--zenith-bg-secondary);
@@ -209,9 +184,7 @@
             cursor: pointer;
             font-weight: 500;
         }
-        .auth-box .auth-switch a:hover {
-            text-decoration: underline;
-        }
+        .auth-box .auth-switch a:hover { text-decoration: underline; }
         .auth-box .error-message {
             color: var(--zenith-danger);
             font-size: 13px;
@@ -222,8 +195,11 @@
             border-radius: var(--zenith-radius);
             border-left: 3px solid var(--zenith-danger);
         }
-        .auth-box .error-message.visible {
-            display: block;
+        .auth-box .error-message.visible { display: block; }
+        .auth-box .helper {
+            font-size: 12px;
+            color: var(--zenith-text-muted);
+            margin-top: 4px;
         }
 
         #main-app {
@@ -233,9 +209,7 @@
             overflow: hidden;
             position: relative;
         }
-        #main-app.active {
-            display: flex;
-        }
+        #main-app.active { display: flex; }
 
         .rail {
             width: var(--zenith-rail-width);
@@ -248,7 +222,6 @@
             padding: 12px 0;
             gap: 4px;
             overflow-y: auto;
-            overflow-x: hidden;
             flex-shrink: 0;
             z-index: 10;
         }
@@ -277,10 +250,9 @@
             color: var(--zenith-text-tertiary);
             cursor: pointer;
             transition: var(--zenith-transition);
-            position: relative;
             border: none;
             background: transparent;
-            font-size: 16px;
+            font-size: 13px;
             font-weight: 500;
             font-family: var(--zenith-font);
         }
@@ -332,14 +304,7 @@
             overflow: hidden;
             flex-shrink: 0;
         }
-        .rail .rail-avatar:hover {
-            border-color: var(--zenith-accent);
-        }
-        .rail .rail-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .rail .rail-avatar:hover { border-color: var(--zenith-accent); }
 
         .sidebar {
             width: var(--zenith-sidebar-width);
@@ -439,17 +404,9 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             padding: 12px 8px 4px 0;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }
-        .sidebar .channel-list .category .chevron {
-            font-size: 10px;
-            transition: var(--zenith-transition);
-        }
-        .sidebar .channel-list .category .chevron.collapsed {
-            transform: rotate(-90deg);
         }
         .sidebar .channel-list .channel {
             padding: 6px 8px;
@@ -483,20 +440,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .sidebar .channel-list .channel .channel-badge {
-            font-size: 10px;
-            background: var(--zenith-border);
-            color: var(--zenith-text-tertiary);
-            padding: 1px 8px;
-            border-radius: 10px;
-        }
-        .sidebar .channel-list .channel .unread {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--zenith-accent);
-            flex-shrink: 0;
-        }
 
         .sidebar .sidebar-footer {
             padding: 12px 16px;
@@ -508,9 +451,7 @@
             cursor: pointer;
             transition: var(--zenith-transition);
         }
-        .sidebar .sidebar-footer:hover {
-            background: var(--zenith-bg-hover);
-        }
+        .sidebar .sidebar-footer:hover { background: var(--zenith-bg-hover); }
         .sidebar .sidebar-footer .user-avatar {
             width: 32px;
             height: 32px;
@@ -523,11 +464,6 @@
             font-size: 13px;
             flex-shrink: 0;
             overflow: hidden;
-        }
-        .sidebar .sidebar-footer .user-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
         .sidebar .sidebar-footer .user-info {
             flex: 1;
@@ -553,18 +489,10 @@
             border-radius: 50%;
             display: inline-block;
         }
-        .sidebar .sidebar-footer .user-info .status .dot.online {
-            background: var(--zenith-success);
-        }
-        .sidebar .sidebar-footer .user-info .status .dot.idle {
-            background: var(--zenith-warning);
-        }
-        .sidebar .sidebar-footer .user-info .status .dot.dnd {
-            background: var(--zenith-danger);
-        }
-        .sidebar .sidebar-footer .user-info .status .dot.offline {
-            background: var(--zenith-text-muted);
-        }
+        .sidebar .sidebar-footer .user-info .status .dot.online { background: var(--zenith-success); }
+        .sidebar .sidebar-footer .user-info .status .dot.idle { background: var(--zenith-warning); }
+        .sidebar .sidebar-footer .user-info .status .dot.dnd { background: var(--zenith-danger); }
+        .sidebar .sidebar-footer .user-info .status .dot.offline { background: var(--zenith-text-muted); }
         .sidebar .sidebar-footer .btn-icon {
             background: transparent;
             border: none;
@@ -677,9 +605,7 @@
             transition: var(--zenith-transition);
             position: relative;
         }
-        .message:hover {
-            background: var(--zenith-bg-hover);
-        }
+        .message:hover { background: var(--zenith-bg-hover); }
         .message .msg-avatar {
             width: 36px;
             height: 36px;
@@ -694,11 +620,6 @@
             color: var(--zenith-text-secondary);
             margin-top: 2px;
             overflow: hidden;
-        }
-        .message .msg-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
         .message .msg-body {
             flex: 1;
@@ -729,7 +650,6 @@
             line-height: 1.6;
             color: var(--zenith-text-primary);
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
         .message .msg-content .mention {
             color: var(--zenith-accent);
@@ -742,7 +662,7 @@
             border: 1px solid var(--zenith-border);
             border-radius: var(--zenith-radius);
             padding: 12px 16px;
-            font-family: 'Fira Code', monospace;
+            font-family: monospace;
             font-size: 13px;
             overflow-x: auto;
             margin: 6px 0;
@@ -752,28 +672,9 @@
             background: var(--zenith-bg-tertiary);
             padding: 1px 6px;
             border-radius: 4px;
-            font-family: 'Fira Code', monospace;
+            font-family: monospace;
             font-size: 13px;
             color: var(--zenith-text-secondary);
-        }
-        .message .msg-content img {
-            max-width: 100%;
-            max-height: 400px;
-            border-radius: var(--zenith-radius);
-            margin: 6px 0;
-            border: 1px solid var(--zenith-border);
-        }
-        .message .msg-content .attachment {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--zenith-bg-tertiary);
-            border: 1px solid var(--zenith-border);
-            border-radius: var(--zenith-radius);
-            padding: 8px 14px;
-            margin: 4px 0;
-            color: var(--zenith-text-secondary);
-            font-size: 13px;
         }
         .message .msg-actions {
             display: none;
@@ -787,9 +688,7 @@
             gap: 2px;
             box-shadow: var(--zenith-shadow);
         }
-        .message:hover .msg-actions {
-            display: flex;
-        }
+        .message:hover .msg-actions { display: flex; }
         .message .msg-actions .btn-icon {
             background: transparent;
             border: none;
@@ -838,16 +737,9 @@
             color: var(--zenith-accent);
         }
 
-        .message.compact .msg-avatar {
-            visibility: hidden;
-            width: 36px;
-        }
-        .message.compact .msg-header .display-name {
-            display: none;
-        }
-        .message.compact .msg-header .timestamp {
-            font-size: 10px;
-        }
+        .message.compact .msg-avatar { visibility: hidden; width: 36px; }
+        .message.compact .msg-header .display-name { display: none; }
+        .message.compact .msg-header .timestamp { font-size: 10px; }
 
         .composer {
             padding: 12px 20px 16px 20px;
@@ -869,9 +761,7 @@
             align-items: center;
             justify-content: space-between;
         }
-        .composer .composer-reply.visible {
-            display: flex;
-        }
+        .composer .composer-reply.visible { display: flex; }
         .composer .composer-reply .reply-content {
             flex: 1;
             white-space: nowrap;
@@ -898,7 +788,6 @@
         }
         .composer .composer-input-row .input-wrapper {
             flex: 1;
-            position: relative;
             display: flex;
             align-items: flex-end;
             background: var(--zenith-bg-tertiary);
@@ -961,30 +850,6 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 20px var(--zenith-accent-glow);
         }
-        .composer .composer-input-row .btn-send:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .composer .composer-actions {
-            display: flex;
-            gap: 4px;
-            padding: 0 4px;
-        }
-        .composer .composer-actions .btn-icon {
-            background: transparent;
-            border: none;
-            color: var(--zenith-text-tertiary);
-            cursor: pointer;
-            padding: 4px 6px;
-            border-radius: 4px;
-            transition: var(--zenith-transition);
-            font-size: 16px;
-        }
-        .composer .composer-actions .btn-icon:hover {
-            color: var(--zenith-text-secondary);
-            background: var(--zenith-bg-hover);
-        }
 
         .member-panel {
             width: var(--zenith-member-width);
@@ -996,9 +861,7 @@
             flex-shrink: 0;
             overflow: hidden;
         }
-        .member-panel.visible {
-            display: flex;
-        }
+        .member-panel.visible { display: flex; }
         .member-panel .member-header {
             padding: 16px 20px;
             border-bottom: 1px solid var(--zenith-border);
@@ -1025,9 +888,7 @@
             cursor: pointer;
             transition: var(--zenith-transition);
         }
-        .member-panel .member-list .member:hover {
-            background: var(--zenith-bg-hover);
-        }
+        .member-panel .member-list .member:hover { background: var(--zenith-bg-hover); }
         .member-panel .member-list .member .member-avatar {
             width: 28px;
             height: 28px;
@@ -1041,11 +902,6 @@
             flex-shrink: 0;
             overflow: hidden;
         }
-        .member-panel .member-list .member .member-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
         .member-panel .member-list .member .member-info {
             flex: 1;
             min-width: 0;
@@ -1057,31 +913,16 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .member-panel .member-list .member .member-info .role-tag {
-            font-size: 10px;
-            color: var(--zenith-text-tertiary);
-            background: var(--zenith-bg-tertiary);
-            padding: 0 6px;
-            border-radius: 4px;
-        }
         .member-panel .member-list .member .status-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
             flex-shrink: 0;
         }
-        .member-panel .member-list .member .status-dot.online {
-            background: var(--zenith-success);
-        }
-        .member-panel .member-list .member .status-dot.idle {
-            background: var(--zenith-warning);
-        }
-        .member-panel .member-list .member .status-dot.dnd {
-            background: var(--zenith-danger);
-        }
-        .member-panel .member-list .member .status-dot.offline {
-            background: var(--zenith-text-muted);
-        }
+        .member-panel .member-list .member .status-dot.online { background: var(--zenith-success); }
+        .member-panel .member-list .member .status-dot.idle { background: var(--zenith-warning); }
+        .member-panel .member-list .member .status-dot.dnd { background: var(--zenith-danger); }
+        .member-panel .member-list .member .status-dot.offline { background: var(--zenith-text-muted); }
 
         .toast-container {
             position: fixed;
@@ -1108,12 +949,8 @@
             pointer-events: auto;
             backdrop-filter: blur(12px);
         }
-        .toast .toast-icon {
-            font-size: 20px;
-        }
-        .toast .toast-content {
-            flex: 1;
-        }
+        .toast .toast-icon { font-size: 20px; }
+        .toast .toast-content { flex: 1; }
         .toast .toast-content .toast-title {
             font-weight: 600;
             font-size: 14px;
@@ -1152,9 +989,7 @@
             padding: 20px;
             animation: fadeIn 0.2s ease;
         }
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
         .modal {
             background: var(--zenith-bg-secondary);
             border: 1px solid var(--zenith-border);
@@ -1173,9 +1008,7 @@
             align-items: center;
             margin-bottom: 20px;
         }
-        .modal .modal-header h2 {
-            font-size: 22px;
-        }
+        .modal .modal-header h2 { font-size: 22px; }
         .modal .modal-header .btn-close {
             background: transparent;
             border: none;
@@ -1190,9 +1023,7 @@
             color: var(--zenith-text-primary);
             background: var(--zenith-bg-hover);
         }
-        .modal .form-group {
-            margin-bottom: 16px;
-        }
+        .modal .form-group { margin-bottom: 16px; }
         .modal .form-group label {
             display: block;
             font-size: 13px;
@@ -1276,9 +1107,7 @@
             transition: var(--zenith-transition);
             font-family: var(--zenith-font);
         }
-        .modal .modal-actions .btn-danger:hover {
-            background: #ef4444;
-        }
+        .modal .modal-actions .btn-danger:hover { background: #ef4444; }
 
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -1289,41 +1118,25 @@
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        .loading-spinner {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            border: 3px solid var(--zenith-border);
-            border-top: 3px solid var(--zenith-accent);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 19;
+            display: none;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .skeleton {
-            background: var(--zenith-bg-tertiary);
-            border-radius: var(--zenith-radius);
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
+        .sidebar-overlay.active { display: block; }
 
         @media (max-width: 1200px) {
             .member-panel { width: 220px; min-width: 220px; }
         }
-
         @media (max-width: 1024px) {
             .member-panel { display: none !important; }
             .sidebar { width: 200px; min-width: 200px; }
         }
-
         @media (max-width: 768px) {
             .rail { width: 52px; min-width: 52px; }
-            .rail .rail-item { width: 36px; height: 36px; font-size: 14px; }
+            .rail .rail-item { width: 36px; height: 36px; font-size: 12px; }
             .rail .rail-logo { width: 32px; height: 32px; font-size: 14px; }
             .sidebar {
                 position: fixed;
@@ -1338,14 +1151,6 @@
                 box-shadow: var(--zenith-shadow);
             }
             .sidebar.open { transform: translateX(0); }
-            .sidebar-overlay {
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 19;
-                display: none;
-            }
-            .sidebar-overlay.active { display: block; }
             .main-content .content-header { padding: 8px 14px; }
             .main-content .content-header .channel-info .channel-topic { display: none; }
             .message-area { padding: 12px 12px 4px 12px; }
@@ -1355,10 +1160,9 @@
             .auth-box { padding: 32px 24px; margin: 10px; }
             .modal { padding: 24px 20px; margin: 10px; }
         }
-
         @media (max-width: 480px) {
             .rail { width: 48px; min-width: 48px; padding: 8px 0; }
-            .rail .rail-item { width: 32px; height: 32px; font-size: 12px; }
+            .rail .rail-item { width: 32px; height: 32px; font-size: 11px; }
             .rail .rail-logo { width: 28px; height: 28px; font-size: 12px; }
             .sidebar { width: 260px; min-width: 260px; left: 48px; }
             .auth-box { padding: 24px 16px; }
@@ -1369,91 +1173,13 @@
 
         .hidden { display: none !important; }
         .text-muted { color: var(--zenith-text-muted); }
-        .text-secondary { color: var(--zenith-text-secondary); }
-        .text-center { text-align: center; }
-        .w-full { width: 100%; }
-        .mt-8 { margin-top: 8px; }
-        .mt-12 { margin-top: 12px; }
-        .mt-16 { margin-top: 16px; }
-        .mb-8 { margin-bottom: 8px; }
-        .mb-12 { margin-bottom: 12px; }
-
-        .typing-indicator {
-            padding: 4px 16px;
-            font-size: 13px;
-            color: var(--zenith-text-tertiary);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            min-height: 28px;
-        }
-        .typing-indicator .dots {
-            display: inline-flex;
-            gap: 3px;
-        }
-        .typing-indicator .dots span {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--zenith-text-tertiary);
-            animation: typingDot 1.4s ease-in-out infinite;
-        }
-        .typing-indicator .dots span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator .dots span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typingDot {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-            30% { transform: translateY(-6px); opacity: 1; }
-        }
-
-        .context-menu {
-            position: fixed;
-            background: var(--zenith-bg-elevated);
-            border: 1px solid var(--zenith-border);
-            border-radius: var(--zenith-radius);
-            padding: 6px;
-            min-width: 180px;
-            box-shadow: var(--zenith-shadow);
-            z-index: 9999;
-            display: none;
-            backdrop-filter: blur(12px);
-        }
-        .context-menu.active { display: block; }
-        .context-menu .menu-item {
-            padding: 8px 14px;
-            cursor: pointer;
-            border-radius: var(--zenith-radius);
-            transition: var(--zenith-transition);
-            font-size: 13px;
-            color: var(--zenith-text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: none;
-            background: transparent;
-            width: 100%;
-            font-family: var(--zenith-font);
-        }
-        .context-menu .menu-item:hover {
-            background: var(--zenith-bg-hover);
-            color: var(--zenith-text-primary);
-        }
-        .context-menu .menu-item.danger {
-            color: var(--zenith-danger);
-        }
-        .context-menu .menu-item.danger:hover {
-            background: rgba(248, 113, 113, 0.1);
-        }
-        .context-menu .menu-divider {
-            height: 1px;
-            background: var(--zenith-border);
-            margin: 4px 8px;
-        }
     </style>
 </head>
 <body>
 
     <div id="app">
 
+        <!-- Auth Container -->
         <div id="auth-container" class="active">
             <div class="auth-box">
                 <div class="logo">
@@ -1481,7 +1207,7 @@
                     <div class="form-group">
                         <label for="reg-username">Username</label>
                         <input type="text" id="reg-username" placeholder="Choose a username" />
-                        <div class="helper">Letters, numbers, and underscores only. 3-32 characters.</div>
+                        <div class="helper">Letters, numbers, and underscores. 3-32 characters.</div>
                     </div>
                     <div class="form-group">
                         <label for="reg-displayname">Display Name</label>
@@ -1504,23 +1230,25 @@
             </div>
         </div>
 
+        <!-- Main App -->
         <div id="main-app">
-
+            <!-- Rail -->
             <div class="rail" id="rail">
                 <div class="rail-logo">Z</div>
-                <button class="rail-item active" data-tab="home" title="Home">Home</button>
-                <button class="rail-item" data-tab="friends" title="Friends">Friends</button>
-                <button class="rail-item" data-tab="dms" title="Direct Messages">DMs</button>
+                <button class="rail-item active" data-tab="home">Home</button>
+                <button class="rail-item" data-tab="friends">Friends</button>
+                <button class="rail-item" data-tab="dms">DMs</button>
                 <div class="rail-divider"></div>
-                <button class="rail-item" id="add-community-btn" title="Add Community">+</button>
+                <button class="rail-item" id="add-community-btn">+</button>
                 <div class="rail-divider"></div>
-                <button class="rail-item" data-tab="discover" title="Discover">Search</button>
+                <button class="rail-item" data-tab="discover">Search</button>
                 <div style="flex:1;"></div>
-                <div class="rail-avatar" id="rail-avatar" title="Profile">?</div>
+                <div class="rail-avatar" id="rail-avatar">?</div>
             </div>
 
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
+            <!-- Sidebar -->
             <div class="sidebar" id="sidebar">
                 <div class="sidebar-header">
                     <div class="community-name" id="community-selector">
@@ -1528,7 +1256,7 @@
                         <span id="community-name-display">ZENITH</span>
                         <span class="arrow">▾</span>
                     </div>
-                    <button class="btn-icon" id="sidebar-toggle" title="Toggle sidebar">≡</button>
+                    <button class="btn-icon" id="sidebar-toggle">≡</button>
                 </div>
                 <div class="channel-search">
                     <input type="text" id="channel-search" placeholder="Find a channel..." />
@@ -1543,10 +1271,11 @@
                             <span id="sidebar-status">Online</span>
                         </div>
                     </div>
-                    <button class="btn-icon" id="settings-btn" title="Settings">⚙</button>
+                    <button class="btn-icon" id="settings-btn">⚙</button>
                 </div>
             </div>
 
+            <!-- Main Content -->
             <div class="main-content" id="main-content">
                 <div class="content-header">
                     <div class="channel-info">
@@ -1555,22 +1284,16 @@
                         <span class="channel-topic" id="channel-topic-display">Welcome to ZENITH</span>
                     </div>
                     <div class="channel-actions">
-                        <button class="btn-icon" id="member-toggle" title="Members">👥</button>
-                        <button class="btn-icon" id="search-channel-btn" title="Search">🔍</button>
+                        <button class="btn-icon" id="member-toggle">👥</button>
                     </div>
                 </div>
 
                 <div class="message-area" id="message-area">
-                    <div class="empty-state" id="empty-state">
+                    <div class="empty-state">
                         <div class="icon">💬</div>
                         <h3>No messages yet</h3>
                         <p>This is the beginning of your conversation. Send the first message to get started.</p>
                     </div>
-                </div>
-
-                <div class="typing-indicator" id="typing-indicator" style="display:none;">
-                    <span id="typing-users">Someone</span> is typing
-                    <span class="dots"><span></span><span></span><span></span></span>
                 </div>
 
                 <div class="composer" id="composer">
@@ -1580,27 +1303,23 @@
                     </div>
                     <div class="composer-input-row">
                         <div class="input-wrapper">
-                            <button class="btn-icon" id="emoji-btn" title="Emoji">😊</button>
                             <textarea id="composer-input" rows="1" placeholder="Message #general..." maxlength="4000"></textarea>
-                            <button class="btn-icon" id="attach-btn" title="Attach file">📎</button>
                         </div>
                         <button class="btn-send" id="send-btn">Send</button>
                     </div>
-                    <input type="file" id="file-input" style="display:none;" multiple />
                 </div>
             </div>
 
+            <!-- Member Panel -->
             <div class="member-panel" id="member-panel">
                 <div class="member-header">
                     Members <span class="count" id="member-count">0</span>
                 </div>
                 <div class="member-list" id="member-list"></div>
             </div>
-
         </div>
 
         <div class="toast-container" id="toast-container"></div>
-        <div class="context-menu" id="context-menu"></div>
 
         <div class="modal-overlay" id="modal-overlay">
             <div class="modal" id="modal-content"></div>
@@ -1612,9 +1331,11 @@
         (function() {
             'use strict';
 
+            // ============================================================
+            // STATE
+            // ============================================================
             const STATE = {
                 currentUser: null,
-                sessionToken: null,
                 users: {},
                 communities: {},
                 channels: {},
@@ -1626,15 +1347,13 @@
                 currentCommunityId: null,
                 currentChannelId: null,
                 currentTab: 'home',
-                sidebarOpen: false,
-                memberPanelOpen: false,
                 replyingTo: null,
-                editingMessage: null,
-                typingUsers: [],
-                unreadCounts: {},
                 _idCounter: 1000,
             };
 
+            // ============================================================
+            // DOM REFS
+            // ============================================================
             const DOM = {};
 
             function cacheDOMElements() {
@@ -1669,36 +1388,29 @@
                 DOM.sidebarUsername = document.getElementById('sidebar-username');
                 DOM.sidebarStatus = document.getElementById('sidebar-status');
                 DOM.settingsBtn = document.getElementById('settings-btn');
-                DOM.mainContent = document.getElementById('main-content');
                 DOM.channelIconDisplay = document.getElementById('channel-icon-display');
                 DOM.channelNameDisplay = document.getElementById('channel-name-display');
                 DOM.channelTopicDisplay = document.getElementById('channel-topic-display');
                 DOM.memberToggle = document.getElementById('member-toggle');
-                DOM.searchChannelBtn = document.getElementById('search-channel-btn');
                 DOM.messageArea = document.getElementById('message-area');
-                DOM.emptyState = document.getElementById('empty-state');
-                DOM.typingIndicator = document.getElementById('typing-indicator');
-                DOM.typingUsers = document.getElementById('typing-users');
-                DOM.composer = document.getElementById('composer');
-                DOM.composerReply = document.getElementById('composer-reply');
-                DOM.replyAuthor = document.getElementById('reply-author');
-                DOM.replyPreview = document.getElementById('reply-preview');
-                DOM.cancelReply = document.getElementById('cancel-reply');
                 DOM.composerInput = document.getElementById('composer-input');
-                DOM.emojiBtn = document.getElementById('emoji-btn');
-                DOM.attachBtn = document.getElementById('attach-btn');
-                DOM.fileInput = document.getElementById('file-input');
                 DOM.sendBtn = document.getElementById('send-btn');
                 DOM.memberPanel = document.getElementById('member-panel');
                 DOM.memberCount = document.getElementById('member-count');
                 DOM.memberList = document.getElementById('member-list');
                 DOM.toastContainer = document.getElementById('toast-container');
-                DOM.contextMenu = document.getElementById('context-menu');
                 DOM.modalOverlay = document.getElementById('modal-overlay');
                 DOM.modalContent = document.getElementById('modal-content');
                 DOM.railItems = document.querySelectorAll('.rail-item[data-tab]');
+                DOM.composerReply = document.getElementById('composer-reply');
+                DOM.replyAuthor = document.getElementById('reply-author');
+                DOM.replyPreview = document.getElementById('reply-preview');
+                DOM.cancelReply = document.getElementById('cancel-reply');
             }
 
+            // ============================================================
+            // UTILITY
+            // ============================================================
             function uid() {
                 return (++STATE._idCounter).toString(36) + Date.now().toString(36);
             }
@@ -1710,8 +1422,7 @@
                 const isYesterday = d.toDateString() === new Date(now - 86400000).toDateString();
                 if (isToday) return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 if (isYesterday) return 'Yesterday ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                return d.toLocaleDateString([], { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString([],
-                { hour: '2-digit', minute: '2-digit' });
+                return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
             }
 
             function escapeHTML(str) {
@@ -1779,6 +1490,9 @@
                 if (e.target === DOM.modalOverlay) closeModal();
             });
 
+            // ============================================================
+            // DATABASE (localStorage)
+            // ============================================================
             const DB = {
                 save: function() {
                     try {
@@ -1814,12 +1528,12 @@
                     } catch (e) {
                         return false;
                     }
-                },
-                clear: function() {
-                    localStorage.removeItem('zenith_data');
                 }
             };
 
+            // ============================================================
+            // AUTH
+            // ============================================================
             function hashPassword(password) {
                 let hash = 0;
                 for (let i = 0; i < password.length; i++) {
@@ -1833,11 +1547,12 @@
             function registerUser(username, displayName, email, password) {
                 if (username.length < 3) throw new Error('Username must be at least 3 characters');
                 if (username.length > 32) throw new Error('Username must be less than 32 characters');
-                if (!/^[a-zA-Z0-9_]+$/.test(username)) throw new Error(
-                'Username can only contain letters, numbers, and underscores');
+                if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+                    throw new Error('Username can only contain letters, numbers, and underscores');
+                }
                 if (displayName.length < 1) throw new Error('Display name is required');
                 if (displayName.length > 64) throw new Error('Display name must be less than 64 characters');
-                if (!email || !email.includes('@')) throw new Error('Invalid email address');
+                if (!email || email.indexOf('@') === -1) throw new Error('Invalid email address');
                 if (password.length < 6) throw new Error('Password must be at least 6 characters');
 
                 for (var id in STATE.users) {
@@ -1861,7 +1576,6 @@
                     bio: '',
                     status: 'online',
                     customStatus: '',
-                    pronouns: '',
                     createdAt: Date.now(),
                     lastSeen: Date.now(),
                 };
@@ -1874,8 +1588,8 @@
                 var hash = hashPassword(password);
                 for (var id in STATE.users) {
                     var user = STATE.users[id];
-                    if ((user.username.toLowerCase() === identifier.toLowerCase() || user.email.toLowerCase() === identifier
-                            .toLowerCase()) &&
+                    if ((user.username.toLowerCase() === identifier.toLowerCase() || 
+                         user.email.toLowerCase() === identifier.toLowerCase()) &&
                         user.passwordHash === hash) {
                         user.lastSeen = Date.now();
                         user.status = 'online';
@@ -1886,38 +1600,34 @@
                 throw new Error('Invalid credentials');
             }
 
-            function logoutUser() {
-                if (STATE.currentUser) {
-                    STATE.currentUser.status = 'offline';
-                    STATE.currentUser.lastSeen = Date.now();
-                    DB.save();
-                }
-                STATE.currentUser = null;
-                STATE.sessionToken = null;
-                DB.save();
-                renderAuth();
-            }
-
             function getCurrentUser() {
                 return STATE.currentUser;
             }
 
+            // ============================================================
+            // FRIENDS
+            // ============================================================
             function sendFriendRequest(userId) {
                 var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
                 if (userId === current.id) throw new Error('Cannot add yourself');
-                if (STATE.friends.some(function(f) {
-                        return (f.userId === current.id && f.friendId === userId) ||
-                            (f.userId === userId && f.friendId === current.id);
-                    })) {
-                    throw new Error('Already friends');
+                
+                for (var i = 0; i < STATE.friends.length; i++) {
+                    var f = STATE.friends[i];
+                    if ((f.userId === current.id && f.friendId === userId) ||
+                        (f.userId === userId && f.friendId === current.id)) {
+                        throw new Error('Already friends');
+                    }
                 }
-                if (STATE.friendRequests.some(function(r) {
-                        return (r.senderId === current.id && r.receiverId === userId) ||
-                            (r.senderId === userId && r.receiverId === current.id);
-                    })) {
-                    throw new Error('Friend request already exists');
+                
+                for (var j = 0; j < STATE.friendRequests.length; j++) {
+                    var r = STATE.friendRequests[j];
+                    if ((r.senderId === current.id && r.receiverId === userId) ||
+                        (r.senderId === userId && r.receiverId === current.id)) {
+                        throw new Error('Friend request already exists');
+                    }
                 }
+                
                 var request = {
                     id: uid(),
                     senderId: current.id,
@@ -1977,12 +1687,16 @@
                 for (var i = 0; i < STATE.friends.length; i++) {
                     var f = STATE.friends[i];
                     if (f.userId === current.id) {
-                        result.push({ friend: f, user: STATE.users[f.friendId] });
+                        var user = STATE.users[f.friendId];
+                        if (user) result.push({ friendship: f, user: user });
                     }
                 }
                 return result;
             }
 
+            // ============================================================
+            // COMMUNITIES
+            // ============================================================
             function createCommunity(name, description, isPublic) {
                 isPublic = (isPublic !== undefined) ? isPublic : true;
                 var current = getCurrentUser();
@@ -2124,13 +1838,15 @@
                 return channel;
             }
 
-            function sendMessage(channelId, content, attachments, replyTo) {
-                attachments = attachments || [];
+            // ============================================================
+            // MESSAGES
+            // ============================================================
+            function sendMessage(channelId, content, replyTo) {
                 replyTo = replyTo || null;
                 var current = getCurrentUser();
                 if (!current) throw new Error('Not authenticated');
-                if (!content && attachments.length === 0) throw new Error('Message content required');
-                if (content && content.length > 4000) throw new Error('Message too long');
+                if (!content || content.trim().length === 0) throw new Error('Message content required');
+                if (content.length > 4000) throw new Error('Message too long');
 
                 var channel = STATE.channels[channelId];
                 if (!channel) throw new Error('Channel not found');
@@ -2145,8 +1861,8 @@
                     id: id,
                     channelId: channelId,
                     authorId: current.id,
-                    content: content || '',
-                    attachments: attachments || [],
+                    content: content.trim(),
+                    attachments: [],
                     replyTo: replyTo,
                     createdAt: Date.now(),
                     updatedAt: Date.now(),
@@ -2155,7 +1871,6 @@
                 };
                 STATE.messages[id] = message;
                 DB.save();
-                simulateRealtime('message:create', message);
                 return message;
             }
 
@@ -2171,7 +1886,6 @@
                 message.updatedAt = Date.now();
                 message.edited = true;
                 DB.save();
-                simulateRealtime('message:update', message);
                 return message;
             }
 
@@ -2181,12 +1895,10 @@
                 var message = STATE.messages[messageId];
                 if (!message) throw new Error('Message not found');
                 if (message.authorId !== current.id) {
-                    var communityId = STATE.channels[message.channelId] ? STATE.channels[message.channelId].communityId :
-                    null;
+                    var communityId = STATE.channels[message.channelId] ? STATE.channels[message.channelId].communityId : null;
                     if (communityId) {
                         var member = STATE.memberships[communityId] ? STATE.memberships[communityId][current.id] : null;
-                        if (!member || !member.roles || !member.roles.some(function(r) { return r === 'admin' || r ===
-                                'moderator'; })) {
+                        if (!member || !member.roles || !member.roles.some(function(r) { return r === 'admin' || r === 'moderator'; })) {
                             throw new Error('Permission denied');
                         }
                     } else {
@@ -2196,11 +1908,10 @@
                 message.deleted = true;
                 message.content = '*Message deleted*';
                 DB.save();
-                simulateRealtime('message:delete', { id: messageId });
                 return message;
             }
 
-            function getChannelMessages(channelId, limit, before) {
+            function getChannelMessages(channelId, limit) {
                 limit = limit || 50;
                 var messages = [];
                 for (var id in STATE.messages) {
@@ -2210,13 +1921,6 @@
                     }
                 }
                 messages.sort(function(a, b) { return b.createdAt - a.createdAt; });
-                if (before) {
-                    var idx = -1;
-                    for (var i = 0; i < messages.length; i++) {
-                        if (messages[i].id === before) { idx = i; break; }
-                    }
-                    if (idx !== -1) messages.splice(idx);
-                }
                 return messages.slice(0, limit);
             }
 
@@ -2232,7 +1936,6 @@
                     STATE.reactions[key].push(current.id);
                 }
                 DB.save();
-                simulateRealtime('message:reaction', { messageId: messageId, emoji: emoji, userId: current.id });
             }
 
             function removeReaction(messageId, emoji) {
@@ -2245,7 +1948,6 @@
                     if (STATE.reactions[key].length === 0) delete STATE.reactions[key];
                 }
                 DB.save();
-                simulateRealtime('message:unreaction', { messageId: messageId, emoji: emoji, userId: current.id });
             }
 
             function getMessageReactions(messageId) {
@@ -2282,27 +1984,9 @@
                 return STATE.channels[channelId];
             }
 
-            var realtimeCallbacks = {};
-
-            function onRealtime(event, callback) {
-                realtimeCallbacks[event] = realtimeCallbacks[event] || [];
-                realtimeCallbacks[event].push(callback);
-            }
-
-            function simulateRealtime(event, data) {
-                if (realtimeCallbacks[event]) {
-                    for (var i = 0; i < realtimeCallbacks[event].length; i++) {
-                        try { realtimeCallbacks[event][i](data); } catch (e) { /* ignore */ }
-                    }
-                }
-                if (event === 'message:create' || event === 'message:update' || event === 'message:delete') {
-                    renderMessages();
-                }
-                if (event === 'message:reaction' || event === 'message:unreaction') {
-                    renderMessages();
-                }
-            }
-
+            // ============================================================
+            // RENDER
+            // ============================================================
             function renderAuth() {
                 var user = getCurrentUser();
                 if (user) {
@@ -2358,14 +2042,6 @@
                         DOM.communityIcon.textContent = getInitials(comm.name);
                         DOM.communityIcon.style.backgroundColor = getAvatarColor(comm.id);
                         STATE.currentCommunityId = current;
-                    } else {
-                        STATE.currentCommunityId = communities[0].id;
-                        if (STATE.currentCommunityId) {
-                            var comm2 = STATE.communities[STATE.currentCommunityId];
-                            DOM.communityNameDisplay.textContent = comm2.name;
-                            DOM.communityIcon.textContent = getInitials(comm2.name);
-                            DOM.communityIcon.style.backgroundColor = getAvatarColor(comm2.id);
-                        }
                     }
                 } else {
                     DOM.communityNameDisplay.textContent = 'No Community';
@@ -2398,7 +2074,6 @@
                     text: { label: 'Text Channels', icon: '#' },
                     voice: { label: 'Voice Channels', icon: '🔊' },
                     announcement: { label: 'Announcements', icon: '📢' },
-                    dm: { label: 'Direct Messages', icon: '💬' },
                 };
 
                 var grouped = {};
@@ -2430,8 +2105,7 @@
                             el.dataset.channelId = ch2.id;
                             el.innerHTML =
                                 '<span class="channel-icon">' + (typeKey === 'voice' ? '🔊' : '#') + '</span>' +
-                                '<span class="channel-name">' + escapeHTML(ch2.name) + '</span>' +
-                                (ch2.slowMode > 0 ? '<span class="channel-badge">🐢</span>' : '');
+                                '<span class="channel-name">' + escapeHTML(ch2.name) + '</span>';
                             el.addEventListener('click', function() {
                                 selectChannel(this.dataset.channelId);
                             });
@@ -2528,8 +2202,6 @@
                         html += '<button class="btn-icon" onclick="window.Zenith.deleteMessage(\'' + msg.id +
                             '\')" title="Delete">✕</button>';
                     }
-                    html += '<button class="btn-icon" onclick="window.Zenith.addReactionPicker(\'' + msg.id +
-                        '\')" title="React">😊</button>';
                     html += '</div>';
                     html += '</div>';
 
@@ -2733,7 +2405,7 @@
 
                 var replyTo = STATE.replyingTo;
                 try {
-                    var msg = sendMessage(channelId, content, [], replyTo);
+                    var msg = sendMessage(channelId, content, replyTo);
                     input.value = '';
                     input.style.height = 'auto';
                     STATE.replyingTo = null;
@@ -2819,43 +2491,7 @@
                 } else {
                     addReaction(messageId, emoji);
                 }
-            }
-
-            function addReactionPicker(messageId) {
-                var emojis = ['👍', '❤️', '😂', '😮', '😢', '😡', '🎉', '👀'];
-                showModal(
-                    '<div class="modal-header">' +
-                    '<h2>Add Reaction</h2>' +
-                    '<button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>' +
-                    '</div>' +
-                    '<div style="display:flex;flex-wrap:wrap;gap:12px;padding:16px 0;justify-content:center;">' +
-                    emojis.map(function(e) {
-                        return '<button onclick="window.Zenith.toggleReaction(\'' + messageId + '\',\'' + e +
-                            '\');window.Zenith.closeModal();" ' +
-                            'style="font-size:32px;background:transparent;border:1px solid var(--zenith-border);border-radius:12px;padding:12px;cursor:pointer;transition:var(--zenith-transition);">' +
-                            e + '</button>';
-                    }).join('') +
-                    '</div>' +
-                    '<div class="modal-actions">' +
-                    '<button class="btn-secondary" onclick="window.Zenith.closeModal()">Close</button>' +
-                    '</div>'
-                );
-            }
-
-            function handleKeydown(e) {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    sendMessageAction();
-                }
-                if (e.key === 'Escape') {
-                    cancelReply();
-                }
-            }
-
-            function autoResizeTextarea() {
-                var el = DOM.composerInput;
-                el.style.height = 'auto';
-                el.style.height = Math.min(el.scrollHeight, 200) + 'px';
+                renderMessages();
             }
 
             function switchTab(tab) {
@@ -3061,25 +2697,6 @@
                 DOM.channelNameDisplay.textContent = 'Discover';
                 DOM.channelIconDisplay.textContent = '🔍';
                 DOM.channelTopicDisplay.textContent = 'Find communities to join';
-
-                var searchInput = document.getElementById('discover-search');
-                if (searchInput) {
-                    searchInput.addEventListener('input', function() {
-                        var query = this.value.toLowerCase();
-                        var results = document.getElementById('discover-results');
-                        var items = results.querySelectorAll(
-                            'div[style*="display:flex;align-items:center;justify-content:space-between"]');
-                        for (var i2 = 0; i2 < items.length; i2++) {
-                            var el = items[i2];
-                            var nameEl = el.querySelector('div:first-child div:first-child');
-                            var descEl = el.querySelector('div:first-child div:nth-child(2)');
-                            var name = nameEl ? nameEl.textContent.toLowerCase() : '';
-                            var desc = descEl ? descEl.textContent.toLowerCase() : '';
-                            el.style.display = (name.indexOf(query) !== -1 || desc.indexOf(query) !== -1) ? '' :
-                                'none';
-                        }
-                    });
-                }
             }
 
             function openDM(userId) {
@@ -3149,7 +2766,7 @@
                 try {
                     acceptFriendRequest(requestId);
                     showToast('Friend request accepted!', 'success');
-                    renderFriendsView();
+                    showFriendsView();
                     renderNotifications();
                 } catch (e) {
                     showToast(e.message, 'error');
@@ -3160,7 +2777,7 @@
                 try {
                     rejectFriendRequest(requestId);
                     showToast('Friend request rejected', 'info');
-                    renderFriendsView();
+                    showFriendsView();
                     renderNotifications();
                 } catch (e) {
                     showToast(e.message, 'error');
@@ -3177,7 +2794,7 @@
                 });
                 DB.save();
                 showToast('Friend removed', 'info');
-                renderFriendsView();
+                showFriendsView();
             }
 
             function joinCommunity(communityId) {
@@ -3287,25 +2904,34 @@
                     }
                 }
                 DB.save();
-                logoutUser();
+                STATE.currentUser = null;
+                localStorage.removeItem('zenith_session');
+                renderAuth();
                 showToast('Account deleted', 'info');
                 closeModal();
             }
 
-            function insertEmoji(emoji) {
-                var input = DOM.composerInput;
-                var start = input.selectionStart;
-                var end = input.selectionEnd;
-                var text = input.value;
-                input.value = text.slice(0, start) + emoji + text.slice(end);
-                input.focus();
-                input.selectionStart = input.selectionEnd = start + emoji.length;
-                autoResizeTextarea();
+            function handleKeydown(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessageAction();
+                }
+                if (e.key === 'Escape') {
+                    cancelReply();
+                }
             }
 
+            function autoResizeTextarea() {
+                var el = DOM.composerInput;
+                el.style.height = 'auto';
+                el.style.height = Math.min(el.scrollHeight, 200) + 'px';
+            }
+
+            // ============================================================
+            // INIT
+            // ============================================================
             function init() {
                 cacheDOMElements();
-
                 DB.load();
 
                 var savedSession = localStorage.getItem('zenith_session');
@@ -3318,6 +2944,7 @@
 
                 renderAuth();
 
+                // Login
                 DOM.loginBtn.addEventListener('click', function() {
                     var username = DOM.loginUsername.value.trim();
                     var password = DOM.loginPassword.value;
@@ -3335,13 +2962,12 @@
                     }
                 });
 
+                // Register
                 DOM.registerBtn.addEventListener('click', function() {
                     var username = DOM.regUsername.value.trim();
                     var displayName = DOM.regDisplayName.value.trim();
                     var email = DOM.regEmail.value.trim();
                     var password = DOM.regPassword.value;
-
-                    console.log('Registering:', username, displayName, email, password);
 
                     try {
                         var user = registerUser(username, displayName, email, password);
@@ -3352,22 +2978,27 @@
                         renderAuth();
                         showToast('Welcome to ZENITH, ' + user.displayName + '!', 'success');
                     } catch (e) {
-                        console.error('Registration error:', e.message);
                         DOM.registerError.textContent = e.message;
                         DOM.registerError.classList.add('visible');
                     }
                 });
 
+                // Switch between login/register
                 DOM.switchToRegister.addEventListener('click', function() {
                     DOM.loginForm.style.display = 'none';
                     DOM.registerForm.style.display = 'block';
+                    DOM.loginError.classList.remove('visible');
+                    DOM.registerError.classList.remove('visible');
                 });
 
                 DOM.switchToLogin.addEventListener('click', function() {
                     DOM.registerForm.style.display = 'none';
                     DOM.loginForm.style.display = 'block';
+                    DOM.loginError.classList.remove('visible');
+                    DOM.registerError.classList.remove('visible');
                 });
 
+                // Enter key for auth
                 DOM.loginPassword.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') DOM.loginBtn.click();
                 });
@@ -3375,58 +3006,31 @@
                     if (e.key === 'Enter') DOM.registerBtn.click();
                 });
 
+                // Sidebar
                 DOM.sidebarToggle.addEventListener('click', toggleSidebar);
                 DOM.sidebarOverlay.addEventListener('click', closeSidebar);
                 DOM.memberToggle.addEventListener('click', toggleMemberPanel);
 
+                // Composer
                 DOM.composerInput.addEventListener('keydown', handleKeydown);
                 DOM.composerInput.addEventListener('input', autoResizeTextarea);
                 DOM.sendBtn.addEventListener('click', sendMessageAction);
                 DOM.cancelReply.addEventListener('click', cancelReply);
 
-                DOM.attachBtn.addEventListener('click', function() { DOM.fileInput.click(); });
-                DOM.fileInput.addEventListener('change', function() {
-                    if (this.files.length > 0) {
-                        var file = this.files[0];
-                        if (file.size > 10 * 1024 * 1024) {
-                            showToast('File too large (max 10MB)', 'error');
-                            this.value = '';
-                            return;
-                        }
-                        showToast('Attached: ' + file.name, 'info');
-                        this.value = '';
-                    }
-                });
-
-                DOM.emojiBtn.addEventListener('click', function() {
-                    var emojis = ['😊', '❤️', '👍', '😂', '🎉', '🔥', '✨', '👀', '💪', '🤔', '😎', '🥺'];
-                    showModal(
-                        '<div class="modal-header">' +
-                        '<h2>Emojis</h2>' +
-                        '<button class="btn-close" onclick="window.Zenith.closeModal()">✕</button>' +
-                        '</div>' +
-                        '<div style="display:flex;flex-wrap:wrap;gap:8px;padding:12px 0;justify-content:center;">' +
-                        emojis.map(function(e) {
-                            return '<button onclick="window.Zenith.insertEmoji(\'' + e +
-                                '\');window.Zenith.closeModal();" ' +
-                                'style="font-size:28px;background:transparent;border:1px solid var(--zenith-border);border-radius:8px;padding:8px 12px;cursor:pointer;transition:var(--zenith-transition);">' +
-                                e + '</button>';
-                        }).join('') +
-                        '</div>'
-                    );
-                });
-
+                // Rail tabs
                 for (var i = 0; i < DOM.railItems.length; i++) {
                     DOM.railItems[i].addEventListener('click', function() {
                         switchTab(this.dataset.tab);
                     });
                 }
 
+                // Add community
                 DOM.addCommunityBtn.addEventListener('click', showCreateCommunity);
                 DOM.settingsBtn.addEventListener('click', showSettings);
                 DOM.railAvatar.addEventListener('click', showSettings);
                 DOM.sidebarAvatar.addEventListener('click', showSettings);
 
+                // Community selector
                 DOM.communitySelector.addEventListener('click', function() {
                     var communities = getUserCommunities();
                     if (communities.length === 0) {
@@ -3458,21 +3062,19 @@
                     );
                 });
 
+                // Channel search
                 DOM.channelSearch.addEventListener('input', function() {
                     var query = this.value.toLowerCase();
                     var channels = DOM.channelList.querySelectorAll('.channel');
-                    for (var ci2 = 0; ci2 < channels.length; ci2++) {
-                        var ch = channels[ci2];
+                    for (var ci = 0; ci < channels.length; ci++) {
+                        var ch = channels[ci];
                         var name = ch.querySelector('.channel-name');
                         var nameText = name ? name.textContent.toLowerCase() : '';
                         ch.style.display = nameText.indexOf(query) !== -1 ? '' : 'none';
                     }
                 });
 
-                document.addEventListener('click', function() {
-                    DOM.contextMenu.classList.remove('active');
-                });
-
+                // Keyboard shortcuts
                 document.addEventListener('keydown', function(e) {
                     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                         e.preventDefault();
@@ -3488,6 +3090,7 @@
                     if (window.innerWidth > 768) closeSidebar();
                 });
 
+                // Expose to window
                 window.Zenith = {
                     closeModal: closeModal,
                     showCreateCommunity: showCreateCommunity,
@@ -3498,7 +3101,6 @@
                     editMessage: editMessage,
                     deleteMessage: deleteMessage,
                     toggleReaction: toggleReaction,
-                    addReactionPicker: addReactionPicker,
                     selectChannel: selectChannel,
                     selectCommunity: selectCommunity,
                     toggleSidebar: toggleSidebar,
@@ -3513,12 +3115,11 @@
                     joinCommunity: joinCommunity,
                     startDM: startDM,
                     openDM: openDM,
-                    insertEmoji: insertEmoji,
                     showToast: showToast,
-                    renderFriendsView: showFriendsView,
                     getState: function() { return STATE; },
                 };
 
+                // Initial load
                 if (getCurrentUser()) {
                     var communities = getUserCommunities();
                     if (communities.length > 0) {
@@ -3531,7 +3132,7 @@
                     renderUI();
                 }
 
-                console.log('ZENITH initialized successfully');
+                console.log('ZENITH initialized');
                 console.log('Users:', Object.keys(STATE.users).length);
                 console.log('Communities:', Object.keys(STATE.communities).length);
                 console.log('Messages:', Object.keys(STATE.messages).length);
